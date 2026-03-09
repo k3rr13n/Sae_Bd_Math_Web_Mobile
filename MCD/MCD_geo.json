@@ -1,0 +1,50 @@
+{
+  "width": 570,
+  "height": 270,
+  "cx": [
+    [ "OPERER", 99 ],
+    [ "COMPAGNIE", 253 ],
+    [ "DEPEND_DE", 386 ],
+    [ "VILLE", 514 ],
+    [ "VOL", 99 ],
+    [ "DEPART", 253 ],
+    [ "AEROPORT", 386 ],
+    [ "SITUE_DANS", 514 ],
+    [ "ARRIVEE", 99 ],
+    [ "TERMINAL", 253 ],
+    [ "COMPOSER", 386 ],
+    [ "PAYS", 514 ]
+  ],
+  "cy": [
+    [ "OPERER", 43 ],
+    [ "COMPAGNIE", 43 ],
+    [ "DEPEND_DE", 43 ],
+    [ "VILLE", 43 ],
+    [ "VOL", 135 ],
+    [ "DEPART", 135 ],
+    [ "AEROPORT", 135 ],
+    [ "SITUE_DANS", 135 ],
+    [ "ARRIVEE", 227 ],
+    [ "TERMINAL", 227 ],
+    [ "COMPOSER", 227 ],
+    [ "PAYS", 227 ]
+  ],
+  "shift": [
+    [ "OPERER,COMPAGNIE,0", 0 ],
+    [ "OPERER,VOL,0", 0 ],
+    [ "DEPEND_DE,VILLE,0", 0 ],
+    [ "DEPEND_DE,AEROPORT,0", 0 ],
+    [ "DEPART,VOL,0", 0 ],
+    [ "DEPART,TERMINAL,0", 0 ],
+    [ "SITUE_DANS,PAYS,0", 0 ],
+    [ "SITUE_DANS,VILLE,0", 0 ],
+    [ "ARRIVEE,VOL,0", 0 ],
+    [ "ARRIVEE,TERMINAL,0", 0 ],
+    [ "COMPOSER,AEROPORT,0", 0 ],
+    [ "COMPOSER,TERMINAL,0", 0 ]
+  ],
+  "ratio": [
+    [ "OPERER,COMPAGNIE,0", 1.0 ],
+    [ "COMPOSER,AEROPORT,0", 1.0 ]
+  ]
+}
