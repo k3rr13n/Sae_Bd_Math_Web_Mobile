@@ -1,33 +1,35 @@
 INSERT INTO PAYS VALUES (1, 'FR');
-INSERT INTO PAYS VALUES (2, 'UK');
+INSERT INTO PAYS VALUES (2, 'CM');
 INSERT INTO PAYS VALUES (3, 'BR');
+INSERT INTO PAYS VALUES (4, 'NY');
+INSERT INTO PAYS VALUES (5, 'NC');
+INSERT INTO PAYS VALUES (6, 'CA');
 
 INSERT INTO VILLE VALUES (1, 1, 'Paris');
-INSERT INTO VILLE VALUES (2, 2, 'Londre');
-INSERT INTO VILLE VALUES (3, 3, 'Rio');
+INSERT INTO VILLE VALUES (2, 2, 'Shanghai');
+INSERT INTO VILLE VALUES (3, 3, 'Rio de Janeiro');
+INSERT INTO VILLE VALUES (4, 4, 'New York');
+INSERT INTO VILLE VALUES (5, 5, 'Tontouta');
+INSERT INTO VILLE VALUES (6, 6, 'Hamilton');
 
-INSERT INTO AEROPORT VALUES (1, 1, 'Charle de gaulle');
-INSERT INTO AEROPORT VALUES (2, 2, 'Green tea');
-INSERT INTO AEROPORT VALUES (3, 3, 'Gran Rio');
+INSERT INTO AEROPORT VALUES ('Charle de gaulle', 1);
+INSERT INTO AEROPORT VALUES ('Shanghai-Pudong', 2);
+INSERT INTO AEROPORT VALUES ('Rio de Janeiro-Galeão', 3);
+INSERT INTO AEROPORT VALUES ('Newark', 4);
+INSERT INTO AEROPORT VALUES ('Tontouta', 5);
+INSERT INTO AEROPORT VALUES ('Hamilton', 6);
 
-INSERT INTO TERMINAL VALUES (1, 1, '3E');
-INSERT INTO TERMINAL VALUES (2, 2, '2A');
-INSERT INTO TERMINAL VALUES (3, 3, '2');
+INSERT INTO TERMINAL VALUES ('Charle de gaulle', 'E');
+INSERT INTO TERMINAL VALUES ('Shanghai-Pudong', 'F');
+INSERT INTO TERMINAL VALUES ('Rio de Janeiro-Galeão', '2AB');
+INSERT INTO TERMINAL VALUES ('Newark', 'B');
+INSERT INTO TERMINAL VALUES ('Tontouta', 'J');
+INSERT INTO TERMINAL VALUES ('Hamilton', '56');
 
-INSERT INTO VOL VALUES (
-    'Air frnce',
-    '456',
-    '2025-01-02 12:54:23',
-    1, --ville depart--
-    1, --paus d--
+INSERT INTO COMPAGNIE VALUES ("Air france");
+INSERT INTO COMPAGNIE VALUES ("Aircalin");
+INSERT INTO COMPAGNIE VALUES ("Air austral");
 
-    1, --aeroport d
-    1, -- terminal d 
-    2,-- ville -arr--
-    2, --pays, arr--
-    2, --aeroport_arrivee--
-    2, --termainal arr
-    '2025-01-02 14:01:11'  --horaire a--
-);
-
-
+INSERT INTO VOL VALUES ("Air france", 54123, "2025-01-03 15:32:12", "2025-01-03 19:32:12", "E", "F", "Charle de gaulle", "Shanghai-Pudong");
+INSERT INTO VOL VALUES ("Aircalin", 98963, "2025-09-15 12:02:56", "2025-09-15 13:32:12", "2AB", "B", "Rio de Janeiro-Galeão", "Newark");
+INSERT INTO VOL VALUES ("Air austral", 11215, "2026-05-10 20:00:14", "2026-05-10 21:00:1", "J", "56", "Tontouta", "Hamilton");
