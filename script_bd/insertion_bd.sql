@@ -18,6 +18,7 @@ INSERT INTO AEROPORT VALUES ('Rio de Janeiro-Galeão', 3);
 INSERT INTO AEROPORT VALUES ('Newark', 4);
 INSERT INTO AEROPORT VALUES ('Tontouta', 5);
 INSERT INTO AEROPORT VALUES ('Hamilton', 6);
+INSERT INTO AEROPORT VALUES ('Paris-Orly', 1);
 
 INSERT INTO TERMINAL VALUES ('Charle de gaulle', 'E');
 INSERT INTO TERMINAL VALUES ('Shanghai-Pudong', 'F');
@@ -25,6 +26,7 @@ INSERT INTO TERMINAL VALUES ('Rio de Janeiro-Galeão', '2AB');
 INSERT INTO TERMINAL VALUES ('Newark', 'B');
 INSERT INTO TERMINAL VALUES ('Tontouta', 'J');
 INSERT INTO TERMINAL VALUES ('Hamilton', '56');
+INSERT INTO TERMINAL VALUES ('Paris-Orly', 'A');
 
 INSERT INTO COMPAGNIE VALUES ("Air france");
 INSERT INTO COMPAGNIE VALUES ("Aircalin");
@@ -192,3 +194,22 @@ INSERT INTO VOL VALUES ('JAL', 23005, '2025-04-02 08:00:00', '2025-04-02 16:30:0
 
 INSERT INTO VOL VALUES ('Thai Airways', 23457, '2025-04-10 10:00:00', '2025-04-10 14:45:00', 'N', '3', 'Suvarnabhumi', 'Indira Gandhi');
 INSERT INTO VOL VALUES ('Thai Airways', 23458, '2025-04-10 18:30:00', '2025-04-11 02:15:00', '3', 'D', 'Indira Gandhi', 'Auckland-AKL');
+
+INSERT INTO VOL VALUES ('Air france', 60001, '2025-05-01 09:00:00', '2025-05-01 11:15:00', 'A', '5', 'Paris-Orly', 'Heathrow');
+INSERT INTO VOL VALUES ('Air france', 60002, '2025-05-02 13:30:00', '2025-05-02 16:00:00', 'E', '4S', 'Charle de gaulle', 'Barajas');
+INSERT INTO VOL VALUES ('Air france', 60003, '2025-05-03 07:45:00', '2025-05-03 10:30:00', 'E', 'A', 'Charle de gaulle', 'Zurich-ZRH');
+INSERT INTO VOL VALUES ('Air france', 60004, '2025-05-04 15:00:00', '2025-05-04 18:30:00', 'A', '1A', 'Paris-Orly', 'LAX');
+
+INSERT INTO VOL VALUES ('Air france', 60005, '2025-05-05 08:00:00', '2025-05-05 10:00:00', 'E', '5', 'Charle de gaulle', 'Heathrow');
+INSERT INTO VOL VALUES ('Air france', 60006, '2025-05-05 12:00:00', '2025-05-05 16:30:00', '5', 'T2', 'Heathrow', 'Haneda');
+
+INSERT INTO VOL VALUES ('Air france', 60007, '2025-05-06 09:30:00', '2025-05-06 12:00:00', 'E', '4S', 'Charle de gaulle', 'Barajas');
+INSERT INTO VOL VALUES ('Air france', 60008, '2025-05-06 14:00:00', '2025-05-06 18:00:00', '4S', 'T3', 'Barajas', 'Schwechat');
+
+INSERT INTO VOL VALUES ('Air france', 60009, '2025-05-07 07:00:00', '2025-05-07 09:00:00', 'A', '5', 'Paris-Orly', 'Heathrow');
+INSERT INTO VOL VALUES ('Air france', 60010, '2025-05-07 11:00:00', '2025-05-07 13:30:00', '5', '4S', 'Heathrow', 'Barajas');
+INSERT INTO VOL VALUES ('Air france', 60011, '2025-05-07 15:00:00', '2025-05-07 23:00:00', '4S', 'N', 'Barajas', 'Suvarnabhumi');
+
+INSERT INTO VOL VALUES ('Air france', 60012, '2025-05-08 10:00:00', '2025-05-08 13:00:00', 'E', 'A', 'Charle de gaulle', 'Zurich-ZRH');
+INSERT INTO VOL VALUES ('Air france', 60013, '2025-05-08 15:00:00', '2025-05-09 07:00:00', 'A', 'I', 'Zurich-ZRH', 'Kingsford Smith');
+INSERT INTO VOL VALUES ('Air france', 60014, '2025-05-09 09:00:00', '2025-05-09 14:00:00', 'I', 'D', 'Kingsford Smith', 'Auckland-AKL');
