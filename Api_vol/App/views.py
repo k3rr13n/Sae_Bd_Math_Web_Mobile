@@ -1,7 +1,14 @@
-from flask import jsonify , abort , make_response , request , url_for
+#from flask import jsonify , abort , make_response , request , url_for
+from flask_restx import Resource, Namespace, abort
 from.app import app
 from.models import *
 
-@app.route('/avion/api/v1.0/vols/', methods = ['GET'])
+ns = Namespace('vols')
+
+@ns.route('/')
+class VolList(Resource):
+    def get(self):
+        # Implementation for getting all flights
+        pass
 def get_vol() :
-    
+    pass

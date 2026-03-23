@@ -1,6 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from .extensions import api, db
+from .views import ns
+
 import os
 def mkpath (p) :
     return os.path.normpath (
@@ -14,3 +17,6 @@ app. config ["SQLALCHEMY_ECHO"] = True
 cors = CORS(app, resources={r"/todo/api/v1.0/*": {"origines": "*"}})
 
 db = SQLAlchemy (app)
+api.init_app(app)
+#db.init_app(app)
+api.add_namespace(ns)
