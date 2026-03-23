@@ -1,4 +1,3 @@
-
 from .extensions import db
 
 
@@ -71,7 +70,7 @@ class Vol (db.Model):
 
     #nom_compagnie = db.Column(db.String(50), primary_key=True)
     nom_compagnie =db.relationship("Compagnie", backref="vol", lazy=True)
-    num_vol = db.Column(db.Integer, primary_key=True)
+    numero_vol = db.Column(db.Integer, primary_key=True)
     date_heure_depart = db.Column(db.DateTime, primary_key=True)
 
     date_heure_arrive_prevue = db.Column(db.DateTime)
@@ -100,10 +99,10 @@ class Vol (db.Model):
     
     terminal_arrivee = db.relationship("Terminal", foreign_keys=[nom_aeroport_2, nom_terminal_2], backref="vol_arrivee", lazy=True)
 
-    def __init__(self,nom_compagnie, num_vol, date_heure_depart, date_heure_arrive_prevue, nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
+    def __init__(self,nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
     
         self. nom_compagnie= nom_compagnie
-        self. num_vol= num_vol
+        self. numero_vol= numero_vol
         self.date_heure_depart= date_heure_depart
         self.date_heure_arrive_prevue= date_heure_arrive_prevue
         self.nom_aeroport_1= nom_aeroport_1
@@ -112,7 +111,7 @@ class Vol (db.Model):
         self.nom_terminal_2= nom_terminal_2
 
     def __repr__(self):
-        return f"< Le vol {self.num_vol} de la compagnie {self.nom_compagnie} partant de l'aeroport {self.nom_aeroport_1} et arrivant à l'aeroport {self.nom_aeroport_2}>"
+        return f"< Le vol {self.numero_vol} de la compagnie {self.nom_compagnie} partant de l'aeroport {self.nom_aeroport_1} et arrivant à l'aeroport {self.nom_aeroport_2}>"
 
 class Compagnie (db.Model):
     __tablename__ = 'compagnie'
@@ -124,3 +123,25 @@ class Compagnie (db.Model):
 
     def __repr__(self):
         return f"< La compagnie {self.nom_compagnie}>"
+    
+    
+##########  VOL  ##############
+
+def get_all_vols():
+    return Vol.query.all()
+
+def get_vol(nom_compagnie, numero_vol, date_heure_depart):
+    return Vol.query.get(nom_compagnie, numero_vol, date_heure_depart)
+
+def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
+               nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
+    
+    vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=date_heure_depart,
+              date_heure_arrive_prevue=date_heure_arrive_prevue, nom_aeroport_1=nom_aeroport_1, 
+              nom_aeroport_2=nom_aeroport_2, nom_terminal_1=nom_terminal_1, nom_terminal_2=nom_terminal_2)
+    db.session.add(vol)
+    db.session.commit()
+    return vol
+
+def get_compagnies():
+    return Compagnie.query.all()
