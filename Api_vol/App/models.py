@@ -27,10 +27,10 @@ class Ville (db.Model):
     aeroports = db.relationship("Aeroport", backref="ville", lazy = True)
 
 
-    def __init__(self, id_ville, nom_ville):
+    def __init__(self, id_ville, nom_ville, id_pays):
         self.id_ville = id_ville
         self.nom_ville = nom_ville
-        self.id_pays = ""
+        self.id_pays = id_pays
 
     def __repr__(self):
         return f"< La Ville {self.nom_ville} a pour id {self.id_ville}>"
@@ -105,10 +105,10 @@ class Vol (db.Model):
         self. num_vol= num_vol
         self.date_heure_depart= date_heure_depart
         self.date_heure_arrive_prevue= date_heure_arrive_prevue
-        self.nom_aeroport_1= db.relationship("Aeroport", backref="aeroport", lazy = True)
-        self.nom_aeroport_2=db.relationship("Aeroport", backref="aeroport", lazy = True)
-        self.nom_terminal_1= db.relationship("Aeroport", backref="aeroport", lazy = True)
-        self.nom_terminal_2=db.relationship("Terminal", backref="terminal", lazy = True)
+        self.nom_aeroport_1= nom_aeroport_1
+        self.nom_aeroport_2= nom_aeroport_2
+        self.nom_terminal_1= nom_terminal_1
+        self.nom_terminal_2= nom_terminal_2
 
     def __repr__(self):
         return f"< Le vol {self.num_vol} de la compagnie {self.nom_compagnie} partant de l'aeroport {self.nom_aeroport_1} et arrivant à l'aeroport {self.nom_aeroport_2}>"
