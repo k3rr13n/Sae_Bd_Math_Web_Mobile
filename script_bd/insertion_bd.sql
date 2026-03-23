@@ -168,6 +168,7 @@ INSERT INTO VOL VALUES ('Austrian', 45123, '2025-02-24 16:30:00', '2025-02-25 00
 -- Vols avec correspondances
 INSERT INTO VOL VALUES ('Air france', 54124, '2025-03-01 08:00:00', '2025-03-01 12:30:00', 'E', 'T2', 'Charle de gaulle', 'Haneda');
 INSERT INTO VOL VALUES ('Air france', 54125, '2025-03-01 14:00:00', '2025-03-01 22:15:00', 'T2', 'T3', 'Haneda', 'Changi');
+INSERT INTO VOL VALUES ('Air france', 54125, '2025-03-01 12:00:00', '2025-03-01 20:15:00', 'T2', 'T3', 'Haneda', 'Changi'); -- fausse correspondence
 
 INSERT INTO VOL VALUES ('Lufthansa', 12002, '2025-03-05 09:15:00', '2025-03-05 11:45:00', 'E', '5', 'Berlin-Tegel', 'Heathrow');
 INSERT INTO VOL VALUES ('Lufthansa', 12003, '2025-03-05 16:30:00', '2025-03-06 00:45:00', '5', '2A', 'Heathrow', 'Dubai-DXB');
@@ -195,11 +196,13 @@ INSERT INTO VOL VALUES ('JAL', 23005, '2025-04-02 08:00:00', '2025-04-02 16:30:0
 INSERT INTO VOL VALUES ('Thai Airways', 23457, '2025-04-10 10:00:00', '2025-04-10 14:45:00', 'N', '3', 'Suvarnabhumi', 'Indira Gandhi');
 INSERT INTO VOL VALUES ('Thai Airways', 23458, '2025-04-10 18:30:00', '2025-04-11 02:15:00', '3', 'D', 'Indira Gandhi', 'Auckland-AKL');
 
+-- Un vol
 INSERT INTO VOL VALUES ('Air france', 60001, '2025-05-01 09:00:00', '2025-05-01 11:15:00', 'A', '5', 'Paris-Orly', 'Heathrow');
 INSERT INTO VOL VALUES ('Air france', 60002, '2025-05-02 13:30:00', '2025-05-02 16:00:00', 'E', '4S', 'Charle de gaulle', 'Barajas');
 INSERT INTO VOL VALUES ('Air france', 60003, '2025-05-03 07:45:00', '2025-05-03 10:30:00', 'E', 'A', 'Charle de gaulle', 'Zurich-ZRH');
 INSERT INTO VOL VALUES ('Air france', 60004, '2025-05-04 15:00:00', '2025-05-04 18:30:00', 'A', '1A', 'Paris-Orly', 'LAX');
 
+-- Plusieur
 INSERT INTO VOL VALUES ('Air france', 60005, '2025-05-05 08:00:00', '2025-05-05 10:00:00', 'E', '5', 'Charle de gaulle', 'Heathrow');
 INSERT INTO VOL VALUES ('Air france', 60006, '2025-05-05 12:00:00', '2025-05-05 16:30:00', '5', 'T2', 'Heathrow', 'Haneda');
 
