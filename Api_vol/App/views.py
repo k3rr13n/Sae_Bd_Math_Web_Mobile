@@ -1,6 +1,6 @@
 #from flask import jsonify , abort , make_response , request , url_for
 from flask_restx import Resource, Namespace, abort
-from.app import app
+from ..app import app
 from.models import *
 
 ns = Namespace('vols')
