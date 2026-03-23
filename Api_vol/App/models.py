@@ -68,7 +68,8 @@ class Terminal (db.Model):
 class Vol (db.Model):
     __tablename__ = 'vol'
 
-    nom_compagnie = db.Column(db.String(50), primary_key=True)
+    #nom_compagnie = db.Column(db.String(50), primary_key=True)
+    nom_compagnie =db.relationship("Compagnie", backref="vol", lazy=True)
     numero_vol = db.Column(db.Integer, primary_key=True)
     date_heure_depart = db.Column(db.DateTime, primary_key=True)
 
@@ -112,7 +113,18 @@ class Vol (db.Model):
     def __repr__(self):
         return f"< Le vol {self.numero_vol} de la compagnie {self.nom_compagnie} partant de l'aeroport {self.nom_aeroport_1} et arrivant à l'aeroport {self.nom_aeroport_2}>"
 
+class Compagnie (db.Model):
+    __tablename__ = 'compagnie'
 
+    nom_compagnie = db.Column(db.String(50), primary_key=True)
+
+    def __init__(self, nom_compagnie):
+        self.nom_compagnie = nom_compagnie
+
+    def __repr__(self):
+        return f"< La compagnie {self.nom_compagnie}>"
+    
+    
 ##########  VOL  ##############
 
 def get_all_vols():
