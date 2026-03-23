@@ -12,4 +12,10 @@ class VolList(Resource):
     def get(self):
         return get_all_vols()
 
+
+@ns.route('/compagnies')
+class CompagnieList(Resource):
+    @ns.marshal_list_with(compagnie_model)
+    def get(self):
+        return get_all_compagnies()
     

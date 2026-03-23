@@ -143,5 +143,5 @@ def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_p
     db.session.commit()
     return vol
 
-def get_compagnies():
+def get_all_compagnies():
     return Compagnie.query.all()
