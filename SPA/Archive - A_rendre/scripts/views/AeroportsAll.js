@@ -4,7 +4,7 @@ export default class AeroportsAll{
     async render(){
 
         let aeroports = await VolsProvider.getAeroports();
-        
+
         let view = `
             <section class="sections">
                 <h1>AeroportsAll</h1>

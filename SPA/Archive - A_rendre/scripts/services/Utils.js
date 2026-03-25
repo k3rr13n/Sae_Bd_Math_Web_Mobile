@@ -2,7 +2,7 @@ const Utils = {
     parsRequestURL(){
         let url = location.hash.slice(1).toLocaleLowerCase() || '/';
         let r = url.split('/');
-        console.log(r)
+        // console.log(r)
         let request = {
             operation : null,
             id : null,

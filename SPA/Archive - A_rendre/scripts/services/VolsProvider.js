@@ -69,7 +69,7 @@ export default class VolsProvider {
         try {
             const response = await fetch(`${JSON_AEROPORT}/`); 
             const json = await response.json();
-            return json.aeroports; 
+            return json; 
             
         } catch (error) {
             console.error(error); 
@@ -81,7 +81,20 @@ export default class VolsProvider {
             const response = await fetch(`${JSON_AEROPORT}/`);
             const json = await response.json();
             // console.log(json.vols[id-1])
-            return json.aeroports[id-1]; 
+            return json[id-1]; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }    
+    
+    static getAeroportJson = (nom_aeroport, id_ville) => {
+        try {
+            let new_data = {}
+            new_data['nom_aeroport'] = nom_aeroport
+            new_data['id_ville'] = id_ville
+            // console.log(json.vols[id-1])
+            return new_data; 
             
         } catch (error) {
             console.error(error); 

@@ -50,11 +50,11 @@ const router = async () => {
     let parsedURL = (request.operation ? '/' + request.operation : '/')
 
     if(request.id == null){
-        console.log(request.crud)
+        // console.log(request.crud)
         parsedURL += (request.crud ? '/create' : '');
     }
     else{
-        console.log(request.crud)
+        // console.log(request.crud)
         parsedURL += (request.id ? '/:id' : '') + (request.crud ? '/update' : '')
     }
 

@@ -8,23 +8,17 @@ export default class AeroportsCreate{
         let view = `
             <section class="sections">
                 <h1>AeroportsCreate</h1>
-                <button class="btn-create">Ajouter un nouvel aeroport</button>
-                ${aeroports.map((aeroport, i) => `
-                    <a href="/#/aeroports/${i+1}">
-                        <div class="element">
-                            <table>
-                                <thead>
-                                    <td>Aeroport</td>
-                                    <td>Id Ville</td>
-                                <thead>
-                                <tbody>
-                                    <td>${aeroport.nom_aeroport}</td>
-                                    <td>${aeroport.id_ville}</td>
-                                <tbody>
-                            </table>
-                        </div>
-                    </a>
-                `).join("")}
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>Le nom de l'aeroport :</label>
+                            <input type="text" id="nom_aeroport"></input>
+
+                        <label>L'id de la ville de l'aeroport :</label>
+                            <input type="number" min="1" id="id_ville"></input>
+                        <input type="submit" onclick="window.location.href='/#/aeroports'">
+                    </form>
+                </div>
             </section>
         `;
         return view;
