@@ -7,7 +7,8 @@ export default class TerminalAll{
         
         let view = `
             <section class="sections">
-                <h1>TerminalAll</h1>   
+                <h1>TerminalAll</h1>
+                <button class="btn-create">Ajouter un nouveau terminal</button>
                 ${terminaux.map((terminal, i) => `
                     <a href="/#/terminaux/${i+1}">
                         <div class="element">

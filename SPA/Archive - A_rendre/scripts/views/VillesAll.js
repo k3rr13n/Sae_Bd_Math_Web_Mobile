@@ -8,6 +8,7 @@ export default class VillesAll{
         let view = `
             <section class="sections">
                 <h1>VillesAll</h1>   
+                <button class="btn-create">Ajouter une nouvelle ville</button>
                 ${villes.map((ville, i) => `
                     <a href="/#/villes/${i+1}">
                         <div class="element">

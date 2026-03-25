@@ -35,6 +35,10 @@ export default class VolsShow{
                         <tbody>
                     </table>
                 </div>
+                <div class="btn_center">
+                    <button class="btn-update">Modifier le vol</button>
+                    <button class="btn-delete">Supprimer le vol</button>
+                </div>
             </section>
         `;
         return view;

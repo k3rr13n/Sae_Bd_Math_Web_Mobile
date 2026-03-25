@@ -8,6 +8,7 @@ export default class VolsAll{
         let view = `
             <section class="sections">
                 <h1>VolsAll</h1>   
+                <button class="btn-create">Ajouter un nouveau vol</button>
                 ${vols.map((vol, i) => `
                     <a href="/#/vols/${i+1}">
                         <div class="element">

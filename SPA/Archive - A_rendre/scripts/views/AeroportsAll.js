@@ -7,7 +7,8 @@ export default class AeroportsAll{
         
         let view = `
             <section class="sections">
-                <h1>AeroportsAll</h1>   
+                <h1>AeroportsAll</h1>
+                <button class="btn-create">Ajouter un nouvel aeroport</button>
                 ${aeroports.map((aeroport, i) => `
                     <a href="/#/aeroports/${i+1}">
                         <div class="element">

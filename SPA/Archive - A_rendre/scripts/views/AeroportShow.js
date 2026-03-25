@@ -11,18 +11,22 @@ export default class AeroportsShow{
         let view = `
             <section class="sections">
                 <h1>AeroportShow</h1>   
-                    <div class="element">
-                        <table>
-                            <thead>
-                                <td>Aeroport</td>
-                                <td>Id Ville</td>
-                            <thead>
-                            <tbody>
-                                <td>${aeroport.nom_aeroport}</td>
-                                <td>${aeroport.id_ville}</td>
-                            <tbody>
-                        </table>
-                    </div>
+                <div class="element">
+                    <table>
+                        <thead>
+                            <td>Aeroport</td>
+                            <td>Id Ville</td>
+                        <thead>
+                        <tbody>
+                            <td>${aeroport.nom_aeroport}</td>
+                            <td>${aeroport.id_ville}</td>
+                        <tbody>
+                    </table>
+                </div>
+                <div class="btn_center">
+                    <button class="btn-update">Modifier l'aeroport</button>
+                    <button class="btn-delete">Supprimer l'aeroport</button>
+                </div>
             </section>
         `;
         return view;

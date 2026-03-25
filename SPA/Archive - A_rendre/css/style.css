@@ -143,6 +143,10 @@ font-size: 16px;
 align-items: center;
 }
 
+.sections{
+margin: 0px 20px;
+}
+
 .sections, h2{
 margin-top: 200px;
 }
@@ -161,4 +165,55 @@ margin-left: 80px;
 
 .element table thead{
 font-weight: bold;
+}
+
+.btn-create{
+background-color: #8297FF;
+border-radius: 10px;
+border: none;
+color: #222;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+.btn-update{
+background-color: #B5FF29;
+border-radius: 10px;
+border: none;
+color: #222;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+.btn-delete{
+background-color: hsl(0, 100%, 50%);
+border-radius: 10px;
+border: none;
+color: #ffffff;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+.btn_center{
+margin-top: 50px;
+display: flex;
+justify-content: space-evenly;
 }

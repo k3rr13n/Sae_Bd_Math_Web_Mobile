@@ -11,18 +11,22 @@ export default class TerminalShow{
         let view = `
             <section class="sections">
                 <h1>TerminalShow</h1>   
-                    <div class="element">
-                        <table>
-                            <thead>
-                                <td>Aeroport</td>
-                                <td>Terminal</td>
-                            <thead>
-                            <tbody>
-                                <td>${terminal.nom_aeroport}</td>
-                                <td>${terminal.nom_terminal}</td>
-                            <tbody>
-                        </table>
-                    </div>
+                <div class="element">
+                    <table>
+                        <thead>
+                            <td>Aeroport</td>
+                            <td>Terminal</td>
+                        <thead>
+                        <tbody>
+                            <td>${terminal.nom_aeroport}</td>
+                            <td>${terminal.nom_terminal}</td>
+                        <tbody>
+                    </table>
+                </div>
+                <div class="btn_center">
+                    <button class="btn-update">Modifier le terminal</button>
+                    <button class="btn-delete">Supprimer le terminal</button>
+                </div>
             </section>
         `;
         return view;
