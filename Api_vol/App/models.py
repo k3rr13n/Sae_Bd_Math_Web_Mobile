@@ -69,7 +69,7 @@ class Vol (db.Model):
     __tablename__ = 'vol'
 
     #nom_compagnie = db.Column(db.String(50), primary_key=True)
-    nom_compagnie =db.relationship("Compagnie", backref="vol", lazy=True)
+    nom_compagnie =db.Column(db.String(50), db.ForeignKey('compagnie.nom_compagnie'), primary_key=True)
     numero_vol = db.Column(db.Integer, primary_key=True)
     date_heure_depart = db.Column(db.DateTime, primary_key=True)
 
@@ -131,7 +131,7 @@ def get_all_vols():
     return Vol.query.all()
 
 def get_vol(nom_compagnie, numero_vol, date_heure_depart):
-    return Vol.query.get(nom_compagnie, numero_vol, date_heure_depart)
+    return Vol.query.get((nom_compagnie, numero_vol, date_heure_depart))
 
 def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
                nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
@@ -145,3 +145,30 @@ def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_p
 
 def get_all_compagnies():
     return Compagnie.query.all()
+
+def get_compagnie(nom_compagnie):
+    return Compagnie.query.get(nom_compagnie)
+
+def get_all_aeroports():
+    return Aeroport.query.all()
+
+def get_aeroport(nom_aeroport):
+    return Aeroport.query.get(nom_aeroport)
+
+def get_all_villes():
+    return Ville.query.all()
+
+def get_ville(id_ville):
+    return Ville.query.get(id_ville)
+
+def get_all_pays():
+    return Pays.query.all()
+
+def get_pays(id_pays):
+    return Pays.query.get(id_pays)
+
+def get_all_terminals():
+    return Terminal.query.all()
+
+def get_terminal(nom_terminal, nom_aeroport):
+    return Terminal.query.get((nom_terminal, nom_aeroport))
