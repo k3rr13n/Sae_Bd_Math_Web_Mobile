@@ -8,11 +8,21 @@ export default class AeroportsAll{
         let view = `
             <section class="sections">
                 <h1>AeroportsAll</h1>   
-                ${aeroports.map(aeroport => `
-                    <div class="element">
-                        <p>Nom aeroport : ${aeroport.nom_aeroport}</p>
-                        <p>Id ville : ${aeroport.id_ville}</p>
-                    </div>
+                ${aeroports.map((aeroport, i) => `
+                    <a href="/#/aeroports/${i+1}">
+                        <div class="element">
+                            <table>
+                                <thead>
+                                    <td>Aeroport</td>
+                                    <td>Id Ville</td>
+                                <thead>
+                                <tbody>
+                                    <td>${aeroport.nom_aeroport}</td>
+                                    <td>${aeroport.id_ville}</td>
+                                <tbody>
+                            </table>
+                        </div>
+                    </a>
                 `).join("")}
             </section>
         `;

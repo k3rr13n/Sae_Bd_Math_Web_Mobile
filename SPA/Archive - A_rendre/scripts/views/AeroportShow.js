@@ -1,17 +1,28 @@
 import VolsProvider from "./../services/VolsProvider.js";
+import Utils from "./../services/Utils.js";
 
 export default class AeroportsShow{
     async render(){
 
-        let aeroport = await VolsProvider.getAeroport(); // Ajouter l'id ou un moyen distinctif
+        let request = Utils.parsRequestURL();
+
+        let aeroport = await VolsProvider.getAeroport(request.id); // Ajouter l'id ou un moyen distinctif
         
         let view = `
             <section class="sections">
                 <h1>AeroportShow</h1>   
-                <div class="element">
-                    <p>Nom aeroport : ${aeroport.nom_aeroport}</p>
-                    <p>Id ville : ${aeroport.id_ville}</p>
-                </div>
+                    <div class="element">
+                        <table>
+                            <thead>
+                                <td>Aeroport</td>
+                                <td>Id Ville</td>
+                            <thead>
+                            <tbody>
+                                <td>${aeroport.nom_aeroport}</td>
+                                <td>${aeroport.id_ville}</td>
+                            <tbody>
+                        </table>
+                    </div>
             </section>
         `;
         return view;

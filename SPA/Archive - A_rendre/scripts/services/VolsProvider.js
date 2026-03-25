@@ -1,5 +1,8 @@
 import { API } from "../config.js";
 import { JSON_VOL } from "../config.js";
+import { JSON_VILLE } from "../config.js";
+import { JSON_AEROPORT } from "../config.js";
+import { JSON_TERMINAL } from "../config.js";
 
 export default class VolsProvider {
     static fetchVols = async (page)=> {
@@ -13,6 +16,7 @@ export default class VolsProvider {
         }
     }
 
+    // Methodes des vols
     static getVols = async () => {
         try {
             const response = await fetch(`${JSON_VOL}/`); 
@@ -36,73 +40,75 @@ export default class VolsProvider {
         }
     }
 
-    // static getPokemon = async (id) => {
-    //     try {
-    //         const response = await fetch(`${ENDPOINT}/pokemon/${id}`); 
-    //         if (!response.ok) {
-    //             throw new Error(`Pokemon ${id} not found: ${response.status}`);
-    //         }
-    //         const json = await response.json();
-    //         return json;
+    // Methodes des villes
+    static getVilles = async () => {
+        try {
+            const response = await fetch(`${JSON_VILLE}/`); 
+            const json = await response.json();
+            return json.villes; 
             
-    //     } catch (error) {
-    //         console.error(error);
-    //         return null;
-    //     }
-    // }
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 
-    // static getType = async (pokemon, no_type) => { // no_type -> soit 0 soit 1
-    //     try {
-    //         let type_url = pokemon.types[no_type].type.url
-    //         let id_type = 0
-
-    //         if(type_url.length == 33){
-    //             id_type = type_url.slice(-2, -1);
-    //         }
-    //         if(type_url.length == 34){
-    //             id_type = type_url.slice(-3, -1);
-    //         }
-
-    //         // console.log(id_type)
-    //         const response = await fetch(`${ENDPOINT}/type/${id_type}`); 
-    //         // console.log(response)
-    //         if (!response.ok) {
-    //             throw new Error(`Type ${id_type} not found: ${response.status}`);
-    //         }
-    //         const json = await response.json();
-    //         return json;
+    static getVille = async (id) => {
+        try {
+            const response = await fetch(`${JSON_VILLE}/`);
+            const json = await response.json();
+            // console.log(json.vols[id-1])
+            return json.villes[id-1]; 
             
-    //     } catch (error) {
-    //         console.error(error);
-    //         return null;
-    //     }
-    // }
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 
-    // static less_50 = (stat) => {
-    //     if(stat < 50){
-    //         return true
-    //     }
-    //     return false
-    // }
+    // Methodes des aeroports
+    static getAeroports = async () => {
+        try {
+            const response = await fetch(`${JSON_AEROPORT}/`); 
+            const json = await response.json();
+            return json.aeroports; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 
-    // static less_100 = (stat) => {
-    //     if(stat < 100){
-    //         return true
-    //     }
-    //     return false
-    // }
+    static getAeroport = async (id) => {
+        try {
+            const response = await fetch(`${JSON_AEROPORT}/`);
+            const json = await response.json();
+            // console.log(json.vols[id-1])
+            return json.aeroports[id-1]; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }    
+    
+    // Methodes des terminaux
+    static getTerminaux = async () => {
+        try {
+            const response = await fetch(`${JSON_TERMINAL}/`); 
+            const json = await response.json();
+            return json.terminaux; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 
-    // static less_150 = (stat) => {
-    //     if(stat < 150){
-    //         return true
-    //     }
-    //     return false
-    // }
-
-    // static less_255 = (stat) => {
-    //     if(stat <= 255){
-    //         return true
-    //     }
-    //     return false
-    // }
+    static getTerminal = async (id) => {
+        try {
+            const response = await fetch(`${JSON_TERMINAL}/`);
+            const json = await response.json();
+            // console.log(json.vols[id-1])
+            return json.terminaux[id-1]; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 }

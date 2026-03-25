@@ -8,12 +8,23 @@ export default class VillesAll{
         let view = `
             <section class="sections">
                 <h1>VillesAll</h1>   
-                ${villes.map(ville => `
-                    <div class="element">
-                        <p>Nom ville : ${ville.nom_ville}</p>
-                        <p>Id ville : ${ville.id_ville}</p>
-                        <p>Id pays : ${ville.id_pays}</p>
-                    </div>
+                ${villes.map((ville, i) => `
+                    <a href="/#/villes/${i+1}">
+                        <div class="element">
+                            <table>
+                                <thead>
+                                    <td>Id Ville</td>
+                                    <td>Ville</td>
+                                    <td>Id Pays</td>
+                                <thead>
+                                <tbody>
+                                    <td>${ville.id_ville}</td>
+                                    <td>${ville.nom_ville}</td>
+                                    <td>${ville.id_pays}</td>
+                                <tbody>
+                            </table>
+                        </div>
+                    </a>
                 `).join("")}
             </section>
         `;

@@ -152,13 +152,11 @@ background-color: #A1C2D7;
 border-radius: 20px;
 box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 margin: 10px 0px;
-display: flex;
-justify-content: center;
 }
 
 .element table{
 border-spacing: 75px 10px;
-margin-right: 100px;
+margin-left: 80px;
 }
 
 .element table thead{

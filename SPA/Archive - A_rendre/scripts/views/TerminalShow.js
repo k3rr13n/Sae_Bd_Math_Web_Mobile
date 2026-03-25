@@ -1,17 +1,28 @@
 import VolsProvider from "./../services/VolsProvider.js";
+import Utils from "./../services/Utils.js";
 
 export default class TerminalShow{
     async render(){
 
-        let terminal = await VolsProvider.getTerminal(); // Ajouter l'id ou un moyen distinctif
+        let request = Utils.parsRequestURL();
+
+        let terminal = await VolsProvider.getTerminal(request.id); // Ajouter l'id ou un moyen distinctif
         
         let view = `
             <section class="sections">
                 <h1>TerminalShow</h1>   
-                <div class="element">
-                    <p>Nom aeroport : ${terminal.nom_aeroport}</p>
-                    <p>Nom terminal : ${terminal.nom_terminal}</p>
-                </div>
+                    <div class="element">
+                        <table>
+                            <thead>
+                                <td>Aeroport</td>
+                                <td>Terminal</td>
+                            <thead>
+                            <tbody>
+                                <td>${terminal.nom_aeroport}</td>
+                                <td>${terminal.nom_terminal}</td>
+                            <tbody>
+                        </table>
+                    </div>
             </section>
         `;
         return view;

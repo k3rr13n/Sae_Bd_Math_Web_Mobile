@@ -1,0 +1,22 @@
+[
+    {
+    "terminaux": [
+        {
+            "nom_aeroport": "Amsterdam-AMS",
+            "nom_terminal": "D"
+        },
+        {
+            "nom_aeroport": "Arlanda",
+            "nom_terminal": "C"
+        },
+        {
+            "nom_aeroport": "Auckland-AKL",
+            "nom_terminal": "D"
+        },
+        {
+            "nom_aeroport": "Barajas",
+            "nom_terminal": "4S"
+        }
+        ]
+    }
+]

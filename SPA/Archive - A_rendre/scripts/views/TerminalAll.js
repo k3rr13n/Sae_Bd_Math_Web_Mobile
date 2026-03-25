@@ -8,11 +8,21 @@ export default class TerminalAll{
         let view = `
             <section class="sections">
                 <h1>TerminalAll</h1>   
-                ${terminaux.map(terminal => `
-                    <div class="element">
-                        <p>Nom aeroport : ${terminal.nom_aeroport}</p>
-                        <p>Nom terminal : ${terminal.nom_terminal}</p>
-                    </div>
+                ${terminaux.map((terminal, i) => `
+                    <a href="/#/terminaux/${i+1}">
+                        <div class="element">
+                            <table>
+                                <thead>
+                                    <td>Aeroport</td>
+                                    <td>Terminal</td>
+                                <thead>
+                                <tbody>
+                                    <td>${terminal.nom_aeroport}</td>
+                                    <td>${terminal.nom_terminal}</td>
+                                <tbody>
+                            </table>
+                        </div>
+                    </a>
                 `).join("")}
             </section>
         `;

@@ -5,7 +5,6 @@ export default class VolsShow{
     async render(){
 
         let request = Utils.parsRequestURL();
-        // console.log(request.id)
 
         let vol = await VolsProvider.getVol(request.id); // Ajouter l'id ou un moyen distinctif
 
