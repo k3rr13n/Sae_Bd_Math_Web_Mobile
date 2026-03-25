@@ -46,14 +46,16 @@ vol_input_model = api.model("VolInput", {
 )
 
 terminal_model = api.model("Terminal", {
+    "nom_aeroport": fields.String,
     "nom_terminal": fields.String,
-    "nom_aeroport": fields.String
+    
 
 })
 
 terminal_input_model = api.model("TerminalInput", {
+    "nom_aeroport": fields.String, #fk
     "nom_terminal": fields.String,
-    "nom_aeroport": fields.String #fk
+    
 })
 
 ville_model = api.model("Ville", {
