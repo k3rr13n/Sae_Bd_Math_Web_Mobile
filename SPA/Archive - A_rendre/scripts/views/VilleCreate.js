@@ -1,14 +1,14 @@
-import VolsProvider from "./../services/VolsProvider.js";
+import VolsProvider from "../services/VolsProvider.js";
 
-export default class VillesAll{
+export default class VilleCreate{
     async render(){
 
         let villes = await VolsProvider.getVilles();
 
         let view = `
             <section class="sections">
-                <h1>VillesAll</h1>   
-                <a href="/#/villes/create"><button class="btn-create">Ajouter une nouvelle ville</button></a>
+                <h1>VillesCreate</h1>   
+                <button class="btn-create">Ajouter une nouvelle ville</button>
                 ${villes.map((ville, i) => `
                     <a href="/#/villes/${i+1}">
                         <div class="element">

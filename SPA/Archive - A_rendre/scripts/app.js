@@ -9,17 +9,29 @@ import VolShow from "./views/VolShow.js";
 import VilleShow from "./views/VilleShow.js";
 import AeroportShow from "./views/AeroportShow.js";
 import TerminalShow from "./views/TerminalShow.js";
+import AeroportCreate from "./views/AeroportCreate.js";
+import TerminalCreate from "./views/TerminalCreate.js";
+import VilleCreate from "./views/VilleCreate.js";
+import VolCreate from "./views/VolCreate.js";
 
 const routes = {
     '/' : Home,
+
     '/vols' : VolsAll,
     '/vols/:id' : VolShow,
+    '/vols/create' : VolCreate,
+
     '/villes' : VillesAll,
     '/villes/:id' : VilleShow,
+    '/villes/create' : VilleCreate,
+
     '/aeroports' : AeroportsAll,
     '/aeroports/:id' : AeroportShow,
+    '/aeroports/create' : AeroportCreate,
+
     '/terminaux' : TerminalAll,
     '/terminaux/:id' : TerminalShow,
+    '/terminaux/create' : TerminalCreate,
 }
 
 const router = async () => {
@@ -27,8 +39,15 @@ const router = async () => {
 
     let request = Utils.parsRequestURL();
 
-    let parsedURL = (request.operation ? '/' + request.operation : '/') +
-                    (request.id ? '/:id' : '');
+    let parsedURL = (request.operation ? '/' + request.operation : '/')
+
+    if(request.id == null){
+        console.log(request.crud)
+        parsedURL += (request.crud ? '/create' : '');
+    }
+    else{
+        parsedURL += (request.id ? '/:id' : '') + (request.crud ? '/edit' : '')
+    }
 
     console.log(parsedURL)
     let page = routes[parsedURL] ? new routes[parsedURL] : new Error404();

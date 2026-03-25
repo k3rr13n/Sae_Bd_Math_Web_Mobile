@@ -1,14 +1,14 @@
 import VolsProvider from "./../services/VolsProvider.js";
 
-export default class TerminalAll{
+export default class TerminalCreate{
     async render(){
 
         let terminaux = await VolsProvider.getTerminaux();
         
         let view = `
             <section class="sections">
-                <h1>TerminalAll</h1>
-                <a href="/#/terminaux/create"><button class="btn-create">Ajouter un nouveau terminal</button></a>
+                <h1>TerminalCreate</h1>
+                <button class="btn-create">Ajouter un nouveau terminal</button>
                 ${terminaux.map((terminal, i) => `
                     <a href="/#/terminaux/${i+1}">
                         <div class="element">

@@ -1,14 +1,14 @@
 import VolsProvider from "./../services/VolsProvider.js";
 
-export default class AeroportsAll{
+export default class AeroportsCreate{
     async render(){
 
         let aeroports = await VolsProvider.getAeroports();
         
         let view = `
             <section class="sections">
-                <h1>AeroportsAll</h1>
-                <a href="/#/aeroports/create"><button class="btn-create">Ajouter un nouvel aeroport</button></a>
+                <h1>AeroportsCreate</h1>
+                <button class="btn-create">Ajouter un nouvel aeroport</button>
                 ${aeroports.map((aeroport, i) => `
                     <a href="/#/aeroports/${i+1}">
                         <div class="element">

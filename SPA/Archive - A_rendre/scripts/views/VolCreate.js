@@ -1,14 +1,14 @@
 import VolsProvider from "./../services/VolsProvider.js";
 
-export default class VolsAll{
+export default class VolCreate{
     async render(){
 
         let vols = await VolsProvider.getVols();
         
         let view = `
             <section class="sections">
-                <h1>VolsAll</h1>   
-                <a href="/#/vols/create"><button class="btn-create">Ajouter un nouveau vol</button></a>
+                <h1>VolCreate</h1>   
+                <button class="btn-create">Ajouter un nouveau vol</button>
                 ${vols.map((vol, i) => `
                     <a href="/#/vols/${i+1}">
                         <div class="element">
