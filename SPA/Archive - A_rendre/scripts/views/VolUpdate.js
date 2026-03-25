@@ -1,7 +1,7 @@
 import VolsProvider from "./../services/VolsProvider.js";
 import Utils from "./../services/Utils.js";
 
-export default class VolsShow{
+export default class VolUpdate{
     async render(){
 
         let request = Utils.parsRequestURL();
@@ -10,7 +10,7 @@ export default class VolsShow{
 
         let view = `
             <section class="sections">
-                <h1>VolsShow</h1>   
+                <h1>VolUpdate</h1>   
                 <div class="element">
                     <table>
                         <thead>
@@ -36,7 +36,7 @@ export default class VolsShow{
                     </table>
                 </div>
                 <div class="btn_center">
-                    <a href="/#/vols/${request.id}/update"><button class="btn-update">Modifier le vol</button></a>
+                    <button class="btn-update">Modifier le vol</button>
                     <button class="btn-delete">Supprimer le vol</button>
                 </div>
             </section>

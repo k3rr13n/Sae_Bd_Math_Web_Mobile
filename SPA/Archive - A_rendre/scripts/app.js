@@ -13,6 +13,10 @@ import AeroportCreate from "./views/AeroportCreate.js";
 import TerminalCreate from "./views/TerminalCreate.js";
 import VilleCreate from "./views/VilleCreate.js";
 import VolCreate from "./views/VolCreate.js";
+import AeroportUpdate from "./views/AeroportUpdate.js";
+import TerminalUpdate from "./views/TerminalUpdate.js";
+import VilleUpdate from "./views/VilleUpdate.js";
+import VolUpdate from "./views/VolUpdate.js";
 
 const routes = {
     '/' : Home,
@@ -20,18 +24,22 @@ const routes = {
     '/vols' : VolsAll,
     '/vols/:id' : VolShow,
     '/vols/create' : VolCreate,
+    '/vols/:id/update' : VolUpdate,
 
     '/villes' : VillesAll,
     '/villes/:id' : VilleShow,
     '/villes/create' : VilleCreate,
+    '/villes/:id/update' : VilleUpdate,
 
     '/aeroports' : AeroportsAll,
     '/aeroports/:id' : AeroportShow,
     '/aeroports/create' : AeroportCreate,
+    '/aeroports/:id/update' : AeroportUpdate,
 
     '/terminaux' : TerminalAll,
     '/terminaux/:id' : TerminalShow,
     '/terminaux/create' : TerminalCreate,
+    '/terminaux/:id/update' : TerminalUpdate,
 }
 
 const router = async () => {
@@ -46,7 +54,8 @@ const router = async () => {
         parsedURL += (request.crud ? '/create' : '');
     }
     else{
-        parsedURL += (request.id ? '/:id' : '') + (request.crud ? '/edit' : '')
+        console.log(request.crud)
+        parsedURL += (request.id ? '/:id' : '') + (request.crud ? '/update' : '')
     }
 
     console.log(parsedURL)

@@ -1,7 +1,7 @@
 import VolsProvider from "./../services/VolsProvider.js";
 import Utils from "./../services/Utils.js";
 
-export default class AeroportsShow{
+export default class AeroportUpdate{
     async render(){
 
         let request = Utils.parsRequestURL();
@@ -10,7 +10,7 @@ export default class AeroportsShow{
         
         let view = `
             <section class="sections">
-                <h1>AeroportShow</h1>   
+                <h1>AeroportUpdate</h1>   
                 <div class="element">
                     <table>
                         <thead>
@@ -24,7 +24,7 @@ export default class AeroportsShow{
                     </table>
                 </div>
                 <div class="btn_center">
-                    <a href="/#/aeroports/${request.id}/update"><button class="btn-update">Modifier l'aeroport</button></a>
+                    <button class="btn-update">Modifier l'aeroport</button>
                     <button class="btn-delete">Supprimer l'aeroport</button>
                 </div>
             </section>

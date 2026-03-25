@@ -1,7 +1,7 @@
 import VolsProvider from "./../services/VolsProvider.js";
 import Utils from "./../services/Utils.js";
 
-export default class TerminalShow{
+export default class TerminalUpdate{
     async render(){
 
         let request = Utils.parsRequestURL();
@@ -10,7 +10,7 @@ export default class TerminalShow{
         
         let view = `
             <section class="sections">
-                <h1>TerminalShow</h1>   
+                <h1>TerminalUpdate</h1>   
                 <div class="element">
                     <table>
                         <thead>
@@ -24,7 +24,7 @@ export default class TerminalShow{
                     </table>
                 </div>
                 <div class="btn_center">
-                    <a href="/#/terminaux/${request.id}/update"><button class="btn-update">Modifier le terminal</button></a>
+                    <button class="btn-update">Modifier le terminal</button>
                     <button class="btn-delete">Supprimer le terminal</button>
                 </div>
             </section>
