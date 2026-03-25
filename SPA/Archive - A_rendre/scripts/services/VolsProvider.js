@@ -1,9 +1,9 @@
-import { API } from "../config.js";   
+import { API } from "../config.js";
+import { JSON_VOL } from "../config.js";
 
 export default class VolsProvider {
     static fetchVols = async (page)=> {
         try {
-
             const response = await fetch(`${API}/`); 
             const json = await response.json();
             return json.data; 
@@ -13,6 +13,28 @@ export default class VolsProvider {
         }
     }
 
+    static getVols = async () => {
+        try {
+            const response = await fetch(`${JSON_VOL}/`); 
+            const json = await response.json();
+            return json.vols; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
+    static getVol = async (id) => {
+        try {
+            const response = await fetch(`${JSON_VOL}/`);
+            const json = await response.json();
+            // console.log(json.vols[id-1])
+            return json.vols[id-1]; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 
     // static getPokemon = async (id) => {
     //     try {

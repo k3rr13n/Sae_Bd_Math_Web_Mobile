@@ -1,22 +1,40 @@
 import VolsProvider from "./../services/VolsProvider.js";
+import Utils from "./../services/Utils.js";
 
 export default class VolsShow{
     async render(){
 
-        let vol = await VolsProvider.getVol(); // Ajouter l'id ou un moyen distinctif
-        
+        let request = Utils.parsRequestURL();
+        // console.log(request.id)
+
+        let vol = await VolsProvider.getVol(request.id); // Ajouter l'id ou un moyen distinctif
+
         let view = `
             <section class="sections">
                 <h1>VolsShow</h1>   
                 <div class="element">
-                    <p>Nom compagnie : ${vol.nom_compagnie}</p>
-                    <p>Numero de vol : ${vol.numero_vol}</p>
-                    <p>Date de départ : ${vol.date_heure_depart}</p>
-                    <p>Date d'arrivée : ${vol.date_heure_arrivee_prevue}</p>
-                    <p>Terminal de départ : ${vol.terminal_depart}</p>
-                    <p>Terminal d'arrivée : ${vol.terminal_arrivee}</p>
-                    <p>Aeroport de départ : ${vol.aeroport_depart}</p>
-                    <p>Aeroport d'arrivée : ${vol.aeroport_arrivee}</p>
+                    <table>
+                        <thead>
+                            <td>Compagnie</td>
+                            <td>N° vol</td>
+                            <td>Date de départ</td>
+                            <td>Date d'arrivée</td>
+                            <td>Terminal de départ</td>
+                            <td>Terminal d'arrivée</td>
+                            <td>Aéroport de départ</td>
+                            <td>Aéroport d'arrivée</td>
+                        <thead>
+                        <tbody>
+                            <td>${vol.nom_compagnie}</td>
+                            <td>${vol.numero_vol}</td>
+                            <td>${vol.date_heure_depart}</td>
+                            <td>${vol.date_heure_arrivee_prevue}</td>
+                            <td>${vol.terminal_depart}</td>
+                            <td>${vol.terminal_arrivee}</td>
+                            <td>${vol.aeroport_depart}</td>
+                            <td>${vol.aeroport_arrivee}</td>
+                        <tbody>
+                    </table>
                 </div>
             </section>
         `;

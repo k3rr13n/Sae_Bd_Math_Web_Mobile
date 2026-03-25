@@ -133,7 +133,7 @@ list-style-type: none;
 margin: 0px 40px 10px 40px
 }
 
-.navlist > li > a{
+a{
 color: #000000;
 text-decoration: none;
 font-size: 16px;
@@ -145,4 +145,22 @@ align-items: center;
 
 .sections, h2{
 margin-top: 200px;
+}
+
+.element{
+background-color: #A1C2D7;
+border-radius: 20px;
+box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+margin: 10px 0px;
+display: flex;
+justify-content: center;
+}
+
+.element table{
+border-spacing: 75px 10px;
+margin-right: 100px;
+}
+
+.element table thead{
+font-weight: bold;
 }

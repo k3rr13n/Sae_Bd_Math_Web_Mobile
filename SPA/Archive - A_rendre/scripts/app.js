@@ -29,7 +29,6 @@ const router = async () => {
 
     let parsedURL = (request.operation ? '/' + request.operation : '/') +
                     (request.id ? '/:id' : '');
-                    // (request.param ? '/?page' : ''); // (request.ressource ? '/' + request.ressource : '/') + 
 
     console.log(parsedURL)
     let page = routes[parsedURL] ? new routes[parsedURL] : new Error404();
