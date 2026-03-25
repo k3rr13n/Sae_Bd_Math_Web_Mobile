@@ -18,14 +18,15 @@ class CompagnieList(Resource):
     @ns.marshal_list_with(compagnie_model)
     def get(self):
         return get_all_compagnies()
-#soucis
-@ns.route('/ville')
+    
+
+@ns.route('/villes')
 class VilleList(Resource):
     @ns.marshal_list_with(ville_model)
     def get(self):
         return get_all_villes()
 
-#soucis
+
 @ns.route('/villes/<int:id>')
 class Ville(Resource):
     @ns.marshal_with(ville_model)
@@ -45,7 +46,7 @@ class AeroportListe(Resource):
     def get(self):
         return get_all_aeroports()
 
-#revoir ordre des champs dans bd a revoir
+
 @ns.route('/terminals')
 class TerminalListe(Resource):
     @ns.marshal_list_with(terminal_model)

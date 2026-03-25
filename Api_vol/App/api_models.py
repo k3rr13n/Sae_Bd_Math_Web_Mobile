@@ -60,15 +60,17 @@ terminal_input_model = api.model("TerminalInput", {
 
 ville_model = api.model("Ville", {
     "id_ville": fields.Integer,
+    "id_pays": fields.Integer,
     "nom_ville": fields.String,
-    "id_pays": fields.Integer
+    
 
 })
 
 ville_input_model = api.model("VilleInput", {
     "id_ville": fields.Integer,
+    "id_pays": fields.Integer, #fk
     "nom_ville": fields.String,
-    "id_pays": fields.Integer #fk
+    
     
 })
 

@@ -19,17 +19,18 @@ class Ville (db.Model):
     __tablename__ = 'ville'
 
     id_ville = db.Column(db.Integer, primary_key=True)
+    id_pays = db.Column(db.Integer, db.ForeignKey('pays.id_pays'), nullable=False)
     nom_ville = db.Column(db.String(50))
 
-    id_pays = db.Column(db.Integer, db.ForeignKey('pays.id_pays'), nullable=False)
-    
+        
     aeroports = db.relationship("Aeroport", backref="ville", lazy = True)
 
 
     def __init__(self, id_ville, nom_ville, id_pays):
         self.id_ville = id_ville
-        self.nom_ville = nom_ville
         self.id_pays = id_pays
+        self.nom_ville = nom_ville
+        
 
     def __repr__(self):
         return f"< La Ville {self.nom_ville} a pour id {self.id_ville}>"
@@ -46,21 +47,23 @@ class Aeroport (db.Model):
 
 
     def __init__(self, id_ville, nom_aeroport):
-        self.id_ville = id_ville
+        
         self.nom_aeroport = nom_aeroport
+        self.id_ville = id_ville
 
     def __repr__(self):
         return f"< L'aeroport {self.nom_aeroport} a pour id {self.id_ville}>"
 
 class Terminal (db.Model):
     __tablename__ = 'terminal'
-    
-    nom_terminal = db.Column(db.String(15), primary_key=True)
-    nom_aeroport = db.Column(db.String(50), db.ForeignKey('aeroport.nom_aeroport'), primary_key=True)
 
-    def __init__(self, nom_terminal, nom_aeroport):
-        self.nom_terminal = nom_terminal
+    nom_aeroport = db.Column(db.String(50), db.ForeignKey('aeroport.nom_aeroport'), primary_key=True)
+    nom_terminal = db.Column(db.String(15), primary_key=True)
+    
+    def __init__(self, nom_aeroport,nom_terminal):
         self.nom_aeroport = nom_aeroport
+        self.nom_terminal = nom_terminal
+        
 
     def __repr__(self):
         return f"< Le terminal {self.nom_terminal} de l'aeroport {self.nom_aeroport}>"
