@@ -8,23 +8,17 @@ export default class TerminalCreate{
         let view = `
             <section class="sections">
                 <h1>TerminalCreate</h1>
-                <button class="btn-create">Ajouter un nouveau terminal</button>
-                ${terminaux.map((terminal, i) => `
-                    <a href="/#/terminaux/${i+1}">
-                        <div class="element">
-                            <table>
-                                <thead>
-                                    <td>Aeroport</td>
-                                    <td>Terminal</td>
-                                <thead>
-                                <tbody>
-                                    <td>${terminal.nom_aeroport}</td>
-                                    <td>${terminal.nom_terminal}</td>
-                                <tbody>
-                            </table>
-                        </div>
-                    </a>
-                `).join("")}
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>Le nom de l'aeroport :</label>
+                            <input type="text" id="nom_aeroport"></input>
+
+                        <label>Le nom du terminal :</label>
+                            <input type="text" id="nom_terminal"></input>
+                        <input type="submit" onclick="window.location.href='/#/terminaux'">
+                    </form>
+                </div>
             </section>
         `;
         return view;

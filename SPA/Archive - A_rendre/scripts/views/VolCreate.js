@@ -8,35 +8,35 @@ export default class VolCreate{
         let view = `
             <section class="sections">
                 <h1>VolCreate</h1>   
-                <button class="btn-create">Ajouter un nouveau vol</button>
-                ${vols.map((vol, i) => `
-                    <a href="/#/vols/${i+1}">
-                        <div class="element">
-                            <table>
-                                <thead>
-                                    <td>Compagnie</td>
-                                    <td>N° vol</td>
-                                    <td>Date de départ</td>
-                                    <td>Date d'arrivée</td>
-                                    <td>Terminal de départ</td>
-                                    <td>Terminal d'arrivée</td>
-                                    <td>Aéroport de départ</td>
-                                    <td>Aéroport d'arrivée</td>
-                                <thead>
-                                <tbody>
-                                    <td>${vol.nom_compagnie}</td>
-                                    <td>${vol.numero_vol}</td>
-                                    <td>${vol.date_heure_depart}</td>
-                                    <td>${vol.date_heure_arrivee_prevue}</td>
-                                    <td>${vol.terminal_depart}</td>
-                                    <td>${vol.terminal_arrivee}</td>
-                                    <td>${vol.aeroport_depart}</td>
-                                    <td>${vol.aeroport_arrivee}</td>
-                                <tbody>
-                            </table>
-                        </div>
-                    </a>
-                `).join("")}
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>Le nom de la compagnie aerienne :</label>
+                            <input type="text" id="nom_compagnie"></input>
+
+                        <label>Numero de vol :</label>
+                            <input type="number" min="1" id="numero_vol"></input>
+
+                        <label>Date et heure de départ :</label>
+                            <input type="text" id="date_heure_depart"></input>
+
+                        <label>Date et heure d'arrivée :</label>
+                            <input type="text" id="date_heure_arrivee_prevue"></input>
+
+                        <label>Terminal de départ :</label>
+                            <input type="text" id="terminal_depart"></input>
+
+                        <label>Terminal d'arrivee :</label>
+                            <input type="text" id="terminal_arrivee"></input>
+
+                        <label>Aeroport de depart :</label>
+                            <input type="text" id="aeroport_depart"></input>
+
+                        <label>Aeroport d'arrivee :</label>
+                            <input type="text" id="aeroport_arrivee"></input>
+                        <input type="submit" onclick="window.location.href='/#/vols'">
+                    </form>
+                </div>
             </section>
         `;
         return view;

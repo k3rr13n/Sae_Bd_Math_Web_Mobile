@@ -1,26 +1,28 @@
-[
+{
+  "villes": [
     {
-    "villes": [
-        {
-            "id_ville": 1,
-            "id_pays": 1,
-            "nom_ville": "Paris"
-        },
-        {
-            "id_ville": 2,
-            "id_pays": 2,
-            "nom_ville": "Shanghai"
-        },
-        {
-            "id_ville": 3,
-            "id_pays": 3,
-            "nom_ville": "Rio de Janeiro"
-        },
-        {
-            "id_ville": 4,
-            "id_pays": 4,
-            "nom_ville": "New York"
-        }
-        ]
+      "id_ville": 1,
+      "id_pays": 1,
+      "nom_ville": "Paris",
+      "id": "1dc1"
+    },
+    {
+      "id_ville": 2,
+      "id_pays": 2,
+      "nom_ville": "Shanghai",
+      "id": "e16f"
+    },
+    {
+      "id_ville": 3,
+      "id_pays": 3,
+      "nom_ville": "Rio de Janeiro",
+      "id": "2041"
+    },
+    {
+      "id_ville": 4,
+      "id_pays": 4,
+      "nom_ville": "New York",
+      "id": "06b2"
     }
-]
+  ]
+}

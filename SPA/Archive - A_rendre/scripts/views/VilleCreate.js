@@ -8,25 +8,20 @@ export default class VilleCreate{
         let view = `
             <section class="sections">
                 <h1>VillesCreate</h1>   
-                <button class="btn-create">Ajouter une nouvelle ville</button>
-                ${villes.map((ville, i) => `
-                    <a href="/#/villes/${i+1}">
-                        <div class="element">
-                            <table>
-                                <thead>
-                                    <td>Id Ville</td>
-                                    <td>Ville</td>
-                                    <td>Id Pays</td>
-                                <thead>
-                                <tbody>
-                                    <td>${ville.id_ville}</td>
-                                    <td>${ville.nom_ville}</td>
-                                    <td>${ville.id_pays}</td>
-                                <tbody>
-                            </table>
-                        </div>
-                    </a>
-                `).join("")}
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>L'id de la ville :</label>
+                            <input type="number" min="1" id="id_ville"></input>
+
+                        <label>L'id du pays :</label>
+                            <input type="number" min="1" id="id_pays"></input>
+
+                        <label>Le nom de la ville :</label>
+                            <input type="text" id="nom_ville"></input>
+                        <input type="submit" onclick="window.location.href='/#/villes'">
+                    </form>
+                </div>
             </section>
         `;
         return view;

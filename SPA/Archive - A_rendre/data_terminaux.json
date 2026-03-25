@@ -1,22 +1,24 @@
-[
+{
+  "terminaux": [
     {
-    "terminaux": [
-        {
-            "nom_aeroport": "Amsterdam-AMS",
-            "nom_terminal": "D"
-        },
-        {
-            "nom_aeroport": "Arlanda",
-            "nom_terminal": "C"
-        },
-        {
-            "nom_aeroport": "Auckland-AKL",
-            "nom_terminal": "D"
-        },
-        {
-            "nom_aeroport": "Barajas",
-            "nom_terminal": "4S"
-        }
-        ]
+      "nom_aeroport": "Amsterdam-AMS",
+      "nom_terminal": "D",
+      "id": "8bcd"
+    },
+    {
+      "nom_aeroport": "Arlanda",
+      "nom_terminal": "C",
+      "id": "df56"
+    },
+    {
+      "nom_aeroport": "Auckland-AKL",
+      "nom_terminal": "D",
+      "id": "b03f"
+    },
+    {
+      "nom_aeroport": "Barajas",
+      "nom_terminal": "4S",
+      "id": "a8bd"
     }
-]
+  ]
+}
