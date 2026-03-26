@@ -41,6 +41,18 @@ class CompagnieList(Resource):
         ville = create_compagnie(data['id_ville'], data['id_pays'], data['nom_ville'])
         return ville, 201
 
+@ns.route('/compagnies/<string:nom>')
+class CompagnieResource(Resource):
+    @ns.marshal_with(compagnie_model)
+    def get(self, nom_compagnie):
+        if not get_compagnie(nom_compagnie) :
+            abort (404, "Compagnie introuvable")
+        return get_compagnie(nom_compagnie)
+    
+    def delete(self, nom):
+        if supp_compagnie(nom):
+            return None, 204
+        abort(404)
     
 
 ############## VILLE #################
@@ -85,7 +97,7 @@ class PaysList(Resource):
     @ns.marshal_with(pays_model)
     def post(self):
         data = ns.payload
-        pays = create_pays(data['id_pay'], data['nom_pays'])
+        pays = create_pays(data['id_pays'], data['nom_pays'])
         return pays, 201
  
 ############## AEROPORT #################
