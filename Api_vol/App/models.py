@@ -215,3 +215,26 @@ def create_terminal(nom_aeroport, nom_terminal):
     db.session.commit()
     return new_terminal
 
+
+
+# def modif_compagnie(nom_compagnie):
+    
+def modify_ville(id_ville, id_pays, nom_ville):
+    ville_mod = Ville.session.get(id_ville)
+    if ville_mod is None:
+        return None
+    
+    ville_mod.id_pays = id_pays
+    ville_mod.nom_ville = nom_ville
+    db.session.commit()
+    return ville_mod
+
+
+def supp_compagnie(nom_compagnie):
+    comp_del = Compagnie.session.get(nom_compagnie)
+    # comp = Compagnie.query.filter_by(nom_compagnie=nom_compagnie)
+    if not comp_del :
+        return None
+    else:
+        db.session.delete(comp_del)
+        db.session.commit()
