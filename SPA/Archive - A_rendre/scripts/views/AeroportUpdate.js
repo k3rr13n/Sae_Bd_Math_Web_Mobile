@@ -11,21 +11,17 @@ export default class AeroportUpdate{
         let view = `
             <section class="sections">
                 <h1>AeroportUpdate</h1>   
-                <div class="element">
-                    <table>
-                        <thead>
-                            <td>Aeroport</td>
-                            <td>Id Ville</td>
-                        <thead>
-                        <tbody>
-                            <td>${aeroport.nom_aeroport}</td>
-                            <td>${aeroport.id_ville}</td>
-                        <tbody>
-                    </table>
-                </div>
-                <div class="btn_center">
-                    <button class="btn-update">Modifier l'aeroport</button>
-                    <button class="btn-delete">Supprimer l'aeroport</button>
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>Le nom de l'aeroport :</label>
+                            <input type="text" id="nom_aeroport" value="${aeroport.nom_aeroport}"></input>
+
+                        <label>L'id de la ville de l'aeroport :</label>
+                            <input type="number" min="1" id="id_ville" value="${aeroport.id_ville}"></input>
+                            <input type="hidden" id="id" value="${aeroport.id}">
+                        <input type="submit" onclick="window.location.href='/#/aeroports/${request.id}'">
+                    </form>
                 </div>
             </section>
         `;

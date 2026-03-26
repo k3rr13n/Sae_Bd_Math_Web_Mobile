@@ -1,8 +1,8 @@
 {
   "villes": [
     {
-      "id_ville": 1,
-      "id_pays": 1,
+      "id_ville": "1",
+      "id_pays": "1",
       "nom_ville": "Paris",
       "id": "1dc1"
     },
@@ -24,5 +24,6 @@
       "nom_ville": "New York",
       "id": "06b2"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

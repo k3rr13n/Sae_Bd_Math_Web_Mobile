@@ -11,23 +11,20 @@ export default class VilleUpdate{
         let view = `
             <section class="sections">
                 <h1>VilleUpdate</h1>   
-                <div class="element">
-                    <table>
-                        <thead>
-                            <td>Id Ville</td>
-                            <td>Ville</td>
-                            <td>Id Pays</td>
-                        <thead>
-                        <tbody>
-                            <td>${ville.id_ville}</td>
-                            <td>${ville.nom_ville}</td>
-                            <td>${ville.id_pays}</td>
-                        <tbody>
-                    </table>
-                </div>
-                <div class="btn_center">
-                    <button class="btn-update">Modifier la ville</button>
-                    <button class="btn-delete">Supprimer la ville</button>
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>L'id de la ville :</label>
+                            <input type="number" min="1" id="id_ville" value="${ville.id_ville}"></input>
+
+                        <label>L'id du pays :</label>
+                            <input type="number" min="1" id="id_pays" value="${ville.id_pays}"></input>
+
+                        <label>Le nom de la ville :</label>
+                            <input type="text" id="nom_ville" value="${ville.nom_ville}"></input>
+                            <input type="hidden" id="id" value="${ville.id}">
+                        <input type="submit" onclick="window.location.href='/#/villes/${request.id}'">
+                    </form>
                 </div>
             </section>
         `;

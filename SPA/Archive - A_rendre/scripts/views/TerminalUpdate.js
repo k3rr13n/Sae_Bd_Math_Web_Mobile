@@ -11,21 +11,17 @@ export default class TerminalUpdate{
         let view = `
             <section class="sections">
                 <h1>TerminalUpdate</h1>   
-                <div class="element">
-                    <table>
-                        <thead>
-                            <td>Aeroport</td>
-                            <td>Terminal</td>
-                        <thead>
-                        <tbody>
-                            <td>${terminal.nom_aeroport}</td>
-                            <td>${terminal.nom_terminal}</td>
-                        <tbody>
-                    </table>
-                </div>
-                <div class="btn_center">
-                    <button class="btn-update">Modifier le terminal</button>
-                    <button class="btn-delete">Supprimer le terminal</button>
+                <div class="div_form">
+                    <form method="get" class="formulaire_creation">
+
+                        <label>Le nom de l'aeroport :</label>
+                            <input type="text" id="nom_aeroport" value="${terminal.nom_aeroport}"></input>
+
+                        <label>Le nom du terminal :</label>
+                            <input type="text" id="nom_terminal" value="${terminal.nom_terminal}"></input>
+                            <input type="hidden" id="id" value="${terminal.id}">
+                        <input type="submit" onclick="window.location.href='/#/terminaux/${request.id}'">
+                    </form>
                 </div>
             </section>
         `;

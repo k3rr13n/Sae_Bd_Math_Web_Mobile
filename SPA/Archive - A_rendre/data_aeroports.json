@@ -2,7 +2,7 @@
   "aeroports": [
     {
       "nom_aeroport": "Charle de gaulle",
-      "id_ville": 1,
+      "id_ville": "1",
       "id": "81c0"
     },
     {
@@ -24,6 +24,16 @@
       "id": "aa85",
       "nom_aeroport": "Georges Pompidou",
       "id_ville": "1"
+    },
+    {
+      "id": "83c9",
+      "nom_aeroport": "Tontouta",
+      "id_ville": "2"
+    },
+    {
+      "id": "37f0",
+      "nom_aeroport": "Hamilton",
+      "id_ville": "4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

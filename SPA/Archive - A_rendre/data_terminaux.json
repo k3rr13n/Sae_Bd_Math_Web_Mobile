@@ -1,8 +1,8 @@
 {
   "terminaux": [
     {
-      "nom_aeroport": "Amsterdam-AMS",
-      "nom_terminal": "D",
+      "nom_aeroport": "Paris-Orly",
+      "nom_terminal": "A",
       "id": "8bcd"
     },
     {
@@ -29,6 +29,16 @@
       "id": "5090",
       "nom_aeroport": "Shanghai-Pudong",
       "nom_terminal": "B"
+    },
+    {
+      "id": "2cef",
+      "nom_aeroport": "Tontouta",
+      "nom_terminal": "J"
+    },
+    {
+      "id": "f6ab",
+      "nom_aeroport": "Hamilton",
+      "nom_terminal": "56"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

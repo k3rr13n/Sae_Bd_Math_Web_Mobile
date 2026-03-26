@@ -2,7 +2,7 @@
   "vols": [
     {
       "nom_compagnie": "Air austral",
-      "numero_vol": 11215,
+      "numero_vol": "11215",
       "date_heure_depart": "2026-05-10 20:00:14",
       "date_heure_arrivee_prevue": "2026-05-10 21:00:01",
       "terminal_depart": "J",
@@ -32,72 +32,6 @@
       "aeroport_depart": "Charle de gaulle",
       "aeroport_arrivee": "Shanghai-Pudong",
       "id": "f075"
-    },
-    {
-      "id": "8c4a",
-      "nom_compagnie": "Lufthansa",
-      "numero_vol": "48561",
-      "date_heure_depart": "00",
-      "date_heure_arrivee_prevue": "00",
-      "terminal_depart": "1",
-      "terminal_arrivee": "B",
-      "aeroport_depart": "Charle de gaulle",
-      "aeroport_arrivee": "Shanghai-Pudong"
-    },
-    {
-      "id": "33a7",
-      "nom_compagnie": "Lufthansa",
-      "numero_vol": "958",
-      "date_heure_depart": "2013-02-09 22:13:35",
-      "date_heure_arrivee_prevue": "2013-02-10 00:15:00",
-      "terminal_depart": "1",
-      "terminal_arrivee": "B",
-      "aeroport_depart": "Charle de gaulle",
-      "aeroport_arrivee": "Shanghai-Pudong"
-    },
-    {
-      "id": "4858",
-      "nom_compagnie": "Lufthansa",
-      "numero_vol": "48651",
-      "date_heure_depart": "2013-02-09 22:13:35",
-      "date_heure_arrivee_prevue": "2013-02-10 00:15:00",
-      "terminal_depart": "1",
-      "terminal_arrivee": "B",
-      "aeroport_depart": "Charle de gaulle",
-      "aeroport_arrivee": "Shanghai-Pudong"
-    },
-    {
-      "id": "81b4",
-      "nom_compagnie": "Lufthansa",
-      "numero_vol": "54",
-      "date_heure_depart": "2013-02-09 22:13:35",
-      "date_heure_arrivee_prevue": "2013-02-10 00:15:00",
-      "terminal_depart": "1",
-      "terminal_arrivee": "B",
-      "aeroport_depart": "Charle de gaulle",
-      "aeroport_arrivee": "Shanghai-Pudong"
-    },
-    {
-      "id": "033c",
-      "nom_compagnie": "Lufthansa",
-      "numero_vol": "48651",
-      "date_heure_depart": "2013-02-09 22:13:35",
-      "date_heure_arrivee_prevue": "2013-02-10 00:15:00",
-      "terminal_depart": "1",
-      "terminal_arrivee": "B",
-      "aeroport_depart": "Charle de gaulle",
-      "aeroport_arrivee": "Shanghai-Pudong"
-    },
-    {
-      "id": "64ad",
-      "nom_compagnie": "Lufthansa",
-      "numero_vol": "8946",
-      "date_heure_depart": "2013-02-09 22:13:35",
-      "date_heure_arrivee_prevue": "2013-02-10 00:15:00",
-      "terminal_depart": "1",
-      "terminal_arrivee": "B",
-      "aeroport_depart": "Charle de gaulle",
-      "aeroport_arrivee": "Shanghai-Pudong"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
