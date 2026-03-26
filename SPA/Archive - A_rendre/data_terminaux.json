@@ -19,6 +19,17 @@
       "nom_aeroport": "Barajas",
       "nom_terminal": "4S",
       "id": "a8bd"
+    },
+    {
+      "id": "78ab",
+      "nom_aeroport": "Charle de gaulle",
+      "nom_terminal": "1"
+    },
+    {
+      "id": "5090",
+      "nom_aeroport": "Shanghai-Pudong",
+      "nom_terminal": "B"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,4 +1,4 @@
-import { API } from "../config.js";
+import { API, JSON_COMPAGNIE, JSON_PAYS } from "../config.js";
 import { JSON_VOL } from "../config.js";
 import { JSON_VILLE } from "../config.js";
 import { JSON_AEROPORT } from "../config.js";
@@ -112,7 +112,6 @@ export default class VolsProvider {
         try {
             const response = await fetch(`${JSON_AEROPORT}/`);
             const json = await response.json();
-            // console.log(json.vols[id-1])
             return json[id-1]; 
             
         } catch (error) {
@@ -125,13 +124,12 @@ export default class VolsProvider {
             let new_data = {}
             new_data['nom_aeroport'] = nom_aeroport
             new_data['id_ville'] = id_ville
-            // console.log(json.vols[id-1])
             return new_data; 
             
         } catch (error) {
             console.error(error); 
         }
-    }    
+    }
     
     // Methodes des terminaux
     static getTerminaux = async () => {
@@ -149,7 +147,6 @@ export default class VolsProvider {
         try {
             const response = await fetch(`${JSON_TERMINAL}/`);
             const json = await response.json();
-            // console.log(json.vols[id-1])
             return json[id-1]; 
             
         } catch (error) {
@@ -162,11 +159,99 @@ export default class VolsProvider {
             let new_data = {}
             new_data['nom_aeroport'] = nom_aeroport
             new_data['nom_terminal'] = nom_terminal
-            // console.log(json.vols[id-1])
             return new_data; 
             
         } catch (error) {
             console.error(error); 
         }
-    }    
+    }
+
+    // Verification de données
+    static is_id_ville = async (id_ville) => {
+        let villes = await this.getVilles()
+        let bool = false
+        villes.forEach(ville => {
+            if(id_ville == ville.id_ville){
+                bool = true
+            }
+        });
+        return bool
+    }
+
+    static is_nom_aeroport = async (nom_aeroport) => {
+        let aeroports = await this.getAeroports()
+        let bool = false
+        aeroports.forEach(aeroport => {
+            if(nom_aeroport == aeroport.nom_aeroport){
+                bool = true
+            }
+        });
+        return bool
+    }
+
+    static is_id_pays = async (id_pays) => {
+        let payss = await this.getPayss()
+        let bool = false
+        payss.forEach(pays => {
+            if(id_pays == pays.id_pays){
+                bool = true
+            }
+        });
+        return bool
+    }
+
+    static is_nom_compagnie = async (nom_compagnie) => {
+        let compagnies = await this.getCompagnies()
+        let bool = false
+        compagnies.forEach(compagnie => {
+            if(nom_compagnie == compagnie.nom_compagnie){
+                bool = true
+            }
+        });
+        return bool
+    }
+
+    static is_nom_terminal = async (nom_terminal, nom_aeroport) => {
+        let terminaux = await this.getTerminaux()
+        let bool = false
+        terminaux.forEach(terminal => {
+            if(nom_terminal == terminal.nom_terminal && nom_aeroport == terminal.nom_aeroport){
+                bool = true
+            }
+        });
+        return bool
+    }
+
+    static is_valid_date = (date) => {
+        let bool = false
+        var regex = new RegExp("^(\\d{4})\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01]) ([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$");
+        if(regex.test(date)){
+            bool = true
+        }
+        return bool
+    }
+
+//=:=:=:=:==:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+
+    static getPayss = async () => {
+        try {
+            const response = await fetch(`${JSON_PAYS}/`); 
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
+    static getCompagnies = async () => {
+        try {
+            const response = await fetch(`${JSON_COMPAGNIE}/`); 
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 }

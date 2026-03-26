@@ -19,6 +19,12 @@
       "nom_aeroport": "Rio de Janeiro-Galeão",
       "id_ville": 3,
       "id": "9a96"
+    },
+    {
+      "id": "aa85",
+      "nom_aeroport": "Georges Pompidou",
+      "id_ville": "1"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

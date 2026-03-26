@@ -121,3 +121,20 @@ display: grid;
 grid-template-columns: auto auto;
 margin: 20px 100px;
 }
+
+.formulaire_creation input{
+width: 100%;
+padding: 0.6rem;
+margin: 0.5rem;
+border-radius: 12px;
+border: 1px solid #334155;
+/* background: #020617; */
+/* color: #e2e8f0; */
+}
+
+.formulaire_creation label{
+display: flex;
+align-self: center;
+justify-content: center;
+}
+
