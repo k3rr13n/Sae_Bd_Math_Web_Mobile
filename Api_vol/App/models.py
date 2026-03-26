@@ -162,7 +162,7 @@ def get_all_pays():
 def get_pays(id_pays):
     return Pays.query.get(id_pays)
 
-def get_all_terminals():
+def get_all_terminaux():
     return Terminal.query.all()
 
 def get_terminal(nom_terminal, nom_aeroport):
@@ -217,24 +217,124 @@ def create_terminal(nom_aeroport, nom_terminal):
 
 
 
-# def modif_compagnie(nom_compagnie):
-    
+
+
+
+def modify_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
+               nom_aeroport_1, nom_aeroport_2, nom_terminal_1, nom_terminal_2):
+    vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
+    if vol:
+        vol.date_heure_arrive_prevue = date_heure_arrive_prevue
+        vol.nom_aeroport_1 = nom_aeroport_1
+        vol.nom_aeroport_2 = nom_aeroport_2
+        vol.nom_terminal_1 = nom_terminal_1
+        vol.nom_terminal_2 = nom_terminal_2
+        db.session.commit()
+    return vol
+
+
+def modif_compagnie(nom_compagnie, nvo_nom_compagnie):
+    comp_mod = get_compagnie(nom_compagnie)
+    if comp_mod:
+        if nvo_nom_compagnie is not None and nvo_nom_compagnie != nom_compagnie :
+            comp_mod.nom_compagnie = nvo_nom_compagnie
+        db.session.commit()
+    return comp_mod
+
+
+def modify_aeroport(nom_aeroport, nvo_nom_aeroport, id_ville):
+    aero_mod = get_aeroport(nom_aeroport)
+    if aero_mod:
+        if id_ville is not None:
+            aero_mod.id_ville = id_ville
+
+        if nvo_nom_aeroport is not None and nvo_nom_aeroport != nom_aeroport:
+            aero_mod.nom_aeroport = nvo_nom_aeroport
+            
+        db.session.commit()
+    return aero_mod
+
+
 def modify_ville(id_ville, id_pays, nom_ville):
-    ville_mod = Ville.session.get(id_ville)
-    if ville_mod is None:
-        return None
-    
-    ville_mod.id_pays = id_pays
-    ville_mod.nom_ville = nom_ville
-    db.session.commit()
+    ville_mod = get_ville(id_ville)
+    if ville_mod:
+        ville_mod.id_pays = id_pays
+        ville_mod.nom_ville = nom_ville
+        db.session.commit()
     return ville_mod
 
 
+def modify_pays(id_pays, nom_pays):
+    pays_mod = get_pays(id_pays)
+    if pays_mod:
+        pays_mod.nom_pays = nom_pays
+        db.session.commit()
+    return pays_mod
+
+
+def modif_compagnie(nom_terminal, nvo_nom_terminal):
+    comp_mod = get_compagnie(nom_terminal)
+    if comp_mod:
+        if nvo_nom_terminal is not None and nvo_nom_terminal != nom_terminal :
+            comp_mod.nom_terminal = nvo_nom_terminal
+        db.session.commit()
+    return comp_mod
+
+
+
+
+
+
+def supp_vol(nom_compagnie, numero_vol, date_heure_depart):
+    vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
+    if vol:
+        db.session.delete(vol)
+        db.session.commit()
+        return True
+    return False
+
+
 def supp_compagnie(nom_compagnie):
-    comp_del = Compagnie.session.get(nom_compagnie)
+    comp_del = get_compagnie(nom_compagnie)
     # comp = Compagnie.query.filter_by(nom_compagnie=nom_compagnie)
     if not comp_del :
         return None
     else:
         db.session.delete(comp_del)
         db.session.commit()
+
+
+def supp_aeroport(nom_aeroport):
+    aero = get_aeroport(nom_aeroport)
+    if aero:
+        db.session.delete(aero)
+        db.session.commit()
+        return True
+    return False
+
+
+def supp_ville(id_ville):
+    ville = get_ville(id_ville)
+    if ville:
+        db.session.delete(ville)
+        db.session.commit()
+        return True
+    return False
+
+
+def supp_pays(id_pays):
+    pays = get_pays(id_pays)
+    if pays:
+        db.session.delete(pays)
+        db.session.commit()
+        return True
+    return False
+
+
+def supp_terminal(nom_aeroport, nom_terminal):
+    term = get_terminal(nom_aeroport, nom_terminal)
+    if term:
+        db.session.delete(term)
+        db.session.commit()
+        return True
+    return False
