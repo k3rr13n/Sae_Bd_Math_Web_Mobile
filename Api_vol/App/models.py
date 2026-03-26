@@ -136,18 +136,10 @@ def get_all_vols():
 def get_vol(nom_compagnie, numero_vol, date_heure_depart):
     return Vol.query.get((nom_compagnie, numero_vol, date_heure_depart))
 
-def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
-               nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
-    
-    vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=date_heure_depart,
-              date_heure_arrive_prevue=date_heure_arrive_prevue, nom_aeroport_1=nom_aeroport_1, 
-              nom_aeroport_2=nom_aeroport_2, nom_terminal_1=nom_terminal_1, nom_terminal_2=nom_terminal_2)
-    db.session.add(vol)
-    db.session.commit()
-    return vol
 
 def get_all_compagnies():
     return Compagnie.query.all()
+
 
 def get_compagnie(nom_compagnie):
     return Compagnie.query.get(nom_compagnie)
@@ -175,3 +167,51 @@ def get_all_terminals():
 
 def get_terminal(nom_terminal, nom_aeroport):
     return Terminal.query.get((nom_terminal, nom_aeroport))
+
+
+
+
+
+
+def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
+               nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
+    
+    new_vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=date_heure_depart,
+              date_heure_arrive_prevue=date_heure_arrive_prevue, nom_aeroport_1=nom_aeroport_1, 
+              nom_aeroport_2=nom_aeroport_2, nom_terminal_1=nom_terminal_1, nom_terminal_2=nom_terminal_2)
+    db.session.add(new_vol)
+    db.session.commit()
+    return new_vol
+
+
+def create_compagnie(nom_compagnie):
+    new_compagnie = Compagnie(nom_compagnie=nom_compagnie)
+    db.session.add(new_compagnie)
+    db.session.commit()
+    return new_compagnie
+
+
+def create_aeroport(nom_aeroport, ville_id):
+    new_aeroport = Aeroport(nom_aeroport=nom_aeroport, ville_id=ville_id)
+    db.session.add(new_aeroport)
+    db.session.commit()
+    return new_aeroport
+
+def create_ville(id_ville, id_pays, nom_ville):
+    new_ville = Ville(id_ville=id_ville, id_pays=id_pays, nom_ville=nom_ville)
+    db.session.add(new_ville)
+    db.session.commit()
+    return new_ville
+
+def create_pays(id_pays, nom_pays):
+    new_pays = Pays(id_pays=id_pays, nom_pays=nom_pays) 
+    db.session.add(new_pays)
+    db.session.commit()
+    return new_pays
+
+def create_terminal(nom_aeroport, nom_terminal):
+    new_terminal = Terminal(nom_aeroport=nom_aeroport, nom_terminal=nom_terminal)
+    db.session.add(new_terminal)
+    db.session.commit()
+    return new_terminal
+
