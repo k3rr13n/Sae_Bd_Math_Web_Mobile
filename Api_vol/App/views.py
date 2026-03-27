@@ -67,7 +67,7 @@ class VilleList(Resource):
     @ns.marshal_with(ville_model)
     def post(self):
         data = ns.payload
-        ville = create_ville(data['id_ville'], data['nom_ville'], data['id_pays'])
+        ville = create_ville(data['id_ville'], data['id_pays'], data['nom_ville'])
         return ville, 201
 
 
