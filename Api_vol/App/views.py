@@ -38,8 +38,8 @@ class CompagnieList(Resource):
     @ns.marshal_with(compagnie_model)
     def post(self):
         data = ns.payload
-        ville = create_compagnie(data['id_ville'], data['id_pays'], data['nom_ville'])
-        return ville, 201
+        compagnie = create_compagnie(data["nom_compagnie"])
+        return compagnie, 201
 
 @ns.route('/compagnies/<string:nom>')
 class CompagnieResource(Resource):
@@ -67,8 +67,8 @@ class VilleList(Resource):
     @ns.marshal_with(ville_model)
     def post(self):
         data = ns.payload
-        compagnie = create_ville(data['nom_compagnie'])
-        return compagnie, 201
+        ville = create_ville(data['id_ville'], data['nom_ville'], data['id_pays'])
+        return ville, 201
 
 
 @ns.route('/villes/<int:id>')
@@ -102,7 +102,7 @@ class PaysList(Resource):
  
 ############## AEROPORT #################
 
-#trouve pas ville_id
+#trouve pas id_ville
 @ns.route('/aeroports')
 class AeroportListe(Resource):
     @ns.marshal_list_with(aeroport_model)
@@ -113,7 +113,7 @@ class AeroportListe(Resource):
     @ns.marshal_with(aeroport_model)
     def post(self):
         data = ns.payload
-        aeroport = create_aeroport(data['nom_aeroport'], data['ville_id'])
+        aeroport = create_aeroport(data['nom_aeroport'], data['id_ville'])
         return aeroport, 201
 
 @ns.route('/aeroports/<string:nom_actuel>')
@@ -125,7 +125,7 @@ class AeroportResource(Resource):
         aero_modifie = modify_aeroport(
             nom_aeroport=nom_actuel,
             nvo_nom_aeroport=data.get('nom_aeroport'),
-            id_ville=data.get('ville_id')
+            id_ville=data.get('id_ville')
         )
         
         if not aero_modifie:
@@ -147,5 +147,5 @@ class TerminalListe(Resource):
     @ns.marshal_with(terminal_model)
     def post(self):
         data = ns.payload
-        terminal = create_aeroport(data['nom_aeroport'], data['nom_terminal'])
+        terminal = create_terminal(data['nom_terminal'], data['nom_aeroport'])
         return terminal, 201

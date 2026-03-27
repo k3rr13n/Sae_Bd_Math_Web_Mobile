@@ -191,8 +191,8 @@ def create_compagnie(nom_compagnie):
     return new_compagnie
 
 
-def create_aeroport(nom_aeroport, ville_id):
-    new_aeroport = Aeroport(nom_aeroport=nom_aeroport, ville_id=ville_id)
+def create_aeroport(nom_aeroport, id_ville):
+    new_aeroport = Aeroport(nom_aeroport=nom_aeroport, id_ville=id_ville)
     db.session.add(new_aeroport)
     db.session.commit()
     return new_aeroport

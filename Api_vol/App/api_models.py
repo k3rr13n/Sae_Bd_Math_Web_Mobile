@@ -12,12 +12,12 @@ compagnie_input_model = api.model('CompagnieInput', {
 
 aeroport_model = api.model("Aeroport", {
     "nom_aeroport": fields.String,
-    "ville_id": fields.Integer 
+    "id_ville": fields.Integer 
 })
 
 aeroport_input_model = api.model("AeroportInput",  {
     "nom_aeroport": fields.String,
-    "ville_id": fields.Integer
+    "id_ville": fields.Integer
 })
 
 vol_model = api.model("Vol", {
