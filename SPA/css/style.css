@@ -128,8 +128,6 @@ padding: 0.6rem;
 margin: 0.5rem;
 border-radius: 12px;
 border: 1px solid #334155;
-/* background: #020617; */
-/* color: #e2e8f0; */
 }
 
 .formulaire_creation label{
@@ -138,3 +136,16 @@ align-self: center;
 justify-content: center;
 }
 
+.nav_home{
+display: flex;
+flex-wrap: nowrap;
+}
+
+.nav_home div{
+align-items: center;
+justify-content: center;
+background-color: #B1AEFF;
+padding: 10px 50px;
+margin: 0px 50px;
+border-radius: 20px;
+}
