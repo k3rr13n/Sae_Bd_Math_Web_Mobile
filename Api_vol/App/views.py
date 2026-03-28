@@ -49,8 +49,8 @@ class CompagnieResource(Resource):
             abort (404, "Compagnie introuvable")
         return get_compagnie(nom_compagnie)
     
-    def delete(self, nom):
-        if supp_compagnie(nom):
+    def delete(self, nom_compagnie):
+        if supp_compagnie(nom_compagnie):
             return None, 204
         abort(404)
     
@@ -138,6 +138,11 @@ class AeroportListe(Resource):
 class AeroportResource(Resource):
     @ns.expect(aeroport_input_model)
     @ns.marshal_with(aeroport_model)
+    def get(self,nom_aeroport):
+        if not get_aeroport(nom_aeroport) :
+            abort (404, "Aéroport introuvable")
+        return get_aeroport(nom_aeroport)
+    
     def put(self, nom_actuel):
         data = ns.payload # Le JSON envoyé par le client
         aero_modifie = modify_aeroport(

@@ -272,13 +272,13 @@ def modify_pays(id_pays, nom_pays):
     return pays_mod
 
 
-def modif_compagnie(nom_terminal, nvo_nom_terminal):
-    comp_mod = get_compagnie(nom_terminal)
-    if comp_mod:
+def modif_terminal(nom_terminal, nvo_nom_terminal):
+    term_mod = get_terminal(nom_terminal)
+    if term_mod:
         if nvo_nom_terminal is not None and nvo_nom_terminal != nom_terminal :
-            comp_mod.nom_terminal = nvo_nom_terminal
+            term_mod.nom_terminal = nvo_nom_terminal
         db.session.commit()
-    return comp_mod
+    return term_mod
 
 
 
