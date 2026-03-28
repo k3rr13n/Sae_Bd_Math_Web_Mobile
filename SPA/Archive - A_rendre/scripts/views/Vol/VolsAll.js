@@ -1,4 +1,4 @@
-import VolsProvider from "./../services/VolsProvider.js";
+import VolsProvider from "../../services/VolsProvider.js";
 
 export default class VolsAll{
     async render(){

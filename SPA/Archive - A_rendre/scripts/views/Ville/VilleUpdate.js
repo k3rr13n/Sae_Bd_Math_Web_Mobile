@@ -1,5 +1,5 @@
-import VolsProvider from "./../services/VolsProvider.js";
-import Utils from "./../services/Utils.js";
+import VolsProvider from "../../services/VolsProvider.js";
+import Utils from "../../services/Utils.js";
 
 export default class VilleUpdate{
     async render(){
