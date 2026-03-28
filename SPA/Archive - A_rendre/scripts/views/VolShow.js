@@ -37,7 +37,10 @@ export default class VolsShow{
                 </div>
                 <div class="btn_center">
                     <a href="/#/vols/${request.id}/update"><button class="btn-update">Modifier le vol</button></a>
-                    <button class="btn-delete">Supprimer le vol</button>
+                    <form method="get">
+                        <input type="hidden" id="delete" value="${vol.id}">
+                        <input type="submit" class="btn-delete" onclick="window.location.href='/#/vols'" value="Supprimer le vol">
+                    </form>
                 </div>
             </section>
         `;

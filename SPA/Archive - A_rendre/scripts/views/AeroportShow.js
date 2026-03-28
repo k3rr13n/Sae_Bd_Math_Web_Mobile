@@ -3,7 +3,7 @@ import Utils from "./../services/Utils.js";
 
 export default class AeroportsShow{
     async render(){
-
+        
         let request = Utils.parsRequestURL();
 
         let aeroport = await VolsProvider.getAeroport(request.id); // Ajouter l'id ou un moyen distinctif
@@ -25,13 +25,17 @@ export default class AeroportsShow{
                 </div>
                 <div class="btn_center">
                     <a href="/#/aeroports/${request.id}/update"><button class="btn-update">Modifier l'aeroport</button></a>
-                    <button class="btn-delete">Supprimer l'aeroport</button>
+                    <form method="get">
+                        <input type="hidden" id="delete" value="${aeroport.id}">
+                        <input type="submit" class="btn-delete" onclick="window.location.href='/#/aeroports'" value="Supprimer l'aeroport">
+                    </form>
                 </div>
             </section>
         `;
         return view;
     }
 }
+                    // <button class="btn-delete">Supprimer l'aeroport</button>
 
 /*
 [

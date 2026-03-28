@@ -21,7 +21,7 @@ document.addEventListener("submit", async (e) =>{
     e.preventDefault()
     
     // Ajout en json pour un nouvel aeroport
-    if(request.operation == "aeroports" && request.id == null){
+    if(request.operation == "aeroports" && request.id == null && document.getElementById("delete") == null){
         // Récuperation des données
         let nom_aeroport = document.getElementById("nom_aeroport").value;
         let id_ville = document.getElementById("id_ville").value;
@@ -45,7 +45,7 @@ document.addEventListener("submit", async (e) =>{
         }
     }
     // Modification en json pour un aeroport
-    if(request.operation == "aeroports" && request.id != null){
+    else if(request.operation == "aeroports" && request.id != null){
         // Récuperation des données
         let nom_aeroport = document.getElementById("nom_aeroport").value;
         let id_ville = document.getElementById("id_ville").value;
@@ -69,12 +69,24 @@ document.addEventListener("submit", async (e) =>{
             content.innerHTML = await (new AeroportsShow).render();
         }
     }
+    // Suppression en json pour un aeroport
+    if(request.operation == "aeroports" && request.id == null && document.getElementById("delete") != null){
+        // Récuperation des données
+        let element_id = document.getElementById("delete").value;
+        
+        //Envois des données
+        let update_task = await fetch(`${JSON_AEROPORT}/${element_id}`, {
+            method: "DELETE"
+        });
+
+        content.innerHTML = await (new AeroportsAll).render();
+    }
 
 
 
 
     // Ajout en json pour un nouveau terminal
-    else if(request.operation == "terminaux" && request.id == null){
+    else if(request.operation == "terminaux" && request.id == null && document.getElementById("delete") == null){
         // Récuperation des données
         let nom_aeroport = document.getElementById("nom_aeroport").value;
         let nom_terminal = document.getElementById("nom_terminal").value;
@@ -122,12 +134,25 @@ document.addEventListener("submit", async (e) =>{
             content.innerHTML = await (new TerminalShow).render();
         }
     }
+    // Suppression en json pour un terminal
+    else if(request.operation == "terminaux" && request.id == null && document.getElementById("delete") != null){
+        // Récuperation des données
+        let element_id = document.getElementById("delete").value;
+
+        //Envois des données
+        let update_task = await fetch(`${JSON_TERMINAL}/${element_id}`, {
+            method: "DELETE"
+        });
+
+        content.innerHTML = await (new TerminalAll).render();
+    
+    }
 
 
 
 
     // Ajout en json pour une nouvelle ville
-    else if(request.operation == "villes" && request.id == null){
+    else if(request.operation == "villes" && request.id == null && document.getElementById("delete") == null){
         // Récuperation des données
         let id_ville = document.getElementById("id_ville").value;
         let id_pays = document.getElementById("id_pays").value;
@@ -187,12 +212,24 @@ document.addEventListener("submit", async (e) =>{
             content.innerHTML = await (new VillesShow).render();
         }
     }
+    // Suppression en json pour une ville
+    else if(request.operation == "villes" && request.id == null && document.getElementById("delete") != null){
+        // Récuperation des données
+        let element_id = document.getElementById("delete").value;
+
+        //Envois des données
+        let update_task = await fetch(`${JSON_VILLE}/${element_id}`, {
+            method: "DELETE"
+        });
+
+        content.innerHTML = await (new VillesAll).render();
+    }
 
 
 
 
     // Ajout en json pour un nouveau vol
-    else if(request.operation == "vols" && request.id == null){
+    else if(request.operation == "vols" && request.id == null && document.getElementById("delete") == null){
         // Récuperation des données
         let nom_compagnie = document.getElementById("nom_compagnie").value;
         let numero_vol = document.getElementById("numero_vol").value;
@@ -315,5 +352,17 @@ document.addEventListener("submit", async (e) =>{
 
             content.innerHTML = await (new VolsShow).render();
         }
+    }
+    // Suppression en json pour un vol
+    else if(request.operation == "vols" && request.id == null && document.getElementById("delete") != null){
+        // Récuperation des données
+        let element_id = document.getElementById("delete").value;
+
+        //Envois des données
+        let update_task = await fetch(`${JSON_VOL}/${element_id}`, {
+            method: "DELETE"
+        })
+
+        content.innerHTML = await (new VolsAll).render();
     }
 })

@@ -27,7 +27,10 @@ export default class VillesShow{
                 </div>
                 <div class="btn_center">
                     <a href="/#/villes/${request.id}/update"><button class="btn-update">Modifier la ville</button></a>
-                    <button class="btn-delete">Supprimer la ville</button>
+                    <form method="get">
+                        <input type="hidden" id="delete" value="${ville.id}">
+                        <input type="submit" class="btn-delete" onclick="window.location.href='/#/villes'" value="Supprimer la ville">
+                    </form>
                 </div>
             </section>
         `;
