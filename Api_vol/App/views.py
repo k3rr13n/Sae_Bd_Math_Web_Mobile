@@ -67,7 +67,9 @@ class VilleList(Resource):
     @ns.marshal_with(ville_model)
     def post(self):
         data = ns.payload
-        ville = create_ville(data['id_ville'], data['id_pays'], data['nom_ville'])
+        if not get_pays(data['id_pays']):
+            abort(404, "Pays introuvable")
+        ville = create_ville(data['id_pays'], data['nom_ville'])
         return ville, 201
 
 
@@ -97,7 +99,7 @@ class PaysList(Resource):
     @ns.marshal_with(pays_model)
     def post(self):
         data = ns.payload
-        pays = create_pays(data['id_pays'], data['nom_pays'])
+        pays = create_pays(data['nom_pays'])
         return pays, 201
  
 ############## AEROPORT #################

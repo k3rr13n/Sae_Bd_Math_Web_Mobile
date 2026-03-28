@@ -7,7 +7,7 @@ class Pays(db.Model):
     nom_pays = db.Column(db.String(5))
 
 
-    def __init__(self, id_pays, nom_pays):
+    def __init__(self, nom_pays, id_pays=None):
         self.id_pays = id_pays
         self.nom_pays = nom_pays
 
@@ -26,7 +26,7 @@ class Ville (db.Model):
     aeroports = db.relationship("Aeroport", backref="ville", lazy = True)
 
 
-    def __init__(self, id_ville, nom_ville, id_pays):
+    def __init__(self, nom_ville, id_pays, id_ville=None):
         self.id_ville = id_ville
         self.id_pays = id_pays
         self.nom_ville = nom_ville
@@ -197,14 +197,14 @@ def create_aeroport(nom_aeroport, id_ville):
     db.session.commit()
     return new_aeroport
 
-def create_ville(id_ville, id_pays, nom_ville):
-    new_ville = Ville(id_ville=id_ville, id_pays=id_pays, nom_ville=nom_ville)
+def create_ville(id_pays, nom_ville):
+    new_ville = Ville(id_pays=id_pays, nom_ville=nom_ville)
     db.session.add(new_ville)
     db.session.commit()
     return new_ville
 
-def create_pays(id_pays, nom_pays):
-    new_pays = Pays(id_pays=id_pays, nom_pays=nom_pays) 
+def create_pays(nom_pays):
+    new_pays = Pays(nom_pays=nom_pays) 
     db.session.add(new_pays)
     db.session.commit()
     return new_pays

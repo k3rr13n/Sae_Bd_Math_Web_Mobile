@@ -2,4 +2,4 @@
 
 
 Pour visualiser les données de l'API avec flask-restx : 
-Activer le venv. Se placer dans Api_vol. executer flask run.
+Activer le venv. Se placer dans Api_vol. executer flask run (Linux) ou python -m flask run (Windows).
