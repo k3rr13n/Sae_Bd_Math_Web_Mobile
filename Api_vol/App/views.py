@@ -95,13 +95,29 @@ class PaysList(Resource):
     def get(self):
         return get_all_pays()
     
+#Mettre verif pour le nom que 2 lettres en majuscule, pas de chiffres, pas de caractères spéciaux, pas d'espaces
     @ns.expect(pays_input_model)
     @ns.marshal_with(pays_model)
     def post(self):
         data = ns.payload
+        if get_pays(data['nom_pays']):
+            abort(400, "Pays déjà existant")
         pays = create_pays(data['nom_pays'])
         return pays, 201
- 
+
+@ns.route('/pays/<int:id>')
+class PaysItem(Resource):
+    @ns.marshal_with(pays_model)
+    def get(self, id):
+        if not get_pays(id) :
+            abort (404, "Pays introuvable")
+        return get_pays(id)
+    
+    def delete(self, id):
+        if supp_pays(id):
+            return {"message": "Pays supprimé"}, 204
+        abort(404, "Pays introuvable")
+    
 ############## AEROPORT #################
 
 #trouve pas id_ville
