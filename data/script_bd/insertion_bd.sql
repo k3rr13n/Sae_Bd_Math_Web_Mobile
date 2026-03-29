@@ -32,7 +32,7 @@ INSERT INTO COMPAGNIE VALUES ("Air austral");
 
 INSERT INTO VOL VALUES ("Air france", 54123, "2025-01-03 15:32:12", "2025-01-03 19:32:12", "E", "F", "Charle de gaulle", "Shanghai-Pudong");
 INSERT INTO VOL VALUES ("Aircalin", 98963, "2025-09-15 12:02:56", "2025-09-15 13:32:12", "2AB", "B", "Rio de Janeiro-Galeão", "Newark");
-INSERT INTO VOL VALUES ("Air austral", 11215, "2026-05-10 20:00:14", "2026-05-10 21:00:1", "J", "56", "Tontouta", "Hamilton");
+INSERT INTO VOL VALUES ("Air austral", 11215, "2026-05-10 20:00:14", "2026-05-10 21:00:01", "J", "56", "Tontouta", "Hamilton");
 
 ---------------------------------------------- Suite du code généré ----------------------------------------------
 
