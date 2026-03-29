@@ -280,28 +280,11 @@ class VolItem(Resource):
     @ns.marshal_with(vol_model)
     def put(self, nom_compagnie, numero_vol, date_heure_depart):
         data = ns.payload
-        date_arrivee = None
-        if 'date_heure_arrive_prevue' in data:
-            try:
-                # On remplace le 'Z' par '+00:00' pour la compatibilité ISO
-                clean_date = data['date_heure_arrive_prevue'].replace("Z", "+00:00").replace(" ", "T")
-                date_arrivee = datetime.fromisoformat(clean_date)
-            except ValueError:
-                abort(400, "Format de date_heure_arrive_prevue invalide.")
-
-        # On appelle la fonction de modification du modèle
-        vol = modify_vol(
-            nom_compagnie, numero_vol, date_heure_depart,
-            date_arrivee,
-            data.get('nom_aeroport_1'),
-            data.get('nom_aeroport_2'),
-            data.get('nom_terminal_1'),
-            data.get('nom_terminal_2')
-        )
+        vol = modify_vol(nom_compagnie, numero_vol, date_heure_depart, data)
 
         if not vol:
-            abort(404, "Vol introuvable")
-        
+            abort(404, "Vol introuvable ou erreur de mise à jour")
+            
         return vol
     
     def delete(self, nom_compagnie, numero_vol, date_heure_depart):

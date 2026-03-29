@@ -230,40 +230,46 @@ def create_terminal(nom_aeroport, nom_terminal):
 
 
 
-def modify_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
-               nom_aeroport_1, nom_aeroport_2, nom_terminal_1, nom_terminal_2):
-    #vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
+def modify_vol(nom_compagnie, numero_vol, date_heure_depart, data):
+    # vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
 
     try:
-        date_str = date_heure_depart.replace(" ", "T")
-        date_dt = datetime.fromisoformat(date_str)
+        date_dt = datetime.fromisoformat(date_heure_depart.replace(" ", "T"))
         d_debut = date_dt - timedelta(minutes=1)
         d_fin = date_dt + timedelta(minutes=1)
 
-        # On prépare les données à mettre à jour
-        update_values = {
-            "nom_aeroport_1": nom_aeroport_1,
-            "nom_aeroport_2": nom_aeroport_2,
-            "nom_terminal_1": nom_terminal_1,
-            "nom_terminal_2": nom_terminal_2
-        }
-        if date_heure_arrive_prevue:
-            update_values["date_heure_arrive_prevue"] = date_heure_arrive_prevue
+        # Liste des champs autorisés à la modification
+        champs_possibles = [
+            'nom_aeroport_1', 'nom_aeroport_2', 
+            'nom_terminal_1', 'nom_terminal_2'
+        ]
+        
+        update_values = {}
+        for k, v in data.items():
+            if k in champs_possibles:
+                # On ne prend la valeur si val différente de "string"
+                if v is not None and str(v).strip().lower() != "string" and str(v).strip() != "":
+                    update_values[k] = v
 
-        # UPDATE DIRECT en base
-        num_updated = Vol.query.filter(
+        # Cas particulier pour la date d'arrivée
+        if 'date_heure_arrive_prevue' in data:
+            clean_date = data['date_heure_arrive_prevue'].replace("Z", "+00:00").replace(" ", "T")
+            update_values['date_heure_arrive_prevue'] = datetime.fromisoformat(clean_date)
+
+        if not update_values:
+            return get_vol(nom_compagnie, numero_vol, date_heure_depart)
+
+        query = Vol.query.filter(
             Vol.nom_compagnie == nom_compagnie,
             Vol.numero_vol == numero_vol,
             Vol.date_heure_depart >= d_debut,
-            Vol.date_heure_depart <= d_fin
-        ).update(update_values)
+            Vol.date_heure_depart <= d_fin)
 
+        num_updated = query.update(update_values)
         db.session.commit()
 
         if num_updated > 0:
-            # On recharge et renvoie l'objet mis à jour pour la route
-            return get_vol(nom_compagnie, numero_vol, date_heure_depart)
-        
+            return query.first()
         return None
 
     except Exception as e:
