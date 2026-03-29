@@ -19,7 +19,7 @@ export default class VolsProvider {
     // Methodes des vols
     static getVols = async () => {
         try {
-            const response = await fetch(`${JSON_VOL}/`); 
+            const response = await fetch(`${API}/vols`); 
             const json = await response.json();
             return json; 
             
@@ -28,12 +28,11 @@ export default class VolsProvider {
         }
     }
 
-    static getVol = async (id) => {
+    static getVol = async (nom_compagnie, numero_vol, date_heure_depart) => {
         try {
-            const response = await fetch(`${JSON_VOL}/`);
+            const response = await fetch(`${API}/vols/${nom_compagnie}/${numero_vol}/${date_heure_depart}`);
             const json = await response.json();
-            // console.log(json.vols[id-1])
-            return json[id-1]; 
+            return json; 
             
         } catch (error) {
             console.error(error); 
@@ -61,7 +60,7 @@ export default class VolsProvider {
     // Methodes des villes
     static getVilles = async () => {
         try {
-            const response = await fetch(`${JSON_VILLE}/`); 
+            const response = await fetch(`${API}/villes`); 
             const json = await response.json();
             return json; 
             
@@ -70,25 +69,67 @@ export default class VolsProvider {
         }
     }
 
-    static getVille = async (id) => {
+    static getVille = async (id_ville) => {
         try {
-            const response = await fetch(`${JSON_VILLE}/`);
+            const response = await fetch(`${API}/villes/${id_ville}`);
             const json = await response.json();
-            // console.log(json.vols[id-1])
-            return json[id-1]; 
+            return json; 
             
         } catch (error) {
             console.error(error); 
         }
     }
 
-    static getVilleJson = (id_ville, id_pays, nom_ville) => {
+    static createVille = async (id_pays, nom_ville) => {
+        try {
+            const data = VolsProvider.getVilleJson(id_pays, nom_ville);
+
+            const response = await fetch(`${API}/villes`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
+    static updateVille = async (id_ville, id_pays, nom_ville) => {
+        try {
+            const data = VolsProvider.getVilleJson(id_pays, nom_ville);
+
+            const response = await fetch(`${API}/villes/${id_ville}`, {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+    
+    static deleteVille = async (id_ville) => {
+        try {
+            await fetch(`${API}/villes/${id_ville}`, {
+                method: "DELETE",
+            });
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    } 
+
+    static getVilleJson = (id_pays, nom_ville) => {
         try {
             let new_data = {}
-            new_data['id_ville'] = id_ville
             new_data['id_pays'] = id_pays
             new_data['nom_ville'] = nom_ville
-            // console.log(json.vols[id-1])
             return new_data; 
             
         } catch (error) {
@@ -99,7 +140,7 @@ export default class VolsProvider {
     // Methodes des aeroports
     static getAeroports = async () => {
         try {
-            const response = await fetch(`${JSON_AEROPORT}/`); 
+            const response = await fetch(`${API}/aeroports`); 
             const json = await response.json();
             return json; 
             
@@ -108,22 +149,69 @@ export default class VolsProvider {
         }
     }
 
-    static getAeroport = async (id) => {
+    static getAeroport = async (nom_aeroport) => {
         try {
-            const response = await fetch(`${JSON_AEROPORT}/`);
+            const response = await fetch(`${API}/aeroports/${nom_aeroport}`);
             const json = await response.json();
-            return json[id-1]; 
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }    
+
+    static createAeroport = async (nom_aeroport, id_ville) => {
+        try {
+            
+            const data = VolsProvider.getAeroportJson(nom_aeroport, id_ville);
+
+            const response = await fetch(`${API}/aeroports`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            return json; 
             
         } catch (error) {
             console.error(error); 
         }
     }    
     
+    static updateAeroport = async (nom_aeroport, id_ville) => {
+        try {
+            
+            const data = VolsProvider.getAeroportJson(nom_aeroport, id_ville);
+
+            const response = await fetch(`${API}/aeroports/${nom_aeroport}`, {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }    
+
+    static deleteAeroport = async (nom_aeroport) => {
+        try {
+            await fetch(`${API}/aeroports/${nom_aeroport}`, {
+                method: "DELETE",
+            });
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    } 
+
     static getAeroportJson = (nom_aeroport, id_ville) => {
         try {
             let new_data = {}
             new_data['nom_aeroport'] = nom_aeroport
-            new_data['id_ville'] = id_ville
+            new_data['id_ville'] = parseInt(id_ville)
             return new_data; 
             
         } catch (error) {
@@ -134,7 +222,7 @@ export default class VolsProvider {
     // Methodes des terminaux
     static getTerminaux = async () => {
         try {
-            const response = await fetch(`${JSON_TERMINAL}/`); 
+            const response = await fetch(`${API}/terminaux`); 
             const json = await response.json();
             return json; 
             
@@ -143,11 +231,11 @@ export default class VolsProvider {
         }
     }
 
-    static getTerminal = async (id) => {
+    static getTerminal = async (nom_aeroport, nom_terminal) => {
         try {
-            const response = await fetch(`${JSON_TERMINAL}/`);
+            const response = await fetch(`${API}/terminaux/${nom_aeroport}/${nom_terminal}`);
             const json = await response.json();
-            return json[id-1]; 
+            return json; 
             
         } catch (error) {
             console.error(error); 
@@ -235,7 +323,7 @@ export default class VolsProvider {
 
     static getPayss = async () => {
         try {
-            const response = await fetch(`${JSON_PAYS}/`); 
+            const response = await fetch(`${API}/pays`); 
             const json = await response.json();
             return json; 
             
@@ -246,7 +334,7 @@ export default class VolsProvider {
 
     static getCompagnies = async () => {
         try {
-            const response = await fetch(`${JSON_COMPAGNIE}/`); 
+            const response = await fetch(`${API}/compagnies`); 
             const json = await response.json();
             return json; 
             

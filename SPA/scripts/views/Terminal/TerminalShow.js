@@ -6,7 +6,10 @@ export default class TerminalShow{
 
         let request = Utils.parsRequestURL();
 
-        let terminal = await VolsProvider.getTerminal(request.id); // Ajouter l'id ou un moyen distinctif
+        const url_terminal = JSON.parse(localStorage.getItem(`terninal_data_${request.id}`));
+        console.log(url_terminal['nom_aeroport'], url_terminal['nom_terminal'])
+
+        let terminal = await VolsProvider.getTerminal(url_terminal['nom_aeroport'], url_terminal['nom_terminal']); 
         
         let view = `
             <section class="sections">

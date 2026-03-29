@@ -6,7 +6,9 @@ export default class AeroportUpdate{
 
         let request = Utils.parsRequestURL();
 
-        let aeroport = await VolsProvider.getAeroport(request.id); // Ajouter l'id ou un moyen distinctif
+        const url_aeroport = JSON.parse(localStorage.getItem(`aeroport_data_${request.id}`));
+
+        let aeroport = await VolsProvider.getAeroport(url_aeroport['nom_aeroport']);
         
         let view = `
             <section class="sections">
@@ -19,7 +21,6 @@ export default class AeroportUpdate{
 
                         <label>L'id de la ville de l'aeroport :</label>
                             <input type="number" min="1" id="id_ville" value="${aeroport.id_ville}"></input>
-                            <input type="hidden" id="id" value="${aeroport.id}">
                         <input type="submit" onclick="window.location.href='/#/aeroports/${request.id}'">
                     </form>
                 </div>

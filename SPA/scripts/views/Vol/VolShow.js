@@ -6,7 +6,11 @@ export default class VolsShow{
 
         let request = Utils.parsRequestURL();
 
-        let vol = await VolsProvider.getVol(request.id); // Ajouter l'id ou un moyen distinctif
+        const url_vol = JSON.parse(localStorage.getItem(`vol_data_${request.id}`));
+        // console.log(url_vol['nom_compagnie'], url_vol['numero_vol'], url_vol['date_heure_depart'])
+
+        let vol = await VolsProvider.getVol(url_vol['nom_compagnie'], url_vol['numero_vol'], url_vol['date_heure_depart']);
+        console.log(vol)
 
         let view = `
             <section class="sections">
@@ -27,11 +31,11 @@ export default class VolsShow{
                             <td>${vol.nom_compagnie}</td>
                             <td>${vol.numero_vol}</td>
                             <td>${vol.date_heure_depart}</td>
-                            <td>${vol.date_heure_arrivee_prevue}</td>
-                            <td>${vol.terminal_depart}</td>
-                            <td>${vol.terminal_arrivee}</td>
-                            <td>${vol.aeroport_depart}</td>
-                            <td>${vol.aeroport_arrivee}</td>
+                            <td>${vol.date_heure_arrive_prevue}</td>
+                            <td>${vol.nom_terminal_1}</td>
+                            <td>${vol.nom_terminal_2}</td>
+                            <td>${vol.nom_aeroport_1}</td>
+                            <td>${vol.nom_aeroport_2}</td>
                         <tbody>
                     </table>
                 </div>

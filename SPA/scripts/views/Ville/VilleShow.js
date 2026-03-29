@@ -6,7 +6,10 @@ export default class VillesShow{
 
         let request = Utils.parsRequestURL();
 
-        let ville = await VolsProvider.getVille(request.id); // Ajouter l'id ou un moyen distinctif
+        const url_ville = JSON.parse(localStorage.getItem(`ville_data_${request.id}`));
+        console.log(url_ville['id_ville'])
+
+        let ville = await VolsProvider.getVille(url_ville['id_ville']); // Ajouter l'id ou un moyen distinctif
 
         let view = `
             <section class="sections">
@@ -28,7 +31,7 @@ export default class VillesShow{
                 <div class="btn_center">
                     <a href="/#/villes/${request.id}/update"><button class="btn-update">Modifier la ville</button></a>
                     <form method="get">
-                        <input type="hidden" id="delete" value="${ville.id}">
+                        <input type="hidden" id="delete" value="${request.id}">
                         <input type="submit" class="btn-delete" onclick="window.location.href='/#/villes'" value="Supprimer la ville">
                     </form>
                 </div>

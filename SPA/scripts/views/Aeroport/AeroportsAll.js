@@ -11,6 +11,9 @@ export default class AeroportsAll{
                 <a href="/#/aeroports/create"><button class="btn-create">Ajouter un nouvel aeroport</button></a>
                 ${aeroports.map((aeroport, i) => `
                     <a href="/#/aeroports/${i+1}">
+                        <script>
+                            ${localStorage.setItem(`aeroport_data_${i+1}`, JSON.stringify({nom_aeroport: aeroport.nom_aeroport}))}
+                        </script>
                         <div class="element">
                             <table>
                                 <thead>

@@ -11,9 +11,6 @@ export default class VilleCreate{
                 <div class="div_form">
                     <form method="get" class="formulaire_creation">
 
-                        <label>L'id de la ville :</label>
-                            <input type="number" min="1" id="id_ville"></input>
-
                         <label>L'id du pays :</label>
                             <input type="number" min="1" id="id_pays"></input>
 

@@ -11,6 +11,9 @@ export default class VillesAll{
                 <a href="/#/villes/create"><button class="btn-create">Ajouter une nouvelle ville</button></a>
                 ${villes.map((ville, i) => `
                     <a href="/#/villes/${i+1}">
+                        <script>
+                            ${localStorage.setItem(`ville_data_${i+1}`, JSON.stringify({id_ville: ville.id_ville}))}
+                        </script>
                         <div class="element">
                             <table>
                                 <thead>

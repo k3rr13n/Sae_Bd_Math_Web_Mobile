@@ -11,6 +11,10 @@ export default class VolsAll{
                 <a href="/#/vols/create"><button class="btn-create">Ajouter un nouveau vol</button></a>
                 ${vols.map((vol, i) => `
                     <a href="/#/vols/${i+1}">
+                        <script>
+                            ${localStorage.setItem(`vol_data_${i+1}`, 
+                                JSON.stringify({nom_compagnie: vol.nom_compagnie, numero_vol:vol.numero_vol, date_heure_depart:vol.date_heure_depart}))}
+                        </script>
                         <div class="element">
                             <table>
                                 <thead>
@@ -27,11 +31,11 @@ export default class VolsAll{
                                     <td>${vol.nom_compagnie}</td>
                                     <td>${vol.numero_vol}</td>
                                     <td>${vol.date_heure_depart}</td>
-                                    <td>${vol.date_heure_arrivee_prevue}</td>
-                                    <td>${vol.terminal_depart}</td>
-                                    <td>${vol.terminal_arrivee}</td>
-                                    <td>${vol.aeroport_depart}</td>
-                                    <td>${vol.aeroport_arrivee}</td>
+                                    <td>${vol.date_heure_arrive_prevue}</td>
+                                    <td>${vol.nom_terminal_1}</td>
+                                    <td>${vol.nom_terminal_2}</td>
+                                    <td>${vol.nom_aeroport_1}</td>
+                                    <td>${vol.nom_aeroport_2}</td>
                                 <tbody>
                             </table>
                         </div>

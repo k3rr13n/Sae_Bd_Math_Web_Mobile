@@ -11,6 +11,10 @@ export default class TerminalAll{
                 <a href="/#/terminaux/create"><button class="btn-create">Ajouter un nouveau terminal</button></a>
                 ${terminaux.map((terminal, i) => `
                     <a href="/#/terminaux/${i+1}">
+                        <script>
+                            ${localStorage.setItem(`terninal_data_${i+1}`, 
+                                JSON.stringify({nom_aeroport: terminal.nom_aeroport, nom_terminal: terminal.nom_terminal}))}
+                        </script>
                         <div class="element">
                             <table>
                                 <thead>

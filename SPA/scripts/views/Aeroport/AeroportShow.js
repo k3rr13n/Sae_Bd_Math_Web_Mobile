@@ -6,7 +6,10 @@ export default class AeroportsShow{
         
         let request = Utils.parsRequestURL();
 
-        let aeroport = await VolsProvider.getAeroport(request.id); // Ajouter l'id ou un moyen distinctif
+        const url_aeroport = JSON.parse(localStorage.getItem(`aeroport_data_${request.id}`));
+        console.log(url_aeroport['nom_aeroport'])
+
+        let aeroport = await VolsProvider.getAeroport(url_aeroport['nom_aeroport']);
         
         let view = `
             <section class="sections">
@@ -26,7 +29,7 @@ export default class AeroportsShow{
                 <div class="btn_center">
                     <a href="/#/aeroports/${request.id}/update"><button class="btn-update">Modifier l'aeroport</button></a>
                     <form method="get">
-                        <input type="hidden" id="delete" value="${aeroport.id}">
+                        <input type="hidden" id="delete" value="${request.id}">
                         <input type="submit" class="btn-delete" onclick="window.location.href='/#/aeroports'" value="Supprimer l'aeroport">
                     </form>
                 </div>
