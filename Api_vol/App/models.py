@@ -1,4 +1,5 @@
 from .extensions import db
+from datetime import datetime
 
 
 class Pays(db.Model):
@@ -108,10 +109,11 @@ class Vol (db.Model):
         self. numero_vol= numero_vol
         self.date_heure_depart= date_heure_depart
         self.date_heure_arrive_prevue= date_heure_arrive_prevue
-        self.nom_aeroport_1= nom_aeroport_1
-        self.nom_aeroport_2= nom_aeroport_2
         self.nom_terminal_1= nom_terminal_1
         self.nom_terminal_2= nom_terminal_2
+        self.nom_aeroport_1= nom_aeroport_1
+        self.nom_aeroport_2= nom_aeroport_2
+
 
     def __repr__(self):
         return f"< Le vol {self.numero_vol} de la compagnie {self.nom_compagnie} partant de l'aeroport {self.nom_aeroport_1} et arrivant à l'aeroport {self.nom_aeroport_2}>"
@@ -134,7 +136,9 @@ def get_all_vols():
     return Vol.query.all()
 
 def get_vol(nom_compagnie, numero_vol, date_heure_depart):
-    return Vol.query.get((nom_compagnie, numero_vol, date_heure_depart))
+    return Vol.query.filter(Vol.nom_compagnie==nom_compagnie, 
+                               Vol.numero_vol==numero_vol, 
+                               Vol.date_heure_depart==datetime.strptime(date_heure_depart, '%Y-%m-%d %H:%M:%S'))
 
 
 def get_all_compagnies():
@@ -165,8 +169,8 @@ def get_pays(id_pays):
 def get_all_terminaux():
     return Terminal.query.all()
 
-def get_terminal(nom_terminal, nom_aeroport):
-    return Terminal.query.get((nom_terminal, nom_aeroport))
+def get_terminal(nom_aeroport, nom_terminal):
+    return Terminal.query.get((nom_aeroport, nom_terminal))
 
 
 
@@ -176,8 +180,11 @@ def get_terminal(nom_terminal, nom_aeroport):
 def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
                nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
     
-    new_vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=date_heure_depart,
-              date_heure_arrive_prevue=date_heure_arrive_prevue, nom_aeroport_1=nom_aeroport_1, 
+    h_depart = datetime.fromisoformat(date_heure_depart)
+    h_arrivee = datetime.fromisoformat(date_heure_arrive_prevue)
+
+    new_vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=h_depart,
+              date_heure_arrive_prevue=h_arrivee, nom_aeroport_1=nom_aeroport_1, 
               nom_aeroport_2=nom_aeroport_2, nom_terminal_1=nom_terminal_1, nom_terminal_2=nom_terminal_2)
     db.session.add(new_vol)
     db.session.commit()
@@ -272,8 +279,8 @@ def modify_pays(id_pays, nom_pays):
     return pays_mod
 
 
-def modif_terminal(nom_terminal, nvo_nom_terminal):
-    term_mod = get_terminal(nom_terminal)
+def modif_terminal(nom_terminal, nvo_nom_terminal, nom_aeroport):
+    term_mod = get_terminal(nom_aeroport, nom_terminal)
     if term_mod:
         if nvo_nom_terminal is not None and nvo_nom_terminal != nom_terminal :
             term_mod.nom_terminal = nvo_nom_terminal
@@ -297,11 +304,11 @@ def supp_vol(nom_compagnie, numero_vol, date_heure_depart):
 def supp_compagnie(nom_compagnie):
     comp_del = get_compagnie(nom_compagnie)
     # comp = Compagnie.query.filter_by(nom_compagnie=nom_compagnie)
-    if not comp_del :
-        return None
-    else:
+    if comp_del :
         db.session.delete(comp_del)
         db.session.commit()
+        return True
+    return False
 
 
 def supp_aeroport(nom_aeroport):
