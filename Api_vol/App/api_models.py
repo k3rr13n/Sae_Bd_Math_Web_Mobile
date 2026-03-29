@@ -59,6 +59,11 @@ terminal_input_model = api.model("TerminalInput", {
 
 })
 
+terminal_input_put_model = api.model("TerminalInput", {
+    "nom_terminal": fields.String,
+
+})
+
 ville_model = api.model("Ville", {
     "id_ville": fields.Integer,
     "id_pays": fields.Integer,
