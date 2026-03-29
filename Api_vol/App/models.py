@@ -190,8 +190,8 @@ def get_terminal(nom_aeroport, nom_terminal):
 def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
                nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
     
-    h_depart = datetime.fromisoformat(date_heure_depart)
-    h_arrivee = datetime.fromisoformat(date_heure_arrive_prevue)
+    h_depart = datetime.fromisoformat(date_heure_depart.replace("Z", "+00:00").replace(" ", "T")).replace(microsecond=0)
+    h_arrivee = datetime.fromisoformat(date_heure_arrive_prevue.replace("Z", "+00:00").replace(" ", "T")).replace(microsecond=0)
 
     new_vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=h_depart,
               date_heure_arrive_prevue=h_arrivee, nom_aeroport_1=nom_aeroport_1, 
