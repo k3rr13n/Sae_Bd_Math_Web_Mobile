@@ -128,20 +128,27 @@ def get_all_vols():
 
 def get_vol(nom_compagnie, numero_vol, date_heure_entree):
     try:
-        date_heure_entree = date_heure_entree.replace(" ", "T")
-        date_conversion = datetime.fromisoformat(date_heure_entree)
-        d_debut = date_conversion.replace(second=0, microsecond=0)
-        d_fin = d_debut + timedelta(minutes=1)
-        
-        return Vol.query.filter(
-            Vol.nom_compagnie == nom_compagnie,
+        date_clean = date_heure_entree.replace("T", " ")
+        date_prefix = date_clean[:16] + "%" 
+
+        vol = Vol.query.filter(
+            Vol.nom_compagnie.ilike(nom_compagnie.strip()),
             Vol.numero_vol == numero_vol,
-            Vol.date_heure_depart >= d_debut,
-            Vol.date_heure_depart < d_fin
+            Vol.date_heure_depart.like(date_prefix) # Recherche textuelle
         ).first()
 
+        if not vol:
+            # Deuxième tentative : recherche exacte si le prefix échoue
+            vol = Vol.query.filter(
+                Vol.nom_compagnie.ilike(nom_compagnie.strip()),
+                Vol.numero_vol == numero_vol,
+                Vol.date_heure_depart == date_clean
+            ).first()
+
+        return vol
+
     except Exception as e:
-        print(f"Erreur de conversion : {e}")
+        print(f"Erreur get_vol : {e}")
         return None
     
 def get_all_compagnies():
