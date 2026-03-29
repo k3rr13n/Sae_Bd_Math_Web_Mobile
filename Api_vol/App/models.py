@@ -1,5 +1,5 @@
 from .extensions import db
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Pays(db.Model):
@@ -79,13 +79,15 @@ class Vol (db.Model):
 
     date_heure_arrive_prevue = db.Column(db.DateTime)
     
-    #Départ
-    nom_aeroport_1 = db.Column(db.String(50))
-    nom_terminal_1 = db.Column(db.String(15))
 
-    #Arrivée
-    nom_aeroport_2 = db.Column(db.String(50))
+    
+    nom_terminal_1 = db.Column(db.String(15))
     nom_terminal_2 = db.Column(db.String(15))
+
+   
+    nom_aeroport_1 = db.Column(db.String(50))
+    nom_aeroport_2 = db.Column(db.String(50))
+   
 
 
     __table_args__ = (
@@ -102,17 +104,6 @@ class Vol (db.Model):
     terminal_depart = db.relationship("Terminal", foreign_keys=[nom_aeroport_1, nom_terminal_1], backref="vol_depart", lazy=True)
     
     terminal_arrivee = db.relationship("Terminal", foreign_keys=[nom_aeroport_2, nom_terminal_2], backref="vol_arrivee", lazy=True)
-
-    def __init__(self,nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
-    
-        self. nom_compagnie= nom_compagnie
-        self. numero_vol= numero_vol
-        self.date_heure_depart= date_heure_depart
-        self.date_heure_arrive_prevue= date_heure_arrive_prevue
-        self.nom_terminal_1= nom_terminal_1
-        self.nom_terminal_2= nom_terminal_2
-        self.nom_aeroport_1= nom_aeroport_1
-        self.nom_aeroport_2= nom_aeroport_2
 
 
     def __repr__(self):
@@ -135,12 +126,24 @@ class Compagnie (db.Model):
 def get_all_vols():
     return Vol.query.all()
 
-def get_vol(nom_compagnie, numero_vol, date_heure_depart):
-    return Vol.query.filter(Vol.nom_compagnie==nom_compagnie, 
-                               Vol.numero_vol==numero_vol, 
-                               Vol.date_heure_depart==datetime.strptime(date_heure_depart, '%Y-%m-%d %H:%M:%S'))
+def get_vol(nom_compagnie, numero_vol, date_heure_entree):
+    try:
+        date_heure_entree = date_heure_entree.replace(" ", "T")
+        date_conversion = datetime.fromisoformat(date_heure_entree)
+        d_debut = date_conversion.replace(second=0, microsecond=0)
+        d_fin = d_debut + timedelta(minutes=1)
+        
+        return Vol.query.filter(
+            Vol.nom_compagnie == nom_compagnie,
+            Vol.numero_vol == numero_vol,
+            Vol.date_heure_depart >= d_debut,
+            Vol.date_heure_depart < d_fin
+        ).first()
 
-
+    except Exception as e:
+        print(f"Erreur de conversion : {e}")
+        return None
+    
 def get_all_compagnies():
     return Compagnie.query.all()
 
@@ -229,15 +232,44 @@ def create_terminal(nom_aeroport, nom_terminal):
 
 def modify_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
                nom_aeroport_1, nom_aeroport_2, nom_terminal_1, nom_terminal_2):
-    vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
-    if vol:
-        vol.date_heure_arrive_prevue = date_heure_arrive_prevue
-        vol.nom_aeroport_1 = nom_aeroport_1
-        vol.nom_aeroport_2 = nom_aeroport_2
-        vol.nom_terminal_1 = nom_terminal_1
-        vol.nom_terminal_2 = nom_terminal_2
+    #vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
+
+    try:
+        date_str = date_heure_depart.replace(" ", "T")
+        date_dt = datetime.fromisoformat(date_str)
+        d_debut = date_dt - timedelta(minutes=1)
+        d_fin = date_dt + timedelta(minutes=1)
+
+        # On prépare les données à mettre à jour
+        update_values = {
+            "nom_aeroport_1": nom_aeroport_1,
+            "nom_aeroport_2": nom_aeroport_2,
+            "nom_terminal_1": nom_terminal_1,
+            "nom_terminal_2": nom_terminal_2
+        }
+        if date_heure_arrive_prevue:
+            update_values["date_heure_arrive_prevue"] = date_heure_arrive_prevue
+
+        # UPDATE DIRECT en base
+        num_updated = Vol.query.filter(
+            Vol.nom_compagnie == nom_compagnie,
+            Vol.numero_vol == numero_vol,
+            Vol.date_heure_depart >= d_debut,
+            Vol.date_heure_depart <= d_fin
+        ).update(update_values)
+
         db.session.commit()
-    return vol
+
+        if num_updated > 0:
+            # On recharge et renvoie l'objet mis à jour pour la route
+            return get_vol(nom_compagnie, numero_vol, date_heure_depart)
+        
+        return None
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Erreur modification : {e}")
+        return None
 
 
 def modif_compagnie(nom_compagnie, nvo_nom_compagnie):
@@ -293,13 +325,26 @@ def modif_terminal(nom_terminal, nvo_nom_terminal, nom_aeroport):
 
 
 def supp_vol(nom_compagnie, numero_vol, date_heure_depart):
-    vol = get_vol(nom_compagnie, numero_vol, date_heure_depart)
-    if vol:
-        db.session.delete(vol)
-        db.session.commit()
-        return True
-    return False
+    try:
+        date_str = date_heure_depart.replace(" ", "T")
+        date_heure = datetime.fromisoformat(date_str)
+        d_debut = date_heure - timedelta(minutes=1)
+        d_fin = date_heure + timedelta(minutes=1)
 
+        num_deleted = Vol.query.filter(
+        Vol.nom_compagnie == nom_compagnie,
+        Vol.numero_vol == numero_vol,
+        Vol.date_heure_depart >= d_debut,
+        Vol.date_heure_depart <= d_fin
+        ).delete()
+
+        db.session.commit()
+        
+        return num_deleted > 0
+    except Exception as e:
+        db.session.rollback()
+        print(f"Erreur suppression : {e}")
+        return False
 
 def supp_compagnie(nom_compagnie):
     comp_del = get_compagnie(nom_compagnie)

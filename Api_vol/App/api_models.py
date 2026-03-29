@@ -25,10 +25,11 @@ vol_model = api.model("Vol", {
     "numero_vol" : fields.Integer,
     "date_heure_depart" : fields.DateTime,
     "date_heure_arrive_prevue" : fields.DateTime,
-    "nom_aeroport_1" : fields.String,
-    "nom_aeroport_2" : fields.String,
     "nom_terminal_1" : fields.String,
-    "nom_terminal_2" : fields.String
+    "nom_aeroport_1" : fields.String,
+    "nom_terminal_2" : fields.String,
+    "nom_aeroport_2" : fields.String
+    
     }
 )
 
@@ -36,8 +37,8 @@ vol_model = api.model("Vol", {
 vol_input_model = api.model("VolInput", {
     "nom_compagnie" : fields.String, #fk
     "numero_vol" : fields.Integer,
-    "date_heure_depart" : fields.DateTime, #format ISO8601 (ex: 2023-10-27T10:00:00).
-    "date_heure_arrive_prevue" : fields.DateTime,
+    "date_heure_depart" : fields.DateTime(description="Format ISO8601: 2025-09-15T12:02:56"), #format ISO8601 (ex: 2023-10-27T10:00:00).
+    "date_heure_arrive_prevue" : fields.DateTime(description="Format ISO8601: 2025-09-15T12:02:56"),
     "nom_terminal_1" : fields.String, #fk  nom_aeroport_1= aeroport_depart
     "nom_terminal_2" : fields.String, #fk
     "nom_aeroport_1" : fields.String, #fk

@@ -1,4 +1,8 @@
 #from flask import jsonify , abort , make_response , request , url_for
+from urllib.parse import unquote
+
+from flask import request
+
 from flask_restx import Resource, Namespace, abort
 #from .app import app
 from .models import *
@@ -266,28 +270,41 @@ class VolList(Resource):
 class VolItem(Resource):
     @ns.marshal_with(vol_model)
     def get(self, nom_compagnie, numero_vol, date_heure_depart):
-        if not get_vol(nom_compagnie, numero_vol, date_heure_depart) :
-            abort (404, "Vol introuvable")
-        return get_vol(nom_compagnie, numero_vol, date_heure_depart)
-    
-    @ns.expect(ville_input_model)
-    @ns.marshal_with(ville_model)
-    def put(self, id_ville):
-        data = ns.payload 
-        ville_modifie = modify_ville(
-            id_ville = id_ville,
-            id_pays = data.get('id_pays'),
-            nom_ville = data.get('nom_ville'),
-        )
         
-        if not ville_modifie:
-            abort(404, "Ville introuvable")
-            
-        return ville_modifie
+        vol=get_vol(nom_compagnie, numero_vol, date_heure_depart)
+        if not vol:
+            abort (404, "Vol introuvable")
+        return vol
     
-    def delete(self, id_ville):
-        if not supp_ville(id_ville):
-            abort(404, "Ville introuvable")
-        return None, 204
-    
+    @ns.expect(vol_input_model)
+    @ns.marshal_with(vol_model)
+    def put(self, nom_compagnie, numero_vol, date_heure_depart):
+        data = ns.payload
+        date_arrivee = None
+        if 'date_heure_arrive_prevue' in data:
+            try:
+                # On remplace le 'Z' par '+00:00' pour la compatibilité ISO
+                clean_date = data['date_heure_arrive_prevue'].replace("Z", "+00:00").replace(" ", "T")
+                date_arrivee = datetime.fromisoformat(clean_date)
+            except ValueError:
+                abort(400, "Format de date_heure_arrive_prevue invalide.")
 
+        # On appelle la fonction de modification du modèle
+        vol = modify_vol(
+            nom_compagnie, numero_vol, date_heure_depart,
+            date_arrivee,
+            data.get('nom_aeroport_1'),
+            data.get('nom_aeroport_2'),
+            data.get('nom_terminal_1'),
+            data.get('nom_terminal_2')
+        )
+
+        if not vol:
+            abort(404, "Vol introuvable")
+        
+        return vol
+    
+    def delete(self, nom_compagnie, numero_vol, date_heure_depart):
+        if supp_vol(nom_compagnie, numero_vol, date_heure_depart):
+            return '', 204
+        abort(404, "Vol introuvable, suppression impossible.")
