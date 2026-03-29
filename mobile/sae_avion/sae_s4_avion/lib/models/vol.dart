@@ -29,8 +29,8 @@ class Vol {
   static fromJson(Map<String, dynamic> json){
     String nomCompagnie = json['Compagnie']??"";
     int numVol = json['numVol']??0;
-    String date_heure_depart = json['date_heure_depart']??"";
-    String date_heure_arrivee_prevue = json['date_heure_arrivee_prevue']??"";
+    DateTime date_heure_depart = DateTime.parse(json['date_heure_depart'] ?? DateTime.now().toString());
+    DateTime date_heure_arrivee_prevue = DateTime.parse(json['date_heure_arrivee_prevue'] ?? DateTime.now().toString());
     String terminal_depart = json['terminal_depart']??"";
     String terminal_arrivee = json["terminal_arrivee"]??"";
     String aeroport_depart = json["aeroport_depart"]??"";

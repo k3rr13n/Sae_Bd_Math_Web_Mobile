@@ -13,20 +13,20 @@ class Ville {
   List<Ville> generateVille(int i){
     List<Ville> myJourney=[];
     for(int n=0;n<i;n++){
-      myJourney.add(Ville(idVille: n, idPays: n, nomVille: "title $n", vols: ['vol $n','vol ${n+1}']));
+      myJourney.add(Ville(idVille: n, idPays: n, nomVille: "title $n", vols: [Vol("Compagnie", n, DateTime.now(), DateTime.now(), "T1", "T2", "Aero1", "Aero2")]));
     }
     return myJourney;
   }
 
   static fromJson(Map<String, dynamic> json){
-    final vols = <String>[];
+    final vols = <Vol>[];
     final Color clr;
 
     clr = Colors.lightBlue;
 
     if(json['vols'] != null){
       json['vols'].forEach((t){
-        vols.add(t);
+        vols.add(Vol.fromJson(t));
       });
     }
 
