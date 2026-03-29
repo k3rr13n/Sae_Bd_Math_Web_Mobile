@@ -14,7 +14,8 @@ app = Flask ( __name__ )
 app.config ['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite3"
 #app.config ["SQLALCHEMY_ECHO"] = True
 
-cors = CORS(app, resources={r"/todo/api/v1.0/*": {"origines": "*"}})
+# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
 #»db = SQLAlchemy (app)
 api.init_app(app)

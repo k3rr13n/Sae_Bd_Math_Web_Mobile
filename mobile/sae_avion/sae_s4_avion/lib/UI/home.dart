@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import './pageAeroport.dart';
+import './pageDestination.dart';
+import './pagePays.dart';
+import './pageVol.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -15,7 +18,10 @@ class _BottomNavigationBarState extends State<MyHomePage> {
   static const TextStyle optionStyle = TextStyle(
       fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
-    pageAeroport()
+    pageAeroport(),
+    pageVille(),
+    pagePays(),
+    pageVol(),
   ];
 
 
@@ -38,18 +44,19 @@ class _BottomNavigationBarState extends State<MyHomePage> {
           child: _widgetOptions.elementAt(_selectedIndex)
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: Theme
             .of(context)
             .bottomNavigationBarTheme
             .backgroundColor,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.api), label: 'Api'),
-          BottomNavigationBarItem(icon: Icon(Icons.pets), label: 'Pets'),
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings')
+          BottomNavigationBarItem(icon: Icon(Icons.local_airport), label: 'Aéroports'),
+          BottomNavigationBarItem(icon: Icon(Icons.location_city), label: 'Villes'),
+          BottomNavigationBarItem(icon: Icon(Icons.public), label: 'Pays'),
+          BottomNavigationBarItem(icon: Icon(Icons.flight), label: 'Vols'),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Theme
+        selectedItemColor:Theme
             .of(context)
             .textSelectionTheme
             .selectionColor,

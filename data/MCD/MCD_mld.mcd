@@ -5,7 +5,7 @@ VILLE: id_ville, nom_ville, #id_pays > PAYS > id_pays
 
 
 :
-VOL: nom_compagnie, _num_vol, _date_heure_depart, date_heure_arrivee_prevue, #nom_aeroport 1 > TERMINAL > nom_aeroport, #nom_terminal 1 > TERMINAL > nom_terminal, #nom_aeroport 2 > TERMINAL > nom_aeroport, #nom_terminal 2 > TERMINAL > nom_terminal
+VOL: nom_compagnie, _num_vol, date_heure_depart, date_heure_arrivee_prevue, #nom_aeroport 1 > TERMINAL > nom_aeroport, #nom_terminal 1 > TERMINAL > nom_terminal, #nom_aeroport 2 > TERMINAL > nom_aeroport, #nom_terminal 2 > TERMINAL > nom_terminal
 :::
 AEROPORT: nom_aeroport, #id_ville > VILLE > id_ville
 :::

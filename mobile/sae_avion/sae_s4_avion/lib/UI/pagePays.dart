@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../api/MyAPI.dart';
 
-class pageVille extends StatelessWidget {
+class pagePays extends StatelessWidget {
   final MyAPI myAPI = MyAPI();
-  pageVille({super.key});
+  pagePays({super.key});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: myAPI.getVilles(), 
+      future: myAPI.getPays(),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done && !snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
@@ -21,14 +21,14 @@ class pageVille extends StatelessWidget {
             itemBuilder: (BuildContext context, index) {
               return Card(
                 elevation: 7,
-                color: Colors.blue[600], 
+                color: Colors.orange[600],
                 margin: const EdgeInsets.all(10),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.blue[300],
+                    backgroundColor: Colors.orange[300],
                     child: Text(snapshot.data?[index].idPays.toString() ?? ""),
                   ),
-                  title: Text(snapshot.data?[index].nomVille ?? ""),
+                  title: Text(snapshot.data?[index].nomPays ?? ""),
                   trailing: IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
                 ),
               );
