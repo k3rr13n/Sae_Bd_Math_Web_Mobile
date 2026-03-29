@@ -53,13 +53,13 @@ terminal_model = api.model("Terminal", {
 
 })
 
-terminal_input_model = api.model("TerminalInput", {
+terminal_input_model = api.model("TerminalInputPost", {
     "nom_aeroport": fields.String, #fk
     "nom_terminal": fields.String,
 
 })
 
-terminal_input_put_model = api.model("TerminalInput", {
+terminal_input_put_model = api.model("TerminalInputPut", {
     "nom_terminal": fields.String,
 
 })

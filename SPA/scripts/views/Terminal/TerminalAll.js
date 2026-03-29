@@ -12,7 +12,7 @@ export default class TerminalAll{
                 ${terminaux.map((terminal, i) => `
                     <a href="/#/terminaux/${i+1}">
                         <script>
-                            ${localStorage.setItem(`terninal_data_${i+1}`, 
+                            ${localStorage.setItem(`terminal_data_${i+1}`, 
                                 JSON.stringify({nom_aeroport: terminal.nom_aeroport, nom_terminal: terminal.nom_terminal}))}
                         </script>
                         <div class="element">

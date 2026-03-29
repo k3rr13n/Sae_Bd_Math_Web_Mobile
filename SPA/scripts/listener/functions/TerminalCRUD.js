@@ -14,37 +14,19 @@ export default class TerminalCRUD {
         }
         if(corect_data == true){
             //Envois des données
-            let data = VolsProvider.getTerminalJson(nom_aeroport, nom_terminal)
-
-            let update_task = await fetch(JSON_TERMINAL, {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data)
-            })
+            await VolsProvider.createTerminal(nom_aeroport, nom_terminal)
         }
     }
 
     static updateTerminal = async ()=> {
         // Récuperation des données
-        let nom_aeroport = document.getElementById("nom_aeroport").value;
         let nom_terminal = document.getElementById("nom_terminal").value;
         let element_id = document.getElementById("id").value;
-        //Vérification des données
-        let corect_data = await VolsProvider.is_nom_aeroport(nom_aeroport)
-        if(corect_data == false){
-            alert(`'${nom_aeroport}' wasn't an existing airport for "nom_aeroport"`);
-            
-        }
-        if(corect_data == true){
-            //Envois des données
-            let data = VolsProvider.getTerminalJson(nom_aeroport, nom_terminal)
+        const url_terminal = JSON.parse(localStorage.getItem(`terminal_data_${element_id}`));
 
-            let update_task = await fetch(`${JSON_TERMINAL}/${element_id}`, {
-                method: "PUT",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data)
-            })
-        }
+        //Envois des données
+        await VolsProvider.updateTerminal(url_terminal['nom_aeroport'], nom_terminal)
+    
     }
 
     static deleteTerminal = async ()=> {

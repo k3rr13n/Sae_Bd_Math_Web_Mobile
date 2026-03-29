@@ -242,10 +242,57 @@ export default class VolsProvider {
         }
     }
 
-    static getTerminalJson = (nom_aeroport, nom_terminal) => {
+    static createTerminal = async (nom_aeroport, nom_terminal) => {
+        try {
+            const data = VolsProvider.getTerminalJsonAll(nom_aeroport, nom_terminal);
+
+            const response = await fetch(`${API}/terminaux`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
+    static updateTerminal = async (nom_aeroport, nom_terminal) => {
+        try {
+            // const data = VolsProvider.getTerminalJsonTerm(nom_terminal);
+            const data = VolsProvider.getTerminalJsonAll(nom_aeroport, nom_terminal);
+
+            console.log(encodeURIComponent(nom_aeroport))
+            const response = await fetch(`${API}/terminaux/${encodeURIComponent(nom_aeroport)}/${nom_terminal}`, {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            return json; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
+    static getTerminalJsonAll = (nom_aeroport, nom_terminal) => {
         try {
             let new_data = {}
             new_data['nom_aeroport'] = nom_aeroport
+            new_data['nom_terminal'] = nom_terminal
+            return new_data; 
+            
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
+    static getTerminalJsonTerm = (nom_terminal) => {
+        try {
+            let new_data = {}
             new_data['nom_terminal'] = nom_terminal
             return new_data; 
             

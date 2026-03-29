@@ -6,20 +6,19 @@ export default class TerminalUpdate{
 
         let request = Utils.parsRequestURL();
 
-        let terminal = await VolsProvider.getTerminal(request.id); // Ajouter l'id ou un moyen distinctif
-        
+        const url_terminal = JSON.parse(localStorage.getItem(`terminal_data_${request.id}`));
+
+        let terminal = await VolsProvider.getTerminal(url_terminal['nom_aeroport'], url_terminal['nom_terminal']);
+
         let view = `
             <section class="sections">
                 <h1>TerminalUpdate</h1>   
                 <div class="div_form">
                     <form method="get" class="formulaire_creation">
 
-                        <label>Le nom de l'aeroport :</label>
-                            <input type="text" id="nom_aeroport" value="${terminal.nom_aeroport}"></input>
-
                         <label>Le nom du terminal :</label>
                             <input type="text" id="nom_terminal" value="${terminal.nom_terminal}"></input>
-                            <input type="hidden" id="id" value="${terminal.id}">
+                            <input type="hidden" id="id" value="${request.id}">
                         <input type="submit" onclick="window.location.href='/#/terminaux/${request.id}'">
                     </form>
                 </div>
