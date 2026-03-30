@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../api/MyAPI.dart';
+import './details_vol.dart';
 
 class pageVol extends StatelessWidget {
   final MyAPI myAPI = MyAPI();
@@ -31,7 +32,9 @@ class pageVol extends StatelessWidget {
                   ),
                   title: Text("${vol.nomCompagnie} - Vol ${vol.numVol}"),
                   subtitle: Text("De: ${vol.aeroport_depart} vers ${vol.aeroport_arrivee}"),
-                  trailing: IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
+                  trailing: IconButton(icon: const Icon(Icons.add), onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreenVol(vol: vol)));
+                  }),
                 ),
               );
             },
