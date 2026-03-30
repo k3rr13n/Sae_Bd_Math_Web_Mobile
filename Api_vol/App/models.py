@@ -105,6 +105,15 @@ class Vol (db.Model):
     
     terminal_arrivee = db.relationship("Terminal", foreign_keys=[nom_aeroport_2, nom_terminal_2], backref="vol_arrivee", lazy=True)
 
+    def __init__(self, nom_compagnie,numero_vol,date_heure_depart,date_heure_arrive_prevue,nom_terminal_1,nom_terminal_2,nom_aeroport_1,nom_aeroport_2):
+        self.nom_compagnie = nom_compagnie
+        self.numero_vol = numero_vol
+        self.date_heure_depart = date_heure_depart
+        self.date_heure_arrive_prevue = date_heure_arrive_prevue
+        self.nom_terminal_1 = nom_terminal_1
+        self.nom_terminal_2 = nom_terminal_2
+        self.nom_aeroport_1 = nom_aeroport_1
+        self.nom_aeroport_2 = nom_aeroport_2
 
     def __repr__(self):
         return f"< Le vol {self.numero_vol} de la compagnie {self.nom_compagnie} partant de l'aeroport {self.nom_aeroport_1} et arrivant à l'aeroport {self.nom_aeroport_2}>"
