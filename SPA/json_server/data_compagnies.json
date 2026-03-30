@@ -1,0 +1,19 @@
+{
+  "compagnies": [
+    {
+      "nom_compagnie": "Air france"
+    },
+    {
+      "nom_compagnie": "Aircalin"
+    },
+    {
+      "nom_compagnie": "Air austral"
+    },
+    {
+      "nom_compagnie": "Lufthansa"
+    },
+    {
+      "nom_compagnie": "British Airways"
+    }
+  ]
+}

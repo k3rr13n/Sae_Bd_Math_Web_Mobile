@@ -1,2 +1,9 @@
 ./venv/
 *.pyc
+/mobile/sae_avion/sae_s4_avion/.dart_tool/
+/mobile/sae_avion/sae_s4_avion/build/
+/mobile/sae_avion/sae_s4_avion/.idea/
+/mobile/sae_avion/sae_s4_avion/ios/
+/mobile/sae_avion/sae_s4_avion/macos/
+/mobile/sae_avion/sae_s4_avion/linux/
+/mobile/sae_avion/sae_s4_avion/windows/

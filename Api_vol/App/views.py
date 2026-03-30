@@ -24,8 +24,13 @@ class AeroportList(Resource):
     @ns.marshal_with(aeroport_model)
     def post(self): #✅​
         data = ns.payload
-        aeroport = create_aeroport(data['nom_aeroport'], data['id_ville'])
-        return aeroport, 201
+        if get_aeroport(data['nom_aeroport']):
+            abort(400, "Aeroport déjà existant")
+        for ville in get_all_villes():
+            if ville.id_ville == data['id_ville']:
+                aeroport = create_aeroport(data['nom_aeroport'], data['id_ville'])
+                return aeroport, 201
+        abort (400, "id_ville innexistant")
 
 @ns.route('/aeroports/<string:nom_aeroport>')
 class AeroportItem(Resource):
@@ -40,16 +45,21 @@ class AeroportItem(Resource):
     @ns.marshal_with(aeroport_model)
     def put(self, nom_aeroport): #✅​
         data = ns.payload # Le JSON envoyé par le client
-        aero_modifie = modify_aeroport(
-            nom_aeroport = nom_aeroport,
-            nvo_nom_aeroport = data.get('nom_aeroport'),
-            id_ville = data.get('id_ville')
-        )
+        if get_aeroport(data['nom_aeroport']) and data['nom_aeroport'] != nom_aeroport:
+            abort(400, "Aeroport déjà existant")
+        for ville in get_all_villes():
+            if ville.id_ville == data['id_ville']:
+                aero_modifie = modify_aeroport(
+                    nom_aeroport = nom_aeroport,
+                    nvo_nom_aeroport = data.get('nom_aeroport'),
+                    id_ville = data.get('id_ville')
+                )
         
-        if not aero_modifie:
-            abort(404, "Aéroport non trouvé")
-            
-        return aero_modifie
+                if not aero_modifie:
+                    abort(404, "Aéroport non trouvé")
+                    
+                return aero_modifie
+        abort (400, "id_ville innexistant")
     
     @ns.marshal_with(aeroport_model)
     def delete(self, nom_aeroport): #✅​
@@ -72,6 +82,8 @@ class CompagnieList(Resource):
     @ns.marshal_with(compagnie_model)
     def post(self): #✅​
         data = ns.payload
+        if get_compagnie(data['nom_compagnie']):
+            abort(400, "Compagnie déjà existante")
         compagnie = create_compagnie(data["nom_compagnie"])
         return compagnie, 201
 
@@ -86,7 +98,9 @@ class CompagnieItem(Resource):
     @ns.expect(compagnie_input_model)
     @ns.marshal_with(compagnie_model)
     def put(self, nom_compagnie): #✅​
-        data = ns.payload 
+        data = ns.payload
+        if get_compagnie(data['nom_compagnie']) and data['nom_compagnie'] != nom_compagnie:
+            abort(400, "Compagnie déjà existante")
         compagnie_modifie = modif_compagnie(
             nom_compagnie = nom_compagnie,
             nvo_nom_compagnie = data.get('nom_compagnie'),
@@ -118,10 +132,12 @@ class PaysList(Resource):
     @ns.marshal_with(pays_model)
     def post(self): #✅​
         data = ns.payload
-        if get_pays(data['nom_pays']):
-            abort(400, "Pays déjà existant")
+        for pays in get_all_pays():
+            if pays.nom_pays == data['nom_pays']:
+                abort(404, "Pays déjà existant")
         pays = create_pays(data['nom_pays'])
         return pays, 201
+
 
 @ns.route('/pays/<int:id_pays>')
 class PaysItem(Resource):
@@ -135,6 +151,10 @@ class PaysItem(Resource):
     @ns.marshal_with(pays_model)
     def put(self, id_pays): #✅​
         data = ns.payload 
+        for pays in get_all_pays():
+            if pays.nom_pays == data['nom_pays']:
+                if data['nom_pays'] != get_pays(id_pays).nom_pays:
+                    abort(404, "Pays déjà existant")
         pays_modifie = modify_pays(
             id_pays = id_pays,
             nom_pays = data.get('nom_pays'),
@@ -165,8 +185,14 @@ class TerminalListe(Resource):
     @ns.marshal_with(terminal_model)
     def post(self): #✅​
         data = ns.payload
-        terminal = create_terminal(data['nom_aeroport'], data['nom_terminal'])
-        return terminal, 201
+        if get_terminal(data['nom_aeroport'], data['nom_terminal']):
+            abort(400, "Terminal déjà existant")
+        for aeroport in get_all_aeroports():
+            if aeroport.nom_aeroport == data['nom_aeroport']:
+                terminal = create_terminal(data['nom_aeroport'], data['nom_terminal'])
+                return terminal, 201
+        abort (400, "nom_aeroport innexistant")
+
     
 @ns.route('/terminaux/<string:nom_aeroport>/<string:nom_terminal>')
 class TerminalItem(Resource):
@@ -176,13 +202,23 @@ class TerminalItem(Resource):
             abort (404, "Terminal introuvable")
         return get_terminal(nom_aeroport, nom_terminal)
     
-    @ns.expect(terminal_input_model) # Pour les routes avec des clés étrangeres, enlever la fk du playload
+    @ns.expect(terminal_input_put_model) # Pour les routes avec des clés étrangeres, enlever la fk du playload
     @ns.marshal_with(terminal_model)
     def put(self, nom_aeroport, nom_terminal): #✅​
         data = ns.payload 
+        nvo_nom = data.get('nom_terminal') 
+    
+        if not nvo_nom:
+            abort(400, "Le nouveau nom du terminal est manquant")
+
+        if get_terminal(nom_aeroport, nvo_nom) and nvo_nom != nom_terminal:
+            abort(400, "Terminal déjà existant")
+
+        print(f"Modif de {nom_terminal} vers {nvo_nom} pour l'aéroport {nom_aeroport}")
+
         terminal_modifie = modif_terminal(
             nom_terminal = nom_terminal,
-            nvo_nom_terminal = data.get('nom_terminal'),
+            nvo_nom_terminal = nvo_nom,
             nom_aeroport = nom_aeroport,
         )
         
@@ -190,7 +226,7 @@ class TerminalItem(Resource):
             abort(404, "Terminal introuvable")
             
         return terminal_modifie
-    
+
     def delete(self, nom_aeroport, nom_terminal): #✅​
         if not supp_terminal(nom_aeroport, nom_terminal):
             abort(404, "Terminal introuvable")
@@ -229,6 +265,8 @@ class VilleItem(Resource):
     @ns.marshal_with(ville_model)
     def put(self, id_ville): #✅​
         data = ns.payload 
+        if not get_pays(data['id_pays']):
+            abort(404, "Pays introuvable")
         ville_modifie = modify_ville(
             id_ville = id_ville,
             id_pays = data.get('id_pays'),
@@ -260,6 +298,12 @@ class VolList(Resource):
     @ns.marshal_with(vol_model)
     def post(self):
         data = ns.payload
+        if not get_compagnie(data['nom_compagnie']):
+            abort(404, "Compagnie introuvable")
+        if not get_terminal(data['nom_aeroport_1'], data['nom_terminal_1']):
+            abort(404, "Aeroport et terminal de départ ne concordent pas")
+        if not get_terminal(data['nom_aeroport_2'], data['nom_terminal_2']):
+            abort(404, "Aeroport et terminal d'arrivée ne concordent pas")
         vol = create_vol(data['nom_compagnie'], data['numero_vol'],data['date_heure_depart'],
                         data['date_heure_arrive_prevue'], data['nom_aeroport_1'], data['nom_aeroport_2'], 
                         data['nom_terminal_1'], data['nom_terminal_2'])    
@@ -280,6 +324,12 @@ class VolItem(Resource):
     @ns.marshal_with(vol_model)
     def put(self, nom_compagnie, numero_vol, date_heure_depart):
         data = ns.payload
+        if not get_compagnie(data['nom_compagnie']):
+            abort(404, "Compagnie introuvable")
+        if not get_terminal(data['nom_aeroport_1'], data['nom_terminal_1']):
+            abort(404, "Aeroport et terminal de départ ne concordent pas")
+        if not get_terminal(data['nom_aeroport_2'], data['nom_terminal_2']):
+            abort(404, "Aeroport et terminal d'arrivée ne concordent pas")
         vol = modify_vol(nom_compagnie, numero_vol, date_heure_depart, data)
 
         if not vol:

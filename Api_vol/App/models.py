@@ -190,8 +190,8 @@ def get_terminal(nom_aeroport, nom_terminal):
 def create_vol(nom_compagnie, numero_vol, date_heure_depart, date_heure_arrive_prevue, 
                nom_aeroport_1,nom_aeroport_2, nom_terminal_1, nom_terminal_2):
     
-    h_depart = datetime.fromisoformat(date_heure_depart)
-    h_arrivee = datetime.fromisoformat(date_heure_arrive_prevue)
+    h_depart = datetime.fromisoformat(date_heure_depart.replace("Z", "+00:00").replace(" ", "T")).replace(microsecond=0)
+    h_arrivee = datetime.fromisoformat(date_heure_arrive_prevue.replace("Z", "+00:00").replace(" ", "T")).replace(microsecond=0)
 
     new_vol = Vol(nom_compagnie=nom_compagnie, numero_vol=numero_vol, date_heure_depart=h_depart,
               date_heure_arrive_prevue=h_arrivee, nom_aeroport_1=nom_aeroport_1, 
@@ -247,6 +247,8 @@ def modify_vol(nom_compagnie, numero_vol, date_heure_depart, data):
 
         # Liste des champs autorisés à la modification
         champs_possibles = [
+            'nom_compagnie', 'numero_vol',
+            'date_heure_depart', 'date_heure_arrive_prevue',
             'nom_aeroport_1', 'nom_aeroport_2', 
             'nom_terminal_1', 'nom_terminal_2'
         ]
@@ -259,6 +261,10 @@ def modify_vol(nom_compagnie, numero_vol, date_heure_depart, data):
                     update_values[k] = v
 
         # Cas particulier pour la date d'arrivée
+        if 'date_heure_depart' in data:
+            clean_date = data['date_heure_depart'].replace("Z", "+00:00").replace(" ", "T")
+            update_values['date_heure_depart'] = datetime.fromisoformat(clean_date)
+
         if 'date_heure_arrive_prevue' in data:
             clean_date = data['date_heure_arrive_prevue'].replace("Z", "+00:00").replace(" ", "T")
             update_values['date_heure_arrive_prevue'] = datetime.fromisoformat(clean_date)
@@ -266,18 +272,32 @@ def modify_vol(nom_compagnie, numero_vol, date_heure_depart, data):
         if not update_values:
             return get_vol(nom_compagnie, numero_vol, date_heure_depart)
 
-        query = Vol.query.filter(
-            Vol.nom_compagnie == nom_compagnie,
-            Vol.numero_vol == numero_vol,
-            Vol.date_heure_depart >= d_debut,
-            Vol.date_heure_depart <= d_fin)
+        # query = Vol.query.filter(
+        #     Vol.nom_compagnie == nom_compagnie,
+        #     Vol.numero_vol == numero_vol,
+        #     Vol.date_heure_depart >= d_debut,
+        #     Vol.date_heure_depart <= d_fin)
 
-        num_updated = query.update(update_values)
+        vol_mod = get_vol(nom_compagnie, numero_vol, date_heure_depart)
+        print(vol_mod)
+        if vol_mod:
+            vol_mod.nom_compagnie = update_values['nom_compagnie']
+            vol_mod.numero_vol = update_values['numero_vol']
+            vol_mod.date_heure_depart = update_values['date_heure_depart']
+            vol_mod.date_heure_arrive_prevue = update_values['date_heure_arrive_prevue']
+            vol_mod.nom_terminal_1 = update_values['nom_terminal_1']
+            vol_mod.nom_terminal_2 = update_values['nom_terminal_2']
+            vol_mod.nom_aeroport_1 = update_values['nom_aeroport_1']
+            vol_mod.nom_aeroport_2 = update_values['nom_aeroport_2']
+
+
+
+        # num_updated = Vol.query.update(update_values)
         db.session.commit()
 
-        if num_updated > 0:
-            return query.first()
-        return None
+        # if num_updated > 0:
+        #     return Vol.query.first()
+        return vol_mod
 
     except Exception as e:
         db.session.rollback()

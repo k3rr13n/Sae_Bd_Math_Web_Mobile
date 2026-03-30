@@ -1,0 +1,151 @@
+body{
+font-family: Arial, sans-serif;
+}
+
+.nav{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background: #00CFF0;
+box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+z-index: 1000;
+}
+
+.nav > h1{
+margin-left: 50px;
+}
+
+.navlist{
+display: flex;
+justify-content: center;
+}
+
+.navlist > li{
+list-style-type: none;
+margin: 0px 40px 10px 40px
+}
+
+a{
+color: #000000;
+text-decoration: none;
+font-size: 16px;
+}
+
+.nav:first-child{
+align-items: center;
+}
+
+.sections{
+margin: 0px 20px;
+}
+
+.sections, h2{
+margin-top: 200px;
+}
+
+.element{
+background-color: #A1C2D7;
+border-radius: 20px;
+box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+margin: 10px 0px;
+}
+
+.element table{
+border-spacing: 75px 10px;
+margin-left: 80px;
+}
+
+.element table thead{
+font-weight: bold;
+}
+
+.btn-create{
+background-color: #8297FF;
+border-radius: 10px;
+border: none;
+color: #222;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+.btn-update{
+background-color: #B5FF29;
+border-radius: 10px;
+border: none;
+color: #222;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+.btn-delete{
+background-color: hsl(0, 100%, 50%);
+border-radius: 10px;
+border: none;
+color: #ffffff;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+.btn_center{
+margin-top: 50px;
+display: flex;
+justify-content: space-evenly;
+}
+
+.div_form{
+display: flex;
+justify-content: center;
+}
+
+.formulaire_creation{
+display: grid;
+grid-template-columns: auto auto;
+margin: 20px 100px;
+}
+
+.formulaire_creation input{
+width: 100%;
+padding: 0.6rem;
+margin: 0.5rem;
+border-radius: 12px;
+border: 1px solid #334155;
+}
+
+.formulaire_creation label{
+display: flex;
+align-self: center;
+justify-content: center;
+}
+
+.nav_home{
+display: flex;
+flex-wrap: nowrap;
+}
+
+.nav_home div{
+align-items: center;
+justify-content: center;
+background-color: #B1AEFF;
+padding: 10px 50px;
+margin: 0px 50px;
+border-radius: 20px;
+}
