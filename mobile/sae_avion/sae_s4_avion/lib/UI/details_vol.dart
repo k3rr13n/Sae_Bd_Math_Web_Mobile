@@ -17,8 +17,26 @@ class DetailScreenVol extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(vol.nomCompagnie)),
       body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
         children: [Text("Numéro du vol : ${vol.numVol}"),
-        Text("Compagnie de ce vol : ${vol.nomCompagnie}")]
+          Text("Compagnie de ce vol : ${vol.nomCompagnie} \n"),
+          Row(
+              children: [Text("Aéroport de départ : ${vol.aeroport_depart},  "),
+                Text("Aéroport d'arrivée : ${vol.aeroport_arrivee}")]
+          ),
+          Row(
+            children: [Text("Date et heure de départ : ${vol.date_heure_depart},  "),
+              Text("Date et heure d'arrivée : ${vol.date_heure_arrivee_prevue}")],
+          ),
+          Row(
+            children: [Text("Heure de départ : ${vol.date_heure_depart},  "),
+              Text("Heure de départ : ${vol.date_heure_depart}")]
+          ),
+          Row(
+              children: [Text("Terminal de départ : ${vol.terminal_depart},  "),
+                Text("Terminal d'arrivée : ${vol.terminal_arrivee}")]
+          )
+        ]
       ),
     );
   }
