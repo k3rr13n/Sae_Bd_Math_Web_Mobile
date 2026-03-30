@@ -14,12 +14,16 @@ export default class TerminalUpdate{
             <section class="sections">
                 <h1>TerminalUpdate</h1>   
                 <div class="div_form">
-                    <form method="get" class="formulaire_creation">
+                    <form class="formulaire_creation" id="update-terminal-form">
+                        <label>Aéroport (non modifiable) :</label>
+                        <input type="text" id="nom_aeroport" value="${terminal.nom_aeroport}" readonly style="background:#eee">
 
-                        <label>Le nom du terminal :</label>
-                            <input type="text" id="nom_terminal" value="${terminal.nom_terminal}"></input>
-                            <input type="hidden" id="id" value="${request.id}">
-                        <input type="submit" onclick="window.location.href='/#/terminaux/${request.id}'">
+                        <label>Nom du terminal :</label>
+                        <input type="text" id="nom_terminal" value="${terminal.nom_terminal}">
+                        
+                        <input type="hidden" id="old_terminal_name" value="${terminal.nom_terminal}">
+                        
+                        <button type="submit" class="btn-update">Enregistrer les modifications</button>
                     </form>
                 </div>
             </section>

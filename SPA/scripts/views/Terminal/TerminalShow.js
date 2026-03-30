@@ -30,7 +30,7 @@ export default class TerminalShow{
                     <a href="/#/terminaux/${request.id}/update"><button class="btn-update">Modifier le terminal</button></a>
                     <form method="get">
                         <input type="hidden" id="delete" value="${terminal.id}">
-                        <input type="submit" class="btn-delete" onclick="window.location.href='/#/terminaux'" value="Supprimer le terminal">
+                        <input type="submit" class="btn-delete" value="Supprimer le terminal">
                     </form>
                 </div>
             </section>

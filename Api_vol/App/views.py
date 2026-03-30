@@ -206,12 +206,19 @@ class TerminalItem(Resource):
     @ns.marshal_with(terminal_model)
     def put(self, nom_aeroport, nom_terminal): #✅​
         data = ns.payload 
-        if get_terminal(nom_aeroport, data['nom_terminal']) and data['nom_terminal'] != nom_terminal:
+        nvo_nom = data.get('nom_terminal') 
+    
+        if not nvo_nom:
+            abort(400, "Le nouveau nom du terminal est manquant")
+
+        if get_terminal(nom_aeroport, nvo_nom) and nvo_nom != nom_terminal:
             abort(400, "Terminal déjà existant")
+
+        print(f"Modif de {nom_terminal} vers {nvo_nom} pour l'aéroport {nom_aeroport}")
 
         terminal_modifie = modif_terminal(
             nom_terminal = nom_terminal,
-            nvo_nom_terminal = data.get('nom_terminal'),
+            nvo_nom_terminal = nvo_nom,
             nom_aeroport = nom_aeroport,
         )
         

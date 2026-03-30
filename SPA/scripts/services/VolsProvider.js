@@ -259,17 +259,18 @@ export default class VolsProvider {
         }
     }
 
-    static updateTerminal = async (nom_aeroport, nom_terminal) => {
+    static updateTerminal = async (nom_aeroport, old_terminal_name, new_terminal_name) => {
         try {
+            const data= {nom_terminal: new_terminal_name};
             // const data = VolsProvider.getTerminalJsonTerm(nom_terminal);
-            const data = VolsProvider.getTerminalJsonAll(nom_aeroport, nom_terminal);
+            //const data = VolsProvider.getTerminalJsonAll(nom_aeroport, nom_terminal);
 
             console.log(encodeURIComponent(nom_aeroport))
-            const response = await fetch(`${API}/terminaux/${encodeURIComponent(nom_aeroport)}/${nom_terminal}`, {
-                method: "PUT",
+            const response = await fetch(`${API}/terminaux/${encodeURIComponent(nom_aeroport)}/${encodeURIComponent(old_terminal_name)}`, {                method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
             });
+            console.log("asma: ", response)
             const json = await response.json();
             return json; 
             

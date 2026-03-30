@@ -1,5 +1,6 @@
 import VolsProvider from "../../services/VolsProvider.js";
 import { JSON_TERMINAL } from "../../config.js"
+import Utils from "../../services/Utils.js";
 
 export default class TerminalCRUD {
     static createTerminal = async ()=> {
@@ -20,13 +21,23 @@ export default class TerminalCRUD {
 
     static updateTerminal = async ()=> {
         // Récuperation des données
-        let nom_terminal = document.getElementById("nom_terminal").value;
-        let element_id = document.getElementById("id").value;
-        const url_terminal = JSON.parse(localStorage.getItem(`terminal_data_${element_id}`));
+        const nom_aeroport = document.getElementById('nom_aeroport').value;
+        const old_name = document.getElementById('old_terminal_name').value;
+        const new_name = document.getElementById('nom_terminal').value;
 
         //Envois des données
-        await VolsProvider.updateTerminal(url_terminal['nom_aeroport'], nom_terminal)
-    
+        const res =await VolsProvider.updateTerminal(nom_aeroport, old_name, new_name);  
+        
+        if (res) {
+                let request = Utils.parsRequestURL();
+        localStorage.setItem(`terminal_data_${request.id}`, JSON.stringify({
+            nom_aeroport: nom_aeroport,
+            nom_terminal: new_name 
+        }));
+        
+            window.location.hash = `#/terminaux/${request.id}`;
+        }
+        
     }
 
     static deleteTerminal = async ()=> {
