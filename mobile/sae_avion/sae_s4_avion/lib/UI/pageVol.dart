@@ -32,7 +32,7 @@ class pageVol extends StatelessWidget {
                   ),
                   title: Text("${vol.nomCompagnie} - Vol ${vol.numVol}"),
                   subtitle: Text("De: ${vol.aeroport_depart} vers ${vol.aeroport_arrivee}"),
-                  trailing: IconButton(icon: const Icon(Icons.add), onPressed: () {
+                  trailing: IconButton(icon: const Icon(Icons.info), onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreenVol(vol: vol)));
                   }),
                 ),

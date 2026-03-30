@@ -4,10 +4,13 @@ import './destination.dart';
 class Aeroport {
   int idVille;
   String nomAeroport;
-  List<Ville> villes;
+  List<Ville> destinations;
 
 
-  Aeroport({required this.idVille,required this.nomAeroport,required this.villes});
+  Aeroport({required this.idVille,
+    required this.nomAeroport,
+    required this.destinations
+  });
 
   List<Aeroport> generateAeroport(int i){
     List<Aeroport> myJourney =[];
@@ -16,7 +19,7 @@ class Aeroport {
         Aeroport(
           idVille: n,
           nomAeroport: "Aeroport $n",
-          villes: [
+          destinations: [
             Ville(idVille: n, idPays: n, nomVille: "Ville $n", aeroports: []),
           ],
         ),
@@ -27,13 +30,13 @@ class Aeroport {
 
   static Aeroport fromJson(Map<String, dynamic> json) {
     // Map the raw dynamic list to a List<Ville>
-    var list = json['villes'] as List? ?? [];
-    List<Ville> villesList = list.map<Ville>((i) => Ville.fromJson(i)).toList();
+    var list = json['destinations'] as List? ?? [];
+    List<Ville> destinationsList = list.map<Ville>((i) => Ville.fromJson(i)).toList();
 
     return Aeroport(
       nomAeroport: json['nom_aeroport'],
       idVille: json['id_ville'],
-      villes: villesList,
+      destinations: destinationsList,
     );
   }
 }

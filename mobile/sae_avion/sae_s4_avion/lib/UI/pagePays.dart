@@ -29,7 +29,7 @@ class pagePays extends StatelessWidget {
                     child: Text(snapshot.data?[index].idPays.toString() ?? ""),
                   ),
                   title: Text(snapshot.data?[index].nomPays ?? ""),
-                  trailing: IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
+                  trailing: IconButton(icon: const Icon(Icons.info), onPressed: () {}),
                 ),
               );
             },

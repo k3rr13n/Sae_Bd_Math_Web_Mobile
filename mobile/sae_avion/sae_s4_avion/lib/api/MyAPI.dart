@@ -26,7 +26,10 @@ class MyAPI{
     }
   }
 
-  Future<List<Ville>> getVilles() async{
+  Future<List<Ville>> getVilles([String? nomAeroport]) async{
+    final String finalURL = (nomAeroport != null)
+        ? '$URL/aeroports/$nomAeroport/destinations'
+        : '$URL/villes';
   final response = await http.get(Uri.parse('$URL/villes'));
   
   if (response.statusCode == 200) {
