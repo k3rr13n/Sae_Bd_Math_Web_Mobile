@@ -165,7 +165,7 @@ COMPAGNIE: nom_compagnie [?]
 DÉPEND_DE, 0N VILLE, 11 AEROPORT
 VILLE: id_ville [?], nom_ville [?]
 
-VOL: num_vol [?], _date_heure_depart [?], date_heure_arrivee_prevue [?]
+VOL: num_vol [?], date_heure_depart [?], date_heure_arrivee_prevue [?]
 DÉPART, 11 VOL, 0N TERMINAL
 AEROPORT: nom_aeroport [?]
 SITUÉ_DANS, 0N PAYS, 11 VILLE
