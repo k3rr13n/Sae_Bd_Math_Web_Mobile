@@ -15,15 +15,15 @@ export default class TerminalUpdate{
                 <h1>TerminalUpdate</h1>   
                 <div class="div_form">
                     <form class="formulaire_creation" id="update-terminal-form">
+
                         <label>Aéroport (non modifiable) :</label>
-                        <input type="text" id="nom_aeroport" value="${terminal.nom_aeroport}" readonly style="background:#eee">
+                            <input type="text" id="nom_aeroport" value="${terminal.nom_aeroport}" disabled>
 
                         <label>Nom du terminal :</label>
-                        <input type="text" id="nom_terminal" value="${terminal.nom_terminal}">
-                        
+                            <input type="text" id="nom_terminal" value="${terminal.nom_terminal}">
                         <input type="hidden" id="old_terminal_name" value="${terminal.nom_terminal}">
-                        
-                        <button type="submit" class="btn-update">Enregistrer les modifications</button>
+                        <input type="hidden" id="id" value="${request.id}">
+                        <input type="submit" onclick="window.location.href='/#/terminaux/${request.id}'">
                     </form>
                 </div>
             </section>
@@ -34,7 +34,8 @@ export default class TerminalUpdate{
 
 /*
 [
-    {
+    {                        <button type="submit" class="btn-update">Enregistrer les modifications</button>
+
         nom_aeroport: "Amsterdam-AMS",
         nom_terminal: "D"
     },

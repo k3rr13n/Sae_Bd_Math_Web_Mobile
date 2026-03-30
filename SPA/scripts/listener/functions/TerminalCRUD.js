@@ -24,20 +24,13 @@ export default class TerminalCRUD {
         const nom_aeroport = document.getElementById('nom_aeroport').value;
         const old_name = document.getElementById('old_terminal_name').value;
         const new_name = document.getElementById('nom_terminal').value;
-
+        let element_id = document.getElementById("id").value;
         //Envois des données
-        const res =await VolsProvider.updateTerminal(nom_aeroport, old_name, new_name);  
-        
-        if (res) {
-                let request = Utils.parsRequestURL();
-        localStorage.setItem(`terminal_data_${request.id}`, JSON.stringify({
-            nom_aeroport: nom_aeroport,
-            nom_terminal: new_name 
-        }));
-        
-            window.location.hash = `#/terminaux/${request.id}`;
-        }
-        
+        await VolsProvider.updateTerminal(nom_aeroport, old_name, new_name);  
+        let data = VolsProvider.getTerminalJsonAll(nom_aeroport, new_name)
+        console.log(data)
+
+        localStorage.setItem(`terminal_data_${element_id}`, JSON.stringify(data))  
     }
 
     static deleteTerminal = async ()=> {
