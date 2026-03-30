@@ -1,42 +1,50 @@
 import '../models/vol.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:intl/intl.dart';
 
 class DetailScreenVol extends StatelessWidget {
-  // In the constructor, require a Todo.
-  const DetailScreenVol({super.key, required this.vol});
-
-  // Declare a field that holds the Todo.
-  //final Todo todo;
   final Vol vol;
+  const DetailScreenVol({super.key, required this.vol});
 
   @override
   Widget build(BuildContext context) {
-    // Use the Todo to create the UI.
     return Scaffold(
-      appBar: AppBar(title: Text(vol.nomCompagnie)),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-        children: [Text("Numéro du vol : ${vol.numVol}"),
-          Text("Compagnie de ce vol : ${vol.nomCompagnie} \n"),
-          Row(
-              children: [Text("Aéroport de départ : ${vol.aeroport_depart},  "),
-                Text("Aéroport d'arrivée : ${vol.aeroport_arrivee}")]
+      appBar: AppBar(title: Text("Détails du vol")),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Text(
+            "${vol.nomCompagnie} - Vol ${vol.numVol}",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
-          Row(
-            children: [Text("Date et heure de départ : ${vol.date_heure_depart},  "),
-              Text("Date et heure d'arrivée : ${vol.date_heure_arrivee_prevue}")],
+
+          ListTile(
+            leading: Icon(Icons.flight_takeoff),
+            title: Text("Départ"),
+            subtitle: Text("${vol.aeroport_depart} (Terminal ${vol.terminal_depart})"),
+            trailing: Text(DateFormat('HH:mm').format(vol.date_heure_depart)),
           ),
-          Row(
-            children: [Text("Heure de départ : ${vol.date_heure_depart},  "),
-              Text("Heure de départ : ${vol.date_heure_depart}")]
+          ListTile(
+            leading: Icon(Icons.flight_land),
+            title: Text("Arrivée"),
+            subtitle: Text("${vol.aeroport_arrivee} (Terminal ${vol.terminal_arrivee})"),
+            trailing: Text(DateFormat('HH:mm').format(vol.date_heure_arrivee_prevue)),
           ),
-          Row(
-              children: [Text("Terminal de départ : ${vol.terminal_depart},  "),
-                Text("Terminal d'arrivée : ${vol.terminal_arrivee}")]
-          )
-        ]
+          ListTile(
+            leading: Icon(Icons.calendar_today),
+            title: Text("Date du vol"),
+            subtitle: Text(DateFormat('dd/MM/yyyy').format(vol.date_heure_depart)),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "Informations complémentaires : Ce vol est géré par la compagnie ${vol.nomCompagnie}.",
+              style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey[600]),
+            ),
+          ),
+        ],
       ),
     );
   }
