@@ -82,7 +82,10 @@ recV.terminal_arrivee,
 recV.aeroport_depart, 
 recV.aeroport_arrivee, 
 cores_1.nb_corespondences+1 nb_corespondences
-from VOL as recV join AEROPORT as a join VILLE join cores_1
+from VOL as recV 
+join AEROPORT as a 
+join VILLE 
+join cores_1
 where cores_1.nb_corespondences < 1 and recV.aeroport_depart = a.nom_aeroport and 
     recV.aeroport_depart = cores_1.aeroport_arrivee and recV.nom_compagnie = cores_1.nom_compagnie and
     recV.date_heure_depart > cores_1.date_heure_arrivee_prevue

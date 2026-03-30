@@ -1,0 +1,20 @@
+{
+  "payss": [
+    {
+      "id_pays": 1,
+      "nom_pays": "FR"
+    },
+    {
+      "id_pays": 2,
+      "nom_pays": "CN"
+    },
+    {
+      "id_pays": 3,
+      "nom_pays": "BR"
+    },
+    {
+      "id_pays": 4,
+      "nom_pays": "NY"
+    }
+  ]
+}
