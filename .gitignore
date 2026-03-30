@@ -1,3 +1,2 @@
 ./venv/
 *.pyc
-Api_vol/instance/db.sqlite3
