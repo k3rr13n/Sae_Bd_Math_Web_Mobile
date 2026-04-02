@@ -191,4 +191,6 @@ FROM VOL vol, TABLE(vol.indicesQualite) ind;
 
 
 -- Pour chaque indice de qualité, calculer son impact moyen.
-
+SELECT ind.libelle, avg(ind.valeur * ind.poids) as impact_moyen
+FROM VOL vol, TABLE(vol.indicesQualite) ind
+GROUP BY ind.libelle;
