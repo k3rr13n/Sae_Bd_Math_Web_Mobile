@@ -1,0 +1,259 @@
+% Faits datalog
+
+vol(air_france, 54123, 15, 19, e, f, charle_de_gaulle, shanghai_pudong, fr, cn, paris, shanghai).
+vol(aircalin, 98963, 12, 13, t2ab, b, rio_de_janeiro_galeao, newark, br, ny, rio_de_janeiro, new_york).
+vol(air_austral, 11215, 20, 21, j, t56, tontouta, hamilton, nc, ca, tontouta, hamilton).
+vol(lufthansa, 12001, 8, 10, e, t1a, berlin_tegel, lax, de, us, berlin, los_angeles).
+vol(british_airways, 54001, 14, 22, t5, t2, heathrow, haneda, gb, jp, londres, tokyo).
+vol(emirates, 34001, 16, 4, t2a, n, dubai_dxb, suvarnabhumi, ae, th, dubai, bangkok).
+vol(singapore_airlines, 77001, 11, 18, t3, a, changi, zurich_zrh, sg, ch, singapour, zurich).
+vol(jal, 23001, 9, 11, t2, t3, haneda, fiumicino, jp, it, tokyo, rome).
+vol(qantas, 45001, 22, 8, i, t2, kingsford_smith, incheon, au, kr, sydney, seoul).
+vol(swiss, 89001, 13, 15, a, d, zurich_zrh, amsterdam_ams, ch, nl, zurich, amsterdam).
+vol(klm, 11001, 7, 9, d, t4s, amsterdam_ams, barajas, nl, es, amsterdam, madrid).
+vol(iberia, 56001, 12, 14, t4s, e, barajas, berlin_tegel, es, de, madrid, berlin).
+vol(ana, 34567, 10, 12, t2, t5, haneda, heathrow, jp, gb, tokyo, londres).
+vol(thai_airways, 23456, 18, 2, n, t3, suvarnabhumi, changi, th, sg, bangkok, singapour).
+vol(korean_air, 67890, 8, 16, t2, i, incheon, kingsford_smith, kr, au, seoul, sydney).
+vol(air_china, 45678, 15, 23, t1, t3, benito_juarez, indira_gandhi, mx, in, mexico, bombay).
+vol(virgin_atlantic, 12345, 11, 19, t5, b, heathrow, or_tambo, gb, za, londres, johannesburg).
+vol(virgin_australia, 78901, 6, 14, i, d, kingsford_smith, auckland_akl, au, nz, sydney, auckland).
+vol(finnair, 34789, 13, 17, c, d, arlanda, amsterdam_ams, se, nl, stockholm, amsterdam).
+vol(alitalia, 56789, 9, 11, t3, e, fiumicino, berlin_tegel, it, de, rome, berlin).
+vol(tap, 90123, 14, 18, t1, t2a, benito_juarez, zaventem, mx, be, mexico, bruxelles).
+vol(brussels_airlines, 23678, 10, 12, t2a, t3, zaventem, schwechat, be, at, bruxelles, vienne).
+vol(austrian, 45123, 16, 0, t3, t2a, schwechat, dubai_dxb, at, ae, vienne, dubai).
+vol(air_france, 54124, 8, 12, e, t2, charle_de_gaulle, haneda, fr, jp, paris, tokyo).
+vol(air_france, 54125, 14, 22, t2, t3, haneda, changi, jp, sg, tokyo, singapour).
+vol(air_france, 54125, 12, 20, t2, t3, haneda, changi, jp, sg, tokyo, singapour).
+vol(lufthansa, 12002, 9, 11, e, t5, berlin_tegel, heathrow, de, gb, berlin, londres).
+vol(lufthansa, 12003, 16, 0, t5, t2a, heathrow, dubai_dxb, gb, ae, londres, dubai).
+vol(emirates, 34002, 10, 14, t2a, d, dubai_dxb, amsterdam_ams, ae, nl, dubai, amsterdam).
+vol(emirates, 34003, 18, 2, d, i, amsterdam_ams, kingsford_smith, nl, au, amsterdam, sydney).
+vol(singapore_airlines, 77002, 12, 20, t3, t2, changi, incheon, sg, kr, singapour, seoul).
+vol(singapore_airlines, 77003, 6, 14, t2, t3, incheon, fiumicino, kr, it, seoul, rome).
+vol(klm, 11002, 7, 9, d, t4s, amsterdam_ams, barajas, nl, es, amsterdam, madrid).
+vol(klm, 11003, 13, 18, t4s, t3, barajas, schwechat, es, at, madrid, vienne).
+vol(klm, 11004, 2, 10, t3, n, schwechat, suvarnabhumi, at, th, vienne, bangkok).
+vol(british_airways, 54002, 6, 8, t5, e, heathrow, berlin_tegel, gb, de, londres, berlin).
+vol(british_airways, 54003, 11, 13, e, t4s, berlin_tegel, barajas, de, es, berlin, madrid).
+vol(british_airways, 54004, 16, 18, t4s, a, barajas, zurich_zrh, es, ch, madrid, zurich).
+vol(british_airways, 54005, 21, 5, a, n, zurich_zrh, suvarnabhumi, ch, th, zurich, bangkok).
+vol(jal, 23002, 8, 10, t2, d, haneda, amsterdam_ams, jp, nl, tokyo, amsterdam).
+vol(jal, 23003, 14, 16, d, e, amsterdam_ams, berlin_tegel, nl, de, amsterdam, berlin).
+vol(jal, 23004, 19, 3, e, t2a, berlin_tegel, dubai_dxb, de, ae, berlin, dubai).
+vol(jal, 23005, 8, 16, t2a, i, dubai_dxb, kingsford_smith, ae, au, dubai, sydney).
+vol(thai_airways, 23457, 10, 14, n, t3, suvarnabhumi, indira_gandhi, th, in, bangkok, bombay).
+vol(thai_airways, 23458, 18, 2, t3, d, indira_gandhi, auckland_akl, in, nz, bombay, auckland).
+vol(air_france, 60001, 9, 11, a, t5, paris_orly, heathrow, fr, gb, paris, londres).
+vol(air_france, 60002, 13, 16, e, t4s, charle_de_gaulle, barajas, fr, es, paris, madrid).
+vol(air_france, 60003, 7, 10, e, a, charle_de_gaulle, zurich_zrh, fr, ch, paris, zurich).
+vol(air_france, 60004, 15, 18, a, t1a, paris_orly, lax, fr, us, paris, los_angeles).
+vol(air_france, 60005, 8, 10, e, t5, charle_de_gaulle, heathrow, fr, gb, paris, londres).
+vol(air_france, 60006, 12, 16, t5, t2, heathrow, haneda, gb, jp, londres, tokyo).
+vol(air_france, 60007, 9, 12, e, t4s, charle_de_gaulle, barajas, fr, es, paris, madrid).
+vol(air_france, 60008, 14, 18, t4s, t3, barajas, schwechat, es, at, madrid, vienne).
+vol(air_france, 60009, 7, 9, a, t5, paris_orly, heathrow, fr, gb, paris, londres).
+vol(air_france, 60010, 11, 13, t5, t4s, heathrow, barajas, gb, es, londres, madrid).
+vol(air_france, 60011, 15, 23, t4s, n, barajas, suvarnabhumi, es, th, madrid, bangkok).
+vol(air_france, 60012, 10, 13, e, a, charle_de_gaulle, zurich_zrh, fr, ch, paris, zurich).
+vol(air_france, 60013, 15, 7, a, i, zurich_zrh, kingsford_smith, ch, au, zurich, sydney).
+vol(air_france, 60014, 9, 14, i, d, kingsford_smith, auckland_akl, au, nz, sydney, auckland).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+villes_all(amsterdam, berlin, 14, 16)
+villes_all(amsterdam, madrid, 7, 9)
+villes_all(amsterdam, sydney, 18, 2)
+villes_all(bangkok, bombay, 10, 14)
+villes_all(bangkok, singapour, 18, 2)
+villes_all(berlin, dubai, 19, 3)
+villes_all(berlin, johannesburg, 9, 19)
+villes_all(berlin, londres, 9, 11)
+villes_all(berlin, los_angeles, 8, 10)
+villes_all(berlin, madrid, 11, 13)
+villes_all(berlin, madrid, 9, 13)
+villes_all(berlin, vienne, 11, 18)
+villes_all(berlin, vienne, 9, 18)
+villes_all(bombay, auckland, 18, 2)
+villes_all(bruxelles, vienne, 10, 12)
+villes_all(dubai, amsterdam, 10, 14)
+villes_all(dubai, bangkok, 16, 4)
+villes_all(dubai, berlin, 10, 16)
+villes_all(dubai, sydney, 8, 16)
+villes_all(londres, berlin, 6, 8)
+villes_all(londres, dubai, 16, 0)
+villes_all(londres, johannesburg, 11, 19)
+villes_all(londres, los_angeles, 6, 10)
+villes_all(londres, madrid, 11, 13)
+villes_all(londres, tokyo, 12, 16)
+villes_all(londres, tokyo, 14, 22)
+villes_all(londres, vienne, 11, 18)
+villes_all(madrid, bangkok, 15, 23)
+villes_all(madrid, berlin, 12, 14)
+villes_all(madrid, vienne, 13, 18)
+villes_all(madrid, vienne, 14, 18)
+villes_all(madrid, zurich, 16, 18)
+villes_all(mexico, bombay, 15, 23)
+villes_all(mexico, bruxelles, 14, 18)
+villes_all(paris, amsterdam, 10, 15)
+villes_all(paris, berlin, 1, 8)
+villes_all(paris, berlin, 9, 14)
+villes_all(paris, johannesburg, 9, 19)
+villes_all(paris, londres, 1, 6)
+villes_all(paris, londres, 7, 9)
+villes_all(paris, londres, 8, 10)
+villes_all(paris, londres, 9, 11)
+villes_all(paris, los_angeles, 1, 10)
+villes_all(paris, los_angeles, 15, 18)
+villes_all(paris, madrid, 13, 16)
+villes_all(paris, madrid, 9, 12)
+villes_all(paris, madrid, 9, 13)
+villes_all(paris, shanghai, 15, 19)
+villes_all(paris, singapour, 8, 20)
+villes_all(paris, tokyo, 8, 12)
+villes_all(paris, vienne, 9, 18)
+villes_all(paris, zurich, 10, 13)
+villes_all(paris, zurich, 13, 18)
+villes_all(paris, zurich, 7, 10)
+villes_all(rio_de_janeiro, new_york, 12, 13)
+villes_all(rome, berlin, 9, 11)
+villes_all(rome, madrid, 9, 13)
+villes_all(rome, vienne, 9, 18)
+villes_all(seoul, rome, 6, 14)
+villes_all(seoul, sydney, 8, 16)
+villes_all(singapour, seoul, 12, 20)
+villes_all(singapour, zurich, 11, 18)
+villes_all(stockholm, amsterdam, 13, 17)
+villes_all(sydney, auckland, 6, 14)
+villes_all(sydney, auckland, 9, 14)
+villes_all(sydney, seoul, 22, 8)
+villes_all(sydney, sydney, 22, 16)
+villes_all(tokyo, amsterdam, 8, 10)
+villes_all(tokyo, londres, 10, 12)
+villes_all(tokyo, rome, 9, 11)
+villes_all(tokyo, singapour, 12, 20)
+villes_all(tokyo, singapour, 14, 22)
+villes_all(tokyo, tokyo, 10, 16)
+villes_all(tontouta, hamilton, 20, 21)
+villes_all(vienne, bangkok, 2, 10)
+villes_all(vienne, bombay, 2, 14)
+villes_all(vienne, dubai, 16, 0)
+villes_all(ville_dep, ville_arr, h_dep, h_arr)
+villes_all(zurich, amsterdam, 13, 15)
+villes_all(zurich, bangkok, 21, 5)
+villes_all(zurich, sydney, 15, 7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+villes_conec_impaire(amsterdam, berlin, 14, 16, 1)
+villes_conec_impaire(amsterdam, madrid, 7, 9, 1)
+villes_conec_impaire(amsterdam, sydney, 18, 2, 1)
+villes_conec_impaire(bangkok, bombay, 10, 14, 1)
+villes_conec_impaire(bangkok, singapour, 18, 2, 1)
+villes_conec_impaire(berlin, dubai, 19, 3, 1)
+villes_conec_impaire(berlin, londres, 9, 11, 1)
+villes_conec_impaire(berlin, los_angeles, 8, 10, 1)
+villes_conec_impaire(berlin, madrid, 11, 13, 1)
+villes_conec_impaire(bombay, auckland, 18, 2, 1)
+villes_conec_impaire(bruxelles, vienne, 10, 12, 1)
+villes_conec_impaire(dubai, amsterdam, 10, 14, 1)
+villes_conec_impaire(dubai, bangkok, 16, 4, 1)
+villes_conec_impaire(dubai, sydney, 8, 16, 1)
+villes_conec_impaire(londres, berlin, 6, 8, 1)
+villes_conec_impaire(londres, dubai, 16, 0, 1)
+villes_conec_impaire(londres, johannesburg, 11, 19, 1)
+villes_conec_impaire(londres, madrid, 11, 13, 1)
+villes_conec_impaire(londres, tokyo, 12, 16, 1)
+villes_conec_impaire(londres, tokyo, 14, 22, 1)
+villes_conec_impaire(madrid, bangkok, 15, 23, 1)
+villes_conec_impaire(madrid, berlin, 12, 14, 1)
+villes_conec_impaire(madrid, vienne, 13, 18, 1)
+villes_conec_impaire(madrid, vienne, 14, 18, 1)
+villes_conec_impaire(madrid, zurich, 16, 18, 1)
+villes_conec_impaire(mexico, bombay, 15, 23, 1)
+villes_conec_impaire(mexico, bruxelles, 14, 18, 1)
+villes_conec_impaire(paris, londres, 1, 6, 1)
+villes_conec_impaire(paris, londres, 7, 9, 1)
+villes_conec_impaire(paris, londres, 8, 10, 1)
+villes_conec_impaire(paris, londres, 9, 11, 1)
+villes_conec_impaire(paris, los_angeles, 15, 18, 1)
+villes_conec_impaire(paris, madrid, 13, 16, 1)
+villes_conec_impaire(paris, madrid, 9, 12, 1)
+villes_conec_impaire(paris, shanghai, 15, 19, 1)
+villes_conec_impaire(paris, tokyo, 8, 12, 1)
+villes_conec_impaire(paris, zurich, 10, 13, 1)
+villes_conec_impaire(paris, zurich, 7, 10, 1)
+villes_conec_impaire(rio_de_janeiro, new_york, 12, 13, 1)
+villes_conec_impaire(rome, berlin, 9, 11, 1)
+villes_conec_impaire(seoul, rome, 6, 14, 1)
+villes_conec_impaire(seoul, sydney, 8, 16, 1)
+villes_conec_impaire(singapour, seoul, 12, 20, 1)
+villes_conec_impaire(singapour, zurich, 11, 18, 1)
+villes_conec_impaire(stockholm, amsterdam, 13, 17, 1)
+villes_conec_impaire(sydney, auckland, 6, 14, 1)
+villes_conec_impaire(sydney, auckland, 9, 14, 1)
+villes_conec_impaire(sydney, seoul, 22, 8, 1)
+villes_conec_impaire(tokyo, amsterdam, 8, 10, 1)
+villes_conec_impaire(tokyo, londres, 10, 12, 1)
+villes_conec_impaire(tokyo, rome, 9, 11, 1)
+villes_conec_impaire(tokyo, singapour, 12, 20, 1)
+villes_conec_impaire(tokyo, singapour, 14, 22, 1)
+villes_conec_impaire(tontouta, hamilton, 20, 21, 1)
+villes_conec_impaire(vienne, bangkok, 2, 10, 1)
+villes_conec_impaire(vienne, dubai, 16, 0, 1)
+villes_conec_impaire(ville_dep, ville_arr, h_dep, h_arr, 1)
+villes_conec_impaire(zurich, amsterdam, 13, 15, 1)
+villes_conec_impaire(zurich, bangkok, 21, 5, 1)
+villes_conec_impaire(zurich, sydney, 15, 7, 1)

@@ -1,3 +1,4 @@
+-- Maria DB
 CREATE TABLE COMPAGNIE(
     nom_compagnie VARCHAR(50),
     PRIMARY KEY (nom_compagnie)
