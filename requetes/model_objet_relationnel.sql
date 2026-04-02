@@ -176,7 +176,19 @@ ORDER BY vol.nom_compagnie, vol.numero_vol;
 
 
 -- Pour chaque pilote, indiquer combien de vols lui sont associés. --
-SELECT e.nom, COUNT(*) AS nb_vols
-FROM VOL v, TABLE(v.equipage) e
-WHERE e.fonction = 'Pilote'
-GROUP BY e.nom;
+SELECT equip.nom, COUNT(*) as nb_vols
+FROM VOL vol, TABLE(vol.equipage) equip
+WHERE equip.fonction = 'Pilote'
+GROUP BY equip.nom;
+
+
+-- Pour chaque vol, indiquer l’impact de chaque indice de qualité 
+-- (l’impact d’un indice de qualité est donné par le produit de sa 
+-- valeur et du poids qui lui est attribué).
+
+SELECT vol.numero_vol, ind.libelle, (ind.valeur * ind.poids) as impact
+FROM VOL vol, TABLE(vol.indicesQualite) ind;
+
+
+-- Pour chaque indice de qualité, calculer son impact moyen.
+
